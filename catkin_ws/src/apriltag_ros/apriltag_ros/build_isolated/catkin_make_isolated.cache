@@ -1,0 +1,2 @@
+
+-G Ninja -DCATKIN_DEVEL_PREFIX=/home/mlpotter/catkin_ws/src/apriltag_ros/apriltag_ros/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/mlpotter/catkin_ws/src/apriltag_ros/apriltag_ros/install_isolated
