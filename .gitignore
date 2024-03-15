@@ -1,0 +1,4 @@
+# Ignore folders generated from build: 
+build/
+devel/
+beginner_tutorials/
