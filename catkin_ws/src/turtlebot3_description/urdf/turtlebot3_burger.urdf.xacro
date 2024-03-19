@@ -11,6 +11,41 @@
     <origin xyz="0.0 0.0 0.010" rpy="0 0 0"/>
   </joint>
 
+  <joint name="camera" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="raspicam"/>
+    <origin 
+      xyz="0.0 0.0 0.02"
+      rpy="0 0 1.77245385091"
+    />
+  </joint>
+
+  <link name="raspicam">
+    <visual>
+      <origin xyz="-0.032 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/bases/burger_base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.032 0 0.070" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.140 0.140 0.143"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="8.2573504e-01"/>
+      <inertia ixx="2.2124416e-03" ixy="-1.2294101e-05" ixz="3.4938785e-05"
+               iyy="2.1193702e-03" iyz="-5.0120904e-06"
+               izz="2.0064271e-03" />
+    </inertial>
+  </link>
+
+
   <link name="base_link">
     <visual>
       <origin xyz="-0.032 0 0.0" rpy="0 0 0"/>
