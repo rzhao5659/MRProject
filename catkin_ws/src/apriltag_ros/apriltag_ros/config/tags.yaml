@@ -20,7 +20,8 @@
 #     ...
 #   ]
 standalone_tags:
-  [{id: 7, size: 0.08, name: Tag7}
+  [{id: 586, size: 0.1, name: Tag586},
+    {id: 1, size: 0.1, name: Tag1}
   ]
 # ## Tag bundle definitions
 # ### Remarks
