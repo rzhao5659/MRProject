@@ -1,4 +1,5 @@
 <launch>
+<!-- add comment -->
 <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
   <param name="robot_base_frame" value="base_link"/>
   <param name="costmap_topic" value="map"/>
