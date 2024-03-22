@@ -16,7 +16,7 @@
     <child link="raspicam"/>
     <origin 
       xyz="0.0172 0.0 0.15"
-      rpy="${-pi/2} 0 ${-pi/2}"
+      rpy="${-pi/2} ${pi} ${-pi/2}"
     />
   </joint>
 
