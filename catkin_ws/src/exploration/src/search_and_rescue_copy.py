@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import rospy
-from std_msgs.msg import Int64,Bool
+from std_msgs.msg import Int64
 from std_srvs.srv import SetBool
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
@@ -48,11 +48,8 @@ class SearchAndRescue:
 
         self.markerArray = MarkerArray()
         self.nav_goal_marker_pub = rospy.Publisher('visualization_goal', Marker,queue_size=10,latch=True)
-        self.map_sub = rospy.Subscriber('/map', OccupancyGrid,self.set_map)
+        self.map_sub = rospy.Subscriber('/map', OccupancyGrid,self.fill_goal_queue)
         self.rot_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
-        self.exp_stop_sub = rospy.Subscriber("/exploration_stop_flag",Bool,self.start_search_and_rescue)
-
-        
         # self.rot_sub = rospy.Subscriber('/cmd_vel_middle', Twist, self.send_rotation, queue_size=1)
 
         # self.RotStartTime = rospy.Time(0)
@@ -70,33 +67,30 @@ class SearchAndRescue:
         # print("Lord have mercy")
         # print(self.send_goal(self.create_goal(0,0.5)))
 
+        self.goal_queue = []
+        self.create_goal_queue = False
+        rospy.sleep(2)
+        while len(self.goal_queue) != 0:
+            current_goal = self.goal_queue.pop().ravel()
+            print(current_goal)
+            success = self.goal_and_rotate(current_goal[0],current_goal[1])
 
-    def start_search_and_rescue(self,bool_msg):
-        bool_flag = bool_msg.data
-        print("HOWDY",bool_flag)
+            print("Success",success)
 
+    def fill_goal_queue(self,map):
+        if not self.create_goal_queue:
+            map_width = map.info.width
+            map_height = map.info.height
 
-        if bool_flag:
-            self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
+            map_grid = np.reshape(map.data,(map_width,map_height),order="F").T
+
+            self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(map_grid)]
+
             self.create_goal_queue = True
-
-            while len(self.goal_queue) != 0:
-                current_goal = self.goal_queue.pop().ravel()
-                print(current_goal)
-                success = self.goal_and_rotate(current_goal[0],current_goal[1])
-
-                print("Success",success)
-
-    def set_map(self,map):
-        self.map_grid_width = map.info.width
-        self.map_grid_height = map.info.height
-        self.map_grid = np.reshape(map.data,(self.map_grid_width,self.map_grid_height),order="F").T
-
-
-        # import matplotlib.pyplot as plt
-        # plt.imshow(map_grid,origin="lower")
-        # plt.plot(pos_in_W[:,0],pos_in_W[:,1],'r*')
-        # plt.savefig("random.png")
+            # import matplotlib.pyplot as plt
+            # plt.imshow(map_grid,origin="lower")
+            # plt.plot(pos_in_W[:,0],pos_in_W[:,1],'r*')
+            # plt.savefig("random.png")
 
     def grid_map(self,map_grid):
         width,height = map_grid.shape
