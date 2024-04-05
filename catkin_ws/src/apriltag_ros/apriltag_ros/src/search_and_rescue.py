@@ -4,7 +4,8 @@ from std_msgs.msg import Int64
 from std_srvs.srv import SetBool
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
-from apriltag_ros.msg import AprilTagDetectionArray
+from visualization_msgs.msg import MarkerArray,Marker
+
 
 import numpy as np
 import rosparam
@@ -20,13 +21,18 @@ def AngleWrap(theta):
 class SearchAndRescue:
     def __init__(self):
         print("Started Search And Rescue")
-        self.map_width = rosparam.get_param("/move_base/global_costmap/width")
-        self.map_height = rosparam.get_param("/move_base/global_costmap/height")
-        self.map_resolution = rosparam.get_param("/move_base/global_costmap/height")
-        self.map_origin_x = rosparam.get_param("/move_base/global_costmap/origin_x")
-        self.map_origin_y = rosparam.get_param("/move_base/global_costmap/origin_y")
-        self.map_dims = (int(self.map_width*2 / self.map_resolution),int(self.map_height*2 / self.map_resolution))
+        self.world_width = rosparam.get_param("/move_base/global_costmap/width")
+        self.world_height = rosparam.get_param("/move_base/global_costmap/height")
+        self.world_origin_x = rosparam.get_param("/move_base/global_costmap/origin_x")
+        self.world_origin_y = rosparam.get_param("/move_base/global_costmap/origin_y")
 
+
+        self.map_resolution = rosparam.get_param("/move_base/global_costmap/resolution")
+
+        self.map_dims = (int(self.world_width*2 / self.map_resolution),int(self.world_height*2 / self.map_resolution))
+
+        self.map_origin_x = self.map_dims[0]//2
+        self.map_origin_y = self.map_dims[1]//2
 
         self.move_base_client = actionlib.SimpleActionClient("move_base",MoveBaseAction)
         self.move_base_client.wait_for_server()
@@ -34,24 +40,70 @@ class SearchAndRescue:
         # self.smooth_pose_pub = rospy.Publisher("/tag_detections_smoothed", AprilTagDetectionArray, queue_size=30)
         # self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.predict_update)
 
+        self.markerArray = MarkerArray()
+        self.nav_goal_marker_pub = rospy.Publisher('visualization_goal', Marker,queue_size=10,latch=True)
+
+
+        # self.nav_goal_marker_pub.publish(self.create_marker(2,-2.2))
+
+        # self.marker_rate = rospy.Rate(10)
+        # while not rospy.is_shutdown():
+        #     self.nav_goal_marker_pub.publish(self.create_marker(5,5))
+        #     self.marker_rate.sleep()
+        #     print("here")
+
+        # print("Lord have mercy")
+        print(self.send_goal(self.create_goal(2.0,-2.2)))
+
     def send_goal(self, goal):
-        
+        self.nav_goal_marker_pub.publish(self.create_marker(goal.target_pose.pose.position.x,goal.target_pose.pose.position.y))
+
         self.move_base_client.send_goal(goal)
         wait = self.move_base_client.wait_for_result()
+        print(wait)
 
         if not wait:
             rospy.logerr("Action server not available!")
             rospy.signal_shutdown("Action server not available!")
+            print("bleh")
         else:
-            return self.move_base_client.get_result()
 
+            return self.move_base_client.get_result()
+        
+    def create_marker(self,x,y):
+        marker = Marker()
+        marker.header.frame_id = "map"
+        marker.header.stamp = rospy.Time(0)
+        marker.frame_locked = True
+        marker.lifetime = rospy.Duration(10)
+        marker.type = marker.SPHERE
+        marker.action = marker.ADD
+        marker.scale.x = 0.2
+        marker.scale.y = 0.2
+        marker.scale.z = 0.2
+        marker.color.a = 1.0
+        marker.color.r = 1.0
+        marker.color.g = 1.0
+        marker.color.b = 0.0
+        marker.pose.orientation.w = 1.0
+        marker.pose.position.x = x
+        marker.pose.position.y = y
+        marker.pose.position.z = 0
+
+        # self.markerArray.markers.append(marker)
+        # self.nav_goal_marker_pub.publish(self.markerArray)
+        return marker
+    
     def create_goal(self,x,y):
         goal = MoveBaseGoal()
         goal.target_pose.header.frame_id = "map"
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.pose.position.x = x
-        goal.target_pose.pose.position.x = y
+        goal.target_pose.pose.position.y = y
         goal.target_pose.pose.orientation.w = 1.0
+
+        return goal
+
 
     def map_indices_to_world_coordinates(self,ind_in_G):
         ind_in_G = ind_in_G.reshape((-1,2))
@@ -59,20 +111,20 @@ class SearchAndRescue:
         x_ind = ind_in_G[:,[0]]
         y_ind = ind_in_G[:,[1]]
         
-        pos_in_W_x = (self.map_origin_x - self.map_width) + y_ind * self.map_resolution
-        pos_in_W_y = (self.map_origin_y - self.map_height) + x_ind * self.map_resolution
+        pos_in_W_x = (self.world_origin_x - self.world_width) + y_ind * self.map_resolution
+        pos_in_W_y = (self.world_origin_y - self.world_height) + x_ind * self.map_resolution
 
         return np.column_stack((pos_in_W_x,pos_in_W_y))
 
 
-    def world_coordinates_to_map_indces(self,pos_in_W):
+    def world_coordinates_to_map_indices(self,pos_in_W):
         input_dims = pos_in_W.shape
 
         pos_in_W = pos_in_W.reshape((-1,2))
 
         T_WtoG = (1/self.map_resolution) * np.array([
-            [0,-1,self.map_origin_x],
-            [1,0,self.map_origin_y],
+            [0,1,self.map_origin_x*self.map_resolution],
+            [1,0,self.map_origin_y*self.map_resolution],
             [0,0,1]
         ])
 
@@ -107,16 +159,9 @@ class SearchAndRescue:
 
 
         return pos_in_G_int, in_map
-    
-    def MeasurementFn(self,x,x_tb3):
-        range_ = np.linalg.norm(x_tb3[:2] - x[:2])
-        bearing = AngleWrap(np.arctan2(x[1]-x_tb3[1],x[0]-x_tb3[0])-x_tb3[2])
 
-        z = np.array([range_,bearing])
-
-        return z
         
 if __name__ == '__main__':
     rospy.init_node('search_and_rescue')
-    AprilTagCKF()
+    SearchAndRescue()
     rospy.spin()
