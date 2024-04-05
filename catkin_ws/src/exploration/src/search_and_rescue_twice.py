@@ -16,7 +16,6 @@ import actionlib
 
 import cv2 as cv
 
-from copy import deepcopy
 
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
@@ -52,10 +51,6 @@ class SearchAndRescue:
         self.map_sub = rospy.Subscriber('/map', OccupancyGrid,self.set_map)
         self.rot_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         self.exp_stop_sub = rospy.Subscriber("/exploration_stop_flag",Bool,self.start_search_and_rescue)
-
-        rospy.sleep(2)
-        self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
-
         # self.goal_and_rotate(-10,-10)
         
         # self.rot_sub = rospy.Subscriber('/cmd_vel_middle', Twist, self.send_rotation, queue_size=1)
@@ -79,12 +74,11 @@ class SearchAndRescue:
     def start_search_and_rescue(self,bool_msg):
         bool_flag = bool_msg.data
         print("HOWDY",bool_flag)
-        
+
 
         if bool_flag:
             self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
             self.create_goal_queue = True
-            print(self.goal_queue)
 
             while len(self.goal_queue) != 0:
                 current_goal = self.goal_queue.pop().ravel()
@@ -98,74 +92,31 @@ class SearchAndRescue:
     def set_map(self,map):
         self.map_grid_width = map.info.width
         self.map_grid_height = map.info.height
-
-        print(map.info.width,map.info.width)
-
         self.map_grid = np.reshape(map.data,(self.map_grid_height,self.map_grid_width))
-        self.map_dims = (int(self.map_grid_width),int(self.map_grid_width))
 
-        # import matplotlib.pyplot as plt
-        # plt.imshow(self.map_grid,origin="lower")
-        # plt.savefig("random.png")
+
+        import matplotlib.pyplot as plt
+        plt.imshow(self.map_grid,origin="lower")
+        plt.savefig("random.png")
 
     def grid_map(self,map_grid):
         width,height = map_grid.shape
-        print(width,height)
-        # dense_idx = np.mgrid[0:height,0:width]
+        dense_idx = np.mgrid[0:height,0:width]
 
-        # sparse_idx = dense_idx[:,::10,::10]
+        sparse_idx = dense_idx[:,::10,::10]
 
-        # goal_pts = map_grid[sparse_idx[0].ravel(),sparse_idx[1].ravel()]
-        xmin,xmax = -height//2 * self.map_resolution,height//2 *self.map_resolution
-        ymin,ymax = -width//2 * self.map_resolution,width//2 * self.map_resolution
+        map_grid = cv.blur(map_grid,(15,15))
+
+        goal_pts = map_grid[sparse_idx[0].ravel(),sparse_idx[1].ravel()]
 
 
-        xs,ys = np.linspace(xmin,xmax,25),np.linspace(ymin,ymax,25)
-        xs,ys = np.meshgrid(xs,ys)
-        pos_in_W = np.column_stack((xs.ravel(),ys.ravel()))
+        valid_goal_pts = goal_pts == 0
 
-        map_indices,valid_idx = self.world_coordinates_to_map_indices(pos_in_W)
+        valid_map_indices = np.column_stack((sparse_idx[0].ravel()[valid_goal_pts],sparse_idx[1].ravel()[valid_goal_pts]))
 
-        map_grid = self.inflate_map(map_grid,radius=0.2)
-
-        # import matplotlib.pyplot as plt
-        # plt.imshow(self.map_grid,origin="lower")
-        # plt.savefig("random.png")
-
-        valid_map_indices  = map_indices[valid_idx]
-
-        free = map_grid[valid_map_indices[:,0],valid_map_indices[:,1]]
-
-        search_indices = valid_map_indices[free==0]
-
-        pos_in_W = self.map_indices_to_world_coordinates(search_indices)
+        pos_in_W = self.map_indices_to_world_coordinates(valid_map_indices)
 
         return pos_in_W
-
-    def inflate_map(self,map_grid,radius=0.1):
-        cell_inflation = int(np.ceil(radius/self.map_resolution))
-        
-        row,col = map_grid.shape
-
-        map_grid_inflated = deepcopy(map_grid)
-        for i in range(row):
-            for j in range(col):
-                occupied = (self.map_grid[i,j] != 0) and (self.map_grid[i,j] != -1)
-
-                if occupied:
-                    min_i = max(0,i-cell_inflation)
-                    min_j = max(0,j-cell_inflation)
-
-                    max_i = min(row-1,i+cell_inflation)
-                    max_j = min(col-1,j+cell_inflation)
-
-                    map_grid_inflated[min_i:max_i,min_j:max_j] = 100
-        
-
-        import matplotlib.pyplot as plt
-        plt.imshow(map_grid_inflated,origin="lower")
-        plt.savefig("random_inflated_house.png")
-        return map_grid_inflated
 
         
     def send_goal(self, goal):
@@ -189,8 +140,8 @@ class SearchAndRescue:
     
         StartTime = rospy.Time.now()
         EndTime = StartTime + rospy.Duration(20)
-        print("Rotating to search for tags.")
         while rospy.Time.now() <= EndTime:
+            print("Rotating to search for tags.")
             self.rot_pub.publish(msg_new)
             rospy.sleep(0.1) 
 
@@ -262,8 +213,8 @@ class SearchAndRescue:
         x_ind = ind_in_G[:,[0]]
         y_ind = ind_in_G[:,[1]]
         
-        pos_in_W_x = (self.world_origin_x - self.world_height) + x_ind * self.map_resolution
-        pos_in_W_y = (self.world_origin_y - self.world_width) + y_ind * self.map_resolution
+        pos_in_W_x = (self.world_origin_x - self.world_width) + y_ind * self.map_resolution
+        pos_in_W_y = (self.world_origin_y + self.world_height) - x_ind * self.map_resolution
 
         return np.column_stack((pos_in_W_x,pos_in_W_y))
 
