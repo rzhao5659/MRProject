@@ -138,7 +138,7 @@ class SearchAndRescue:
         # plt.savefig("random.png")
 
     def grid_map(self,map_grid):
-        width,height = map_grid.shape
+        height,width = map_grid.shape
 
 
         # import matplotlib.pyplot as plt
@@ -157,6 +157,8 @@ class SearchAndRescue:
         xs,ys = np.meshgrid(xs,ys)
         pos_in_W = np.column_stack((xs.ravel(),ys.ravel()))
 
+        pos_in_W  = np.stack(self.snake_sort(coordinates=pos_in_W,rows=25,cols=25))
+
         map_indices,valid_idx = self.world_coordinates_to_map_indices(pos_in_W)
 
         map_grid = self.inflate_map(map_grid,radius=0.2)
@@ -174,6 +176,26 @@ class SearchAndRescue:
         pos_in_W = self.map_indices_to_world_coordinates(search_indices)
 
         return pos_in_W
+    
+    def snake_sort(self,coordinates, rows, cols):
+
+        sorted_coordinates = []
+    
+        for row in range(rows):
+
+            if row % 2 == 0:
+
+                for col in range(cols):
+
+                    sorted_coordinates.append(coordinates[row * cols + col])
+
+            else:
+
+                for col in range(cols - 1, -1, -1):
+
+                    sorted_coordinates.append(coordinates[row * cols + col])
+    
+        return sorted_coordinates
 
     def inflate_map(self,map_grid,radius=0.1):
         cell_inflation = int(np.ceil(radius/self.map_resolution))
