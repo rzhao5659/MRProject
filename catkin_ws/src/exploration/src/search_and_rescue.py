@@ -48,13 +48,42 @@ class SearchAndRescue:
         # self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.predict_update)
 
         self.markerArray = MarkerArray()
+
         self.nav_goal_marker_pub = rospy.Publisher('visualization_goal', Marker,queue_size=10,latch=True)
         self.map_sub = rospy.Subscriber('/map', OccupancyGrid,self.set_map)
         self.rot_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         self.exp_stop_sub = rospy.Subscriber("/exploration_stop_flag",Bool,self.start_search_and_rescue)
 
-        rospy.sleep(2)
-        self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
+
+        # print("send goal")
+        # coord = np.array([0,380]).reshape(-1,2)
+        # goal = self.map_indices_to_world_coordinates(coord)
+        # print(goal)
+        # self.goal_and_rotate(goal.ravel()[0],goal.ravel()[1])
+
+        # print(self.world_coordinates_to_map_indices(goal))
+        # print("HERERE")
+        
+        # rospy.sleep(0.5)
+        # self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
+
+
+        # self.nav_goal_markers = rospy.Publisher('queue_goal', MarkerArray,queue_size=10,latch=True)
+
+        # for goal in self.goal_queue:
+        #     goal = goal.ravel()
+        #     self.markerArray.markers.append(self.create_marker(goal[0],goal[1]))
+
+        # id = 0
+        # for m in self.markerArray.markers:
+        #     m.id = id
+        #     id += 1
+
+
+        # while not rospy.is_shutdown():
+        #     self.nav_goal_markers.publish(self.markerArray)
+
+
 
         # self.goal_and_rotate(-10,-10)
         
@@ -99,9 +128,9 @@ class SearchAndRescue:
         self.map_grid_width = map.info.width
         self.map_grid_height = map.info.height
 
-        print(map.info.width,map.info.width)
+        # print(map.info.width,map.info.width)
 
-        self.map_grid = np.reshape(map.data,(self.map_grid_height,self.map_grid_width))
+        self.map_grid = np.reshape(map.data,(self.map_grid_height,self.map_grid_width)).T
         self.map_dims = (int(self.map_grid_width),int(self.map_grid_width))
 
         # import matplotlib.pyplot as plt
@@ -110,7 +139,11 @@ class SearchAndRescue:
 
     def grid_map(self,map_grid):
         width,height = map_grid.shape
-        print(width,height)
+
+
+        # import matplotlib.pyplot as plt
+        # plt.imshow(self.map_grid,origin="lower")
+        # plt.savefig("house.png")
         # dense_idx = np.mgrid[0:height,0:width]
 
         # sparse_idx = dense_idx[:,::10,::10]
@@ -129,8 +162,8 @@ class SearchAndRescue:
         map_grid = self.inflate_map(map_grid,radius=0.2)
 
         # import matplotlib.pyplot as plt
-        # plt.imshow(self.map_grid,origin="lower")
-        # plt.savefig("random.png")
+        # plt.imshow(map_grid,origin="lower")
+        # plt.savefig("house_inflate.png")
 
         valid_map_indices  = map_indices[valid_idx]
 
@@ -162,9 +195,9 @@ class SearchAndRescue:
                     map_grid_inflated[min_i:max_i,min_j:max_j] = 100
         
 
-        import matplotlib.pyplot as plt
-        plt.imshow(map_grid_inflated,origin="lower")
-        plt.savefig("random_inflated_house.png")
+        # import matplotlib.pyplot as plt
+        # plt.imshow(map_grid_inflated,origin="lower")
+        # plt.savefig("random_inflated_house.png")
         return map_grid_inflated
 
         
@@ -203,6 +236,8 @@ class SearchAndRescue:
         if success:
             self.rotate_360()
 
+        # success=True
+
         return success
 
     # def send_rotation(self,msg):
@@ -233,7 +268,7 @@ class SearchAndRescue:
         marker.scale.y = 0.2
         marker.scale.z = 0.2
         marker.color.a = 1.0
-        marker.color.r = 1.0
+        marker.color.r = 0.0
         marker.color.g = 1.0
         marker.color.b = 0.0
         marker.pose.orientation.w = 1.0
@@ -274,8 +309,8 @@ class SearchAndRescue:
         pos_in_W = pos_in_W.reshape((-1,2))
 
         T_WtoG = (1/self.map_resolution) * np.array([
-            [0,1,self.map_origin_x*self.map_resolution],
-            [1,0,self.map_origin_y*self.map_resolution],
+            [1,0,self.map_origin_x*self.map_resolution],
+            [0,1,self.map_origin_y*self.map_resolution],
             [0,0,1]
         ])
 
