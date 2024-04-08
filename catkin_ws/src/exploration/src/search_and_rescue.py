@@ -113,7 +113,9 @@ class SearchAndRescue:
         if bool_flag:
             self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
             self.create_goal_queue = True
-            print(self.goal_queue)
+            print("Num Goals=",len(self.goal_queue))
+            print(np.stack(self.goal_queue))
+            
 
             while len(self.goal_queue) != 0:
                 current_goal = self.goal_queue.pop().ravel()
