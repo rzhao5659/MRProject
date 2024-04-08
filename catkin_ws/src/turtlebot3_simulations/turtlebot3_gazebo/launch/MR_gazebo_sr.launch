@@ -1,0 +1,9 @@
+<launch>
+    <arg name="world_explore" default="turtlebot3_house"/>  
+    <include file="$(find turtlebot3_gazebo)/launch/$(arg world_explore).launch"> </include>
+    <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch"> </include>
+    <include file="$(find turtlebot3_navigation)/launch/move_base.launch"> </include>
+    <include file="$(find explore_lite)/launch/explore.launch"> </include> 
+    <node pkg="exploration" type="search_and_rescue.py" name="search_and_rescue" /> 
+</launch>
+

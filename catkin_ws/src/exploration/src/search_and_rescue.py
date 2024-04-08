@@ -27,7 +27,7 @@ def AngleWrap(theta):
 
 class SearchAndRescue:
     def __init__(self):
-        print("Started Search And Rescue")
+        rospy.loginfo("Started Search And Rescue Node")
         self.world_width = rosparam.get_param("/move_base/global_costmap/width")
         self.world_height = rosparam.get_param("/move_base/global_costmap/height")
         self.world_origin_x = rosparam.get_param("/move_base/global_costmap/origin_x")
@@ -107,14 +107,16 @@ class SearchAndRescue:
 
     def start_search_and_rescue(self,bool_msg):
         bool_flag = bool_msg.data
-        print("HOWDY",bool_flag)
+        rospy.loginfo(f"Starting Search and Rescue Operation: {bool_flag}")
         
 
         if bool_flag:
             self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
             self.create_goal_queue = True
-            print("Num Goals=",len(self.goal_queue))
-            print(np.stack(self.goal_queue))
+            rospy.loginfo(f"Number of Search Points: {len(self.goal_queue)}")
+
+            # print("Num Goals=",len(self.goal_queue))
+            # print(np.stack(self.goal_queue))
             
 
             while len(self.goal_queue) != 0:
@@ -122,9 +124,9 @@ class SearchAndRescue:
                 print(current_goal)
                 success = self.goal_and_rotate(current_goal[0],current_goal[1])
 
-                print("Success",success)
+                rospy.loginfo(f"Search Point {current_goal} , success={success}")
             if len(self.goal_queue) == 0:
-                print("Queue Emptied")
+                rospy.loginfo("Queue Emptied")
 
     def set_map(self,map):
         self.map_grid_width = map.info.width
@@ -179,27 +181,46 @@ class SearchAndRescue:
 
         return pos_in_W
     
-    def snake_sort(self,coordinates, rows, cols):
+    def snake_sort(self,coordinates, rows, cols,direction="h"):
 
         sorted_coordinates = []
-    
-        for row in range(rows):
+        
+        if direction == "v":
 
-            if row % 2 == 0:
+            for row in range(rows):
 
-                for col in range(cols):
+                if row % 2 == 0:
 
-                    sorted_coordinates.append(coordinates[row * cols + col])
+                    for col in range(cols):
 
-            else:
+                        sorted_coordinates.append(coordinates[row * cols + col])
 
-                for col in range(cols - 1, -1, -1):
+                else:
 
-                    sorted_coordinates.append(coordinates[row * cols + col])
+                    for col in range(cols - 1, -1, -1):
+
+                        sorted_coordinates.append(coordinates[row * cols + col])
+
+        elif direction == "h":
+            coordinates = sorted(coordinates, key=lambda coord: (coord[1], coord[0])) 
+
+            for col in range(cols):
+
+                if col % 2 == 0:
+
+                    for row in range(rows):
+
+                        sorted_coordinates.append(coordinates[row * cols + col])
+
+                else:
+
+                    for row in range(rows - 1, -1, -1):
+
+                        sorted_coordinates.append(coordinates[row * cols + col])
     
         return sorted_coordinates
 
-    def inflate_map(self,map_grid,radius=0.1):
+    def inflate_map(self,map_grid,radius=0.055):
         cell_inflation = int(np.ceil(radius/self.map_resolution))
         
         row,col = map_grid.shape
@@ -257,8 +278,8 @@ class SearchAndRescue:
 
         print("Reached Goal:? ",success)
 
-        if success:
-            self.rotate_360()
+        # if success:
+        #     self.rotate_360()
 
         # success=True
 
@@ -373,5 +394,6 @@ class SearchAndRescue:
         
 if __name__ == '__main__':
     rospy.init_node('search_and_rescue')
+    rospy.sleep(1)
     SearchAndRescue()
     rospy.spin()
