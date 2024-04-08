@@ -28,6 +28,7 @@ def AngleWrap(theta):
 class SearchAndRescue:
     def __init__(self):
         rospy.loginfo("Started Search And Rescue Node")
+
         self.world_width = rosparam.get_param("/move_base/global_costmap/width")
         self.world_height = rosparam.get_param("/move_base/global_costmap/height")
         self.world_origin_x = rosparam.get_param("/move_base/global_costmap/origin_x")
@@ -250,7 +251,7 @@ class SearchAndRescue:
         self.nav_goal_marker_pub.publish(self.create_marker(goal.target_pose.pose.position.x,goal.target_pose.pose.position.y))
 
         self.move_base_client.send_goal(goal)
-        wait = self.move_base_client.wait_for_result()
+        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration(10))
 
         if not wait:
             rospy.logerr("Action server not available!")
