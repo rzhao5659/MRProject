@@ -123,9 +123,9 @@ class SearchAndRescue:
             while len(self.goal_queue) != 0:
                 current_goal = self.goal_queue.pop().ravel()
                 print(current_goal)
-                success = self.goal_and_rotate(current_goal[0],current_goal[1])
+                self.goal_and_rotate(current_goal[0],current_goal[1])
 
-                rospy.loginfo(f"Search Point {current_goal} , success={success}")
+                rospy.loginfo(f"Search Point {current_goal}")
             if len(self.goal_queue) == 0:
                 rospy.loginfo("Queue Emptied")
 
@@ -251,14 +251,17 @@ class SearchAndRescue:
         self.nav_goal_marker_pub.publish(self.create_marker(goal.target_pose.pose.position.x,goal.target_pose.pose.position.y))
 
         self.move_base_client.send_goal(goal)
-        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration(10))
-
+        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration.from_sec(10))
+        print(wait)
+        rospy.sleep(0.05)
         if not wait:
-            rospy.logerr("Action server not available!")
-            rospy.signal_shutdown("Action server not available!")
-            print("bleh")
-        else:
+            rospy.logerr("Timed out to reach goal")
 
+            # rospy.logerr("Action server not available!")
+            # rospy.signal_shutdown("Action server not available!")
+            print("bleh")
+            return False
+        else:
             return self.move_base_client.get_result()
         
     def rotate_360(self):
@@ -275,16 +278,12 @@ class SearchAndRescue:
 
     def goal_and_rotate(self,x,y):
         goal_msg = self.create_goal(x,y)
-        success = self.send_goal(goal_msg)
-
-        print("Reached Goal:? ",success)
+        self.send_goal(goal_msg)
 
         # if success:
         #     self.rotate_360()
 
         # success=True
-
-        return success
 
     # def send_rotation(self,msg):
     #     if rospy.Time.now() >= self.RotEndTime:
