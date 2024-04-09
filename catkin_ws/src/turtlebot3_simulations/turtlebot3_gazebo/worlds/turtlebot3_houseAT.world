@@ -6319,7 +6319,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>
@@ -6343,7 +6343,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>
@@ -6367,7 +6367,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>
@@ -6910,7 +6910,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>
@@ -6934,7 +6934,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>
@@ -6958,7 +6958,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>
@@ -6982,7 +6982,7 @@
         <visual name='main_Visual'>
           <geometry>
             <box>
-              <size>1 1 0.01</size>
+              <size>0.1 0.1 0.01</size>
             </box>
           </geometry>
           <material>

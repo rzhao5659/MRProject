@@ -39,7 +39,7 @@ class AprilTagCKF:
             else:
                 self.AprilTagDict[id] = (self.AprilTagDict[id] + distance_vector)/2
 
-        print(self.AprilTagDict)
+        rospy.sleep(0.05)
         # print(msg.detections)
         # self.counter += msg.data
         # new_msg = PoseWithCovarianceStamped()

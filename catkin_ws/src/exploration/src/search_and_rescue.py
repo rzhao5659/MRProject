@@ -54,6 +54,7 @@ class SearchAndRescue:
         self.map_sub = rospy.Subscriber('/map', OccupancyGrid,self.set_map)
         self.rot_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         self.exp_stop_sub = rospy.Subscriber("/exploration_stop_flag",Bool,self.start_search_and_rescue)
+        self.nav_goal_markers = rospy.Publisher('queue_goal', MarkerArray,queue_size=10,latch=True)
 
 
         # print("send goal")
@@ -146,41 +147,132 @@ class SearchAndRescue:
         height,width = map_grid.shape
 
 
-        # import matplotlib.pyplot as plt
-        # plt.imshow(self.map_grid,origin="lower")
-        # plt.savefig("house.png")
+        import matplotlib.pyplot as plt
+        plt.imshow(self.map_grid,origin="lower")
+        plt.savefig("house_unINFLATION.png")
+
+
         # dense_idx = np.mgrid[0:height,0:width]
 
         # sparse_idx = dense_idx[:,::10,::10]
 
         # goal_pts = map_grid[sparse_idx[0].ravel(),sparse_idx[1].ravel()]
-        xmin,xmax = -height//2 * self.map_resolution,height//2 *self.map_resolution
-        ymin,ymax = -width//2 * self.map_resolution,width//2 * self.map_resolution
-
-
-        xs,ys = np.linspace(xmin,xmax,25),np.linspace(ymin,ymax,25)
-        xs,ys = np.meshgrid(xs,ys)
-        pos_in_W = np.column_stack((xs.ravel(),ys.ravel()))
-
-        pos_in_W  = np.stack(self.snake_sort(coordinates=pos_in_W,rows=25,cols=25))
-
-        map_indices,valid_idx = self.world_coordinates_to_map_indices(pos_in_W)
+        # xmin,xmax = -height//2 * self.map_resolution,height//2 *self.map_resolution
+        # ymin,ymax = -width//2 * self.map_resolution,width//2 * self.map_resolution
 
         map_grid = self.inflate_map(map_grid,radius=0.2)
 
-        # import matplotlib.pyplot as plt
-        # plt.imshow(map_grid,origin="lower")
-        # plt.savefig("house_inflate.png")
+        plt.imshow(map_grid,origin="lower")
+        plt.savefig("house_INFLATION.png")
 
-        valid_map_indices  = map_indices[valid_idx]
+        unoccupied_space = np.column_stack(np.where(map_grid==0))
 
-        free = map_grid[valid_map_indices[:,0],valid_map_indices[:,1]]
+        min_row,max_row = np.min(unoccupied_space[:,0]),np.max(unoccupied_space[:,0])
+        min_col,max_col = np.min(unoccupied_space[:,1]),np.max(unoccupied_space[:,1])
 
-        search_indices = valid_map_indices[free==0]
+        area_approx = (max_row-min_row) * (max_col-min_col) * self.map_resolution**2
+        
 
-        pos_in_W = self.map_indices_to_world_coordinates(search_indices)
+        grid_cells = int(np.ceil(np.cbrt(area_approx)))
+
+        print("Grid Cells",grid_cells)
+        print(min_row,max_row,min_col,max_col)
+
+
+        grid_row_space = int((max_row-min_row)/(grid_cells))
+        grid_col_space = int((max_col-min_col)/(grid_cells))
+
+        valid_cells = []
+
+        for i in range(grid_cells): # row
+            if i % 2 == 0:
+                ranges = range(grid_cells)
+            else:
+                ranges = range(grid_cells - 1, -1, -1)
+            
+            print(list(ranges))
+
+            for j in ranges: # col
+                box_ll,box_lr =max((i*grid_row_space)+min_row,min_row+1), min(min_row+(i+1)*grid_row_space,max_row-1)
+                box_ul,box_ur = max((j*grid_col_space)+min_col,min_col+1), min(min_col+(j+1)*grid_col_space,max_col-1)
+                
+                # cell_mesh = np.mgrid[box_ll:box_lr, box_ul:box_ur]
+
+                print(box_ll,box_lr,box_ul,box_ur)
+
+                # cell_points = np.column_stack((cell_mesh[0,:,:].ravel(),cell_mesh[1,:,:].ravel()))
+
+                for s in range(50):
+
+                    row_sample = np.random.randint(box_ll,box_lr)
+                    col_sample = np.random.randint(box_ul,box_ur)
+                    sample_cell = np.array([row_sample,col_sample]).ravel()
+
+                    free = map_grid[sample_cell[0],sample_cell[1]] == 0
+
+                    if free:
+                        print(sample_cell)
+                        valid_cells.append(sample_cell)
+                        break
+                    
+        valid_cells = np.stack(valid_cells)
+
+      
+        pos_in_W = self.map_indices_to_world_coordinates(valid_cells)
+
+        rospy.loginfo(f"Goals: {pos_in_W}")
+
+        for goal in pos_in_W:
+            goal = goal.ravel()
+            self.markerArray.markers.append(self.create_marker(goal[0],goal[1]))
+
+        id = 0
+        for m in self.markerArray.markers:
+            m.id = id
+            id += 1
+
+        self.nav_goal_markers.publish(self.markerArray)
 
         return pos_in_W
+        # def grid_map(self,map_grid):
+        #     height,width = map_grid.shape
+
+
+        #     # import matplotlib.pyplot as plt
+        #     # plt.imshow(self.map_grid,origin="lower")
+        #     # plt.savefig("house.png")
+        #     # dense_idx = np.mgrid[0:height,0:width]
+
+        #     # sparse_idx = dense_idx[:,::10,::10]
+
+        #     # goal_pts = map_grid[sparse_idx[0].ravel(),sparse_idx[1].ravel()]
+        #     xmin,xmax = -height//2 * self.map_resolution,height//2 *self.map_resolution
+        #     ymin,ymax = -width//2 * self.map_resolution,width//2 * self.map_resolution
+
+
+        #     xs,ys = np.linspace(xmin,xmax,25),np.linspace(ymin,ymax,25)
+        #     xs,ys = np.meshgrid(xs,ys)
+        #     pos_in_W = np.column_stack((xs.ravel(),ys.ravel()))
+
+        #     pos_in_W  = np.stack(self.snake_sort(coordinates=pos_in_W,rows=25,cols=25))
+
+        #     map_indices,valid_idx = self.world_coordinates_to_map_indices(pos_in_W)
+
+        #     map_grid = self.inflate_map(map_grid,radius=0.2)
+
+        #     # import matplotlib.pyplot as plt
+        #     # plt.imshow(map_grid,origin="lower")
+        #     # plt.savefig("house_inflate.png")
+
+        #     valid_map_indices  = map_indices[valid_idx]
+
+        #     free = map_grid[valid_map_indices[:,0],valid_map_indices[:,1]]
+
+        #     search_indices = valid_map_indices[free==0]
+
+        #     pos_in_W = self.map_indices_to_world_coordinates(search_indices)
+
+        #     return pos_in_W
     
     def snake_sort(self,coordinates, rows, cols,direction="h"):
 
@@ -221,7 +313,7 @@ class SearchAndRescue:
     
         return sorted_coordinates
 
-    def inflate_map(self,map_grid,radius=0.055):
+    def inflate_map(self,map_grid,radius=0.2):
         cell_inflation = int(np.ceil(radius/self.map_resolution))
         
         row,col = map_grid.shape
@@ -229,7 +321,7 @@ class SearchAndRescue:
         map_grid_inflated = deepcopy(map_grid)
         for i in range(row):
             for j in range(col):
-                occupied = (self.map_grid[i,j] != 0) and (self.map_grid[i,j] != -1)
+                occupied = (map_grid[i,j] != 0) and (map_grid[i,j] != -1)
 
                 if occupied:
                     min_i = max(0,i-cell_inflation)
@@ -251,7 +343,7 @@ class SearchAndRescue:
         self.nav_goal_marker_pub.publish(self.create_marker(goal.target_pose.pose.position.x,goal.target_pose.pose.position.y))
 
         self.move_base_client.send_goal(goal)
-        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration.from_sec(10))
+        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration.from_sec(30))
         print(wait)
         rospy.sleep(0.05)
         if not wait:
@@ -267,10 +359,10 @@ class SearchAndRescue:
     def rotate_360(self):
         msg_new  = Twist()
         msg_new.linear.x = 0
-        msg_new.angular.z = 0.3125  
+        msg_new.angular.z = 1.5625 
     
         StartTime = rospy.Time.now()
-        EndTime = StartTime + rospy.Duration(20)
+        EndTime = StartTime + rospy.Duration(4)
         print("Rotating to search for tags.")
         while rospy.Time.now() <= EndTime:
             self.rot_pub.publish(msg_new)
@@ -281,7 +373,7 @@ class SearchAndRescue:
         self.send_goal(goal_msg)
 
         # if success:
-        #     self.rotate_360()
+        self.rotate_360()
 
         # success=True
 
