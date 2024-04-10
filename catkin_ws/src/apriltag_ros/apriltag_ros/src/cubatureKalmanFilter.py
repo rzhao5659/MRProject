@@ -373,7 +373,6 @@ class CubatureKalmanFilter(object):
         self.K = dot(Pxz, self.SI)        # Kalman gain
         self.y = self.residual_z(z, zp)   # residual
         self.y[1,:]  = AngleWrap(self.y[1,:])
-        print("Residual:",self.y.ravel())
 
         self.x = self.x + dot(self.K, self.y)
         self.P = self.P - dot(self.K, self.S).dot(self.K.T) # pylint: disable=no-member

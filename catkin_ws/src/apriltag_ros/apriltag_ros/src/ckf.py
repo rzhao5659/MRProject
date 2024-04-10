@@ -21,20 +21,21 @@ class AprilTagCKF:
     def __init__(self):
         print("Started AprilTagCKF")
 
-        self.fps = 15 # this does not matter
         self.dt = 1/15  # this does nnot matter
 
         # cubature kalman filter parameters
-        self.R = np.array([[0.3,0],[0,np.pi/10]])
+        # measurement noise covariance
+        self.R = lambda range_: np.array([[0.05,0],[0,np.pi/20]]) * range_** 4
+        # state noise covariannce
         self.Q = np.eye(2) * 0
+        # uncertainty in initial state estimate
         self.P = np.array([[0.5,0],[0,0.5]])
 
-        # listener to get map to AT and  map to TB3 transform
+        # listener to get map to AT and  map to TB3 transformations of pose
         self.tfBuffer = tf2_ros.Buffer()
         self.listener = tf2_ros.TransformListener(self.tfBuffer)
 
-
-    
+        # initialize dictionary of cubature kalman filters
         self.AprilTagDict = {}
 
         # self.smooth_pose_pub = rospy.Publisher("/tag_detections_smoothed", AprilTagDetectionArray, queue_size=30)
@@ -42,72 +43,81 @@ class AprilTagCKF:
         
     def predict_update(self, msg):
         try:
+            # get the transformation from map to baselink (trans,rot)
             TB3_pose= self.GetSource2Target('map','base_link')
 
+            # exttract TB3 positionn in xyz (world)
             TB3_pos = TB3_pose.transform.translation
-
             TB3_pos = np.array([TB3_pos.x,TB3_pos.y,TB3_pos.z])
-            print("TB3 Pos: ",TB3_pos)
 
+            # exttract TB3 yaw in xyz (world) from quaternian
             TB3_rot = TB3_pose.transform.rotation
-
             TB3_yaw = sRotation.from_quat([TB3_rot.x, TB3_rot.y,TB3_rot.z, TB3_rot.w]).as_euler("zyx")[0]
             TB3_yaw = AngleWrap(TB3_yaw)
         
+            # update any measurement of AprilTag from continuous_detector.launch
             for detection in msg.detections:
                 id = detection.id[0]
                 # relative_pose = detection.pose.pose.pose.position
-                # cov = detection.pose.pose.covariance
-        
-                
+                cov = detection.pose.pose.covariance        
+
+                # get the transformation from map to Tag (trans,rot)
                 AT_pose = self.GetSource2Target("map",f"Tag{int(id)}")
 
+                #  get the AT quarternian in world
                 AT_rot = AT_pose.transform.rotation
                 AT_quart = np.array([AT_rot.x, AT_rot.y,AT_rot.z, AT_rot.w])
 
+                # get the  AT position in world
                 AT_pos = AT_pose.transform.translation
                 AT_pos = np.array([AT_pos.x,AT_pos.y,AT_pos.z])
-                print("AT Pos: ",AT_pos)
 
 
+                # if this is first time detecting apriltag, add to dictionary with CKF initial position as first detection
                 if self.AprilTagDict.get(id,None) is None:
-                    print("MY FIRST")
                     ckf = CubatureKalmanFilter(dim_x=2,dim_z=2,dt=self.dt,
                                             hx=self.MeasurementFn,fx=self.TransitionFn)
+                    
+                    # initial guess at AT position, which is jjust  first AT detection estimate
                     ckf.x = AT_pos[:2].reshape(-1,1)
-                    ckf.R  = self.R
+
+                    # set CKF parameters described earlier
+                    ckf.R  = self.R((1))
                     ckf.P  = self.P
                     ckf.Q =  self.Q
 
                     self.AprilTagDict[id] = ckf
-                    print("First CKF",ckf.x)
 
+                # get the range and bearing measurement between AT and TB3. Bearing is from TB3 to AT.
                 else:
+                    # get the range (onnly in x-y coordinates)
                     range_ = np.linalg.norm(AT_pos.ravel()[:2]-TB3_pos.ravel()[:2])
+
+                    rospy.logerr(f"RANGE Measure: {range_}")
+
+                    self.AprilTagDict[id].R  = self.R((range_))
+
+                    rospy.logerr(f"R cov: {self.AprilTagDict[id].R}")
+
+
+                    # get the bearing
                     bearing = AngleWrap(np.arctan2(AT_pos[1]-TB3_pos[1],AT_pos[0]-TB3_pos[0]) - TB3_yaw)
 
+                    # meassurement is range-bearing
                     z = np.array([range_,bearing])
 
-                    print("Measurement Bearing: ",z[1]*180/np.pi)
-                    print("Measurement Range: ",z[0])
-
-                    print("YAW: ",TB3_yaw*180/np.pi)
-                    print("ATAN2:",np.arctan2(AT_pos[1]-TB3_pos[1],AT_pos[0]-TB3_pos[0])*180/np.pi)
-
-
+                    # update CKF AT position estimate
                     self.AprilTagDict[id].update(z.reshape(-1,1),hx_args=(TB3_pos,TB3_yaw))
 
+                    # propogate predict step (identity in this case...)
                     self.AprilTagDict[id].predict()
+
+                    # publish  the TF ffrom the map  to the smoothed CKF AT position
                     self.CreateSmoothAxes("map",f"Tag{int(id)}",self.AprilTagDict[id].x.ravel(),AT_quart)
-                    print(f"Update {id}: ",self.AprilTagDict[id].x.ravel())
+
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
             pass
-        rospy.sleep(0.05)
-        # print(msg.detections)
-        # self.counter += msg.data
-        # new_msg = PoseWithCovarianceStamped()
-        # new_msg.data = self.counter
-        # self.pub.publish(new_msg)
+
 
     def GetSource2Target(self,source,target):
         while not rospy.is_shutdown():
@@ -140,8 +150,6 @@ class AprilTagCKF:
 
         br.sendTransform(t)
 
-
-    
     def TransitionFn(self,x,dt):
         return x.ravel()
     

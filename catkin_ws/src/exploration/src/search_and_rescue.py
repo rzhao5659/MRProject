@@ -86,13 +86,13 @@ class SearchAndRescue:
             msg_new  = Twist()
             msg_new.linear.x = 0
             msg_new.angular.z = 0
-            for _ in range(15):
+            while not rospy.is_shutdown():
                 self.rot_pub.publish(msg_new)
                 rospy.sleep(0.05)
             rospy.logerr(f"Found All AprilTags {self.AprilTagDict}")
-            rospy.sleep(0.5) 
-            rospy.signal_shutdown(f"Found all AprilTags {self.AprilTagDict}")
-            sys.exit()
+            # rospy.sleep(0.5) 
+            # rospy.signal_shutdown(f"Found all AprilTags {self.AprilTagDict}")
+            # sys.exit()
 
 
 
@@ -131,6 +131,11 @@ class SearchAndRescue:
 
                 rospy.loginfo(f"Search Point {current_goal}")
             if len(self.goal_queue) == 0:
+                msg_new  = Twist()
+                msg_new.linear.x = 0
+                msg_new.angular.z = 0
+                for _ in  range(50):
+                    self.rot_pub.publish(msg_new)
                 rospy.loginfo("Queue Emptied")
 
     def set_map(self,map):
