@@ -2,10 +2,8 @@
 
 #include "ros/ros.h"
 
-ExploreNode::ExploreNode() {}
-
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "explore_node");
+    ros::init(argc, argv, "hi");
     ExploreNode explorenode;
     ros::spin();
     return 0;
