@@ -14,11 +14,16 @@ import numpy as np
 import rosparam
 import actionlib
 
+import roslaunch
+
 import cv2 as cv
 
 from copy import deepcopy
 
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from apriltag_ros.msg import AprilTagDetectionArray
+
+import sys
 
 # https://hotblackrobotics.github.io/en/blog/2018/01/29/action-client-py/
 
@@ -57,61 +62,59 @@ class SearchAndRescue:
         self.nav_goal_markers = rospy.Publisher('queue_goal', MarkerArray,queue_size=10,latch=True)
 
 
-        # print("send goal")
-        # coord = np.array([0,380]).reshape(-1,2)
-        # goal = self.map_indices_to_world_coordinates(coord)
-        # print(goal)
-        # self.goal_and_rotate(goal.ravel()[0],goal.ravel()[1])
 
-        # print(self.world_coordinates_to_map_indices(goal))
-        # print("HERERE")
+        self.AprilTagDict = {key:False for key in [586,1,0]} #np.arange(12)}
+
+        self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.AprilTagCheck)
+
+    def AprilTagCheck(self, msg):
+        for detection in msg.detections:
+            id = detection.id[0]
+            print(type(id))
+
+            if self.AprilTagDict.get(detection.id,None) is None:
+                self.AprilTagDict[id] = True
+            
+            self.AprilTagDict[id] = True
+
+        shutdown = True
+
+        for key,value in self.AprilTagDict.items():
+            shutdown = shutdown and value
+
+        if shutdown:
+            msg_new  = Twist()
+            msg_new.linear.x = 0
+            msg_new.angular.z = 0
+            for _ in range(15):
+                self.rot_pub.publish(msg_new)
+                rospy.sleep(0.05)
+            rospy.logerr(f"Found All AprilTags {self.AprilTagDict}")
+            rospy.sleep(0.5) 
+            rospy.signal_shutdown(f"Found all AprilTags {self.AprilTagDict}")
+            sys.exit()
+
+
+
         
-        # rospy.sleep(0.5)
-        # self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
-
-
-        # self.nav_goal_markers = rospy.Publisher('queue_goal', MarkerArray,queue_size=10,latch=True)
-
-        # for goal in self.goal_queue:
-        #     goal = goal.ravel()
-        #     self.markerArray.markers.append(self.create_marker(goal[0],goal[1]))
-
-        # id = 0
-        # for m in self.markerArray.markers:
-        #     m.id = id
-        #     id += 1
-
-
-        # while not rospy.is_shutdown():
-        #     self.nav_goal_markers.publish(self.markerArray)
-
-
-
-        # self.goal_and_rotate(-10,-10)
         
-        # self.rot_sub = rospy.Subscriber('/cmd_vel_middle', Twist, self.send_rotation, queue_size=1)
 
-        # self.RotStartTime = rospy.Time(0)
-        # self.RotEndTime = rospy.Time(0)
-        # self.RotDuration = rospy.Duration(5.0)
-
-        # self.nav_goal_marker_pub.publish(self.create_marker(2,-2.2))
-
-        # self.marker_rate = rospy.Rate(10)
-        # while not rospy.is_shutdown():
-        #     self.nav_goal_marker_pub.publish(self.create_marker(5,5))
-        #     self.marker_rate.sleep()
-        #     print("here")
-
-        # print("Lord have mercy")
-        # print(self.send_goal(self.create_goal(0,0.5)))
+    def save_map(self):
+        # uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+        # roslaunch.configure_logging(uuid)
+        launch = roslaunch.scriptapi.ROSLaunch()
+        filename = "/home/mlpotter/Documents/Northeastern/Classes/MRProject/catkin_ws/src/mymap"
+        node = roslaunch.core.Node("map_server", "map_saver",args=f"map:=/map -f {filename}")
+        launch.start()
+        launch.launch(node)
+        rospy.loginfo("Saving Map")
+        rospy.sleep(5)
 
 
     def start_search_and_rescue(self,bool_msg):
         bool_flag = bool_msg.data
         rospy.loginfo(f"Starting Search and Rescue Operation: {bool_flag}")
         
-
         if bool_flag:
             self.goal_queue = [goal_pt.reshape(-1,2) for goal_pt in self.grid_map(self.map_grid)]
             self.create_goal_queue = True
@@ -139,6 +142,8 @@ class SearchAndRescue:
         self.map_grid = np.reshape(map.data,(self.map_grid_height,self.map_grid_width)).T
         self.map_dims = (int(self.map_grid_width),int(self.map_grid_width))
 
+        rospy.sleep(0.5)
+
         # import matplotlib.pyplot as plt
         # plt.imshow(self.map_grid,origin="lower")
         # plt.savefig("random.png")
@@ -147,9 +152,9 @@ class SearchAndRescue:
         height,width = map_grid.shape
 
 
-        import matplotlib.pyplot as plt
-        plt.imshow(self.map_grid,origin="lower")
-        plt.savefig("house_unINFLATION.png")
+        # import matplotlib.pyplot as plt
+        # plt.imshow(self.map_grid,origin="lower")
+        # plt.savefig("house_unINFLATION.png")
 
 
         # dense_idx = np.mgrid[0:height,0:width]
@@ -162,8 +167,8 @@ class SearchAndRescue:
 
         map_grid = self.inflate_map(map_grid,radius=0.2)
 
-        plt.imshow(map_grid,origin="lower")
-        plt.savefig("house_INFLATION.png")
+        # plt.imshow(map_grid,origin="lower")
+        # plt.savefig("house_INFLATION.png")
 
         unoccupied_space = np.column_stack(np.where(map_grid==0))
 
@@ -173,7 +178,7 @@ class SearchAndRescue:
         area_approx = (max_row-min_row) * (max_col-min_col) * self.map_resolution**2
         
 
-        grid_cells = int(np.ceil(np.cbrt(area_approx)))
+        grid_cells = int(np.ceil(np.cbrt(area_approx))) + 1
 
         print("Grid Cells",grid_cells)
         print(min_row,max_row,min_col,max_col)
@@ -202,7 +207,16 @@ class SearchAndRescue:
 
                 # cell_points = np.column_stack((cell_mesh[0,:,:].ravel(),cell_mesh[1,:,:].ravel()))
 
-                for s in range(50):
+
+                sample_cell = np.array([int((box_ll+box_lr)/2),int((box_ul+box_ur)/2)])
+                free = map_grid[sample_cell[0],sample_cell[1]] == 0
+
+                if free:
+                    print(sample_cell)
+                    valid_cells.append(sample_cell)
+                    continue
+
+                for _ in range(50):
 
                     row_sample = np.random.randint(box_ll,box_lr)
                     col_sample = np.random.randint(box_ul,box_ur)
@@ -487,5 +501,6 @@ class SearchAndRescue:
 if __name__ == '__main__':
     rospy.init_node('search_and_rescue')
     rospy.sleep(1)
-    SearchAndRescue()
+    sar = SearchAndRescue()
+    # sar.save_map()
     rospy.spin()
