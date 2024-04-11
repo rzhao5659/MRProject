@@ -20,18 +20,18 @@
 #     ...
 #   ]
 standalone_tags:
-  [{id: 1, size: 0.1, name: Tag01},
-    {id: 2, size: 0.1, name: Tag02},
-    {id: 3, size: 0.1, name: Tag03},
-    {id: 4, size: 0.1, name: Tag04},
-    {id: 5, size: 0.1, name: Tag05},
-    {id: 6, size: 0.1, name: Tag06},
-    {id: 7, size: 0.1, name: Tag07},
-    {id: 8, size: 0.1, name: Tag08},
-    {id: 9, size: 0.1, name: Tag09},
-    {id: 10, size: 0.1, name: Tag10},
-    {id: 11, size: 0.1, name: Tag11},
-    {id: 0, size: 0.1, name: Tag0}
+  [{id: 1, size: 0.07, name: Tag1},
+    {id: 2, size: 0.07, name: Tag2},
+    {id: 3, size: 0.07, name: Tag3},
+    {id: 4, size: 0.07, name: Tag4},
+    {id: 5, size: 0.07, name: Tag5},
+    {id: 6, size: 0.07, name: Tag6},
+    {id: 7, size: 0.07, name: Tag7},
+    {id: 8, size: 0.07, name: Tag8},
+    {id: 9, size: 0.07, name: Tag9},
+    {id: 10, size: 0.07, name: Tag10},
+    {id: 11, size: 0.07, name: Tag11},
+    {id: 0, size: 0.07, name: Tag0}
   ]
 # ## Tag bundle definitions
 # ### Remarks
