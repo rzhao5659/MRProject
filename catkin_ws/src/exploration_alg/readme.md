@@ -4,11 +4,16 @@
 There is only one ros node which is explore_node.  This will internally run map_client and frontier_detector.
 Some codes were adapted from costmap2d package and some from explore_lite.
 
-note:
 
-frontier_detector still missing one function.
+Test plan:
+1.to test map works,just publish a occuapncy grid message and visualize it in rviz. 
+2. 
 
-explore_node still missing, but it will run a service that you can request, with callbackFunction determineExplorationGoal().   
+
+
+
+
+
 
 
 My plan with: determineExplorationGoal()

@@ -6,6 +6,7 @@
 #include "map.h"
 #include "map_msgs/OccupancyGridUpdate.h"
 #include "nav_msgs/OccupancyGrid.h"
+#include "pose_listener.h"
 #include "ros/ros.h"
 
 /**
@@ -14,12 +15,16 @@
  */
 class Map2DClient {
    public:
-    Map2DClient(ros::NodeHandle& node);
+    Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener);
+    /**
+     * Get the Map2D instance.
+     */
+    std::shared_ptr<Map2D> getMap();
 
    private:
     std::shared_ptr<Map2D> map_;
-    unsigned int last_received_map_origin_gx_;  // for efficiency, costmap sends OccupancyGridUpdate message, that is defined w.r.t to the last OccupanGrid message origin.
-    unsigned int last_received_map_origin_gy_;
+    int last_received_map_origin_gx_;  // for efficiency, costmap sends OccupancyGridUpdate message, that is defined w.r.t to the last OccupanGrid message origin.
+    int last_received_map_origin_gy_;
     ros::Subscriber occupancy_grid_sub_;
     ros::Subscriber occupancy_grid_update_sub_;
 
@@ -35,13 +40,8 @@ class Map2DClient {
     void updatePartialMap(const map_msgs::OccupancyGridUpdate::ConstPtr& msg);
 
     /**
-     * Get the Map2D instance.
-     */
-    std::shared_ptr<Map2D> getMap();
-
-    /**
      *  Helper function to update active area after each map update (the map update region is indicated by x0,xn,y0,yn).
      *  An active area is a bounding box that indicate the area of the map that has been updated since the last frontier detection.
      */
-    void updateActiveArea(unsigned int x0, unsigned int y0, unsigned int xn, unsigned int yn);
+    void updateActiveArea(int x0, int y0, int xn, int yn);
 };

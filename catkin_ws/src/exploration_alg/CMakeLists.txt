@@ -10,6 +10,9 @@ add_compile_options(-std=c++17)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  message_generation
+  tf2
+  tf2_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -53,11 +56,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  ExplorationGoalRequest.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -67,10 +69,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  # DEPENDENCIES
+  # std_msgs  # Or other packages containing msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
  INCLUDE_DIRS include/${PROJECT_NAME}
 #  LIBRARIES exploration_alg
- CATKIN_DEPENDS roscpp rospy
+ CATKIN_DEPENDS roscpp rospy message_runtime
 #  DEPENDS system_lib
 )
 
@@ -132,7 +134,13 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(explore_node src/explore_node.cpp)
+add_executable(explore_node 
+src/explore_node.cpp
+src/frontier_detector.cpp 
+src/map_client.cpp 
+src/map.cpp 
+src/pose_listener.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
