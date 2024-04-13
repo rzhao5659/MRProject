@@ -6,26 +6,49 @@
 
 #include "RTree.h"
 #include "map.h"
+#include "pose_listener.h"
 #include "ros/ros.h"
 
 /**
  * Represents a cell in a grid map.
  */
-typedef struct Cell2D {
-    unsigned int x;
-    unsigned int y;
-} cell2d_t;
+struct cell2d_t {
+    int x;
+    int y;
+    bool operator==(const cell2d_t& other) const { return x == other.x && y == other.y; }
+};
 
 /**
  * Represent a frontier, which is a set of connected frontier cells.
  */
-typedef struct Frontier {
-    unsigned int centroid[2];  // centroid of frontier in map coordinate (gx,gy).
-    unsigned int size;         // number of frontier cells that forms this frontier.
-} frontier_t;
+class Frontier {
+   public:
+    double centroid[2];         // centroid of frontier in world coordinate (wx,wy).
+    int size;                   // number of frontier cells that forms this frontier.
+    std::list<cell2d_t> cells;  // frontier cells that forms this frontier. Useful for visualization.
+    Frontier() {
+        centroid[0] = 0.0;
+        centroid[1] = 0.0;
+        size = 0;
+    }
+
+    /**
+     * Add a frontier cell into the frontier. The centroid, size and cells are updated.
+     */
+    void add(cell2d_t& cell) {
+        this->cells.emplace_back(cell);
+        // Recompute centroid
+        this->centroid[0] *= this->size;
+        this->centroid[1] *= this->size;
+        this->centroid[0] += cell.x;
+        this->centroid[1] += cell.y;
+        this->size++;
+        this->centroid[0] /= this->size;
+        this->centroid[1] /= this->size;
+    }
+};
 
 typedef RTree<cell2d_t*, int, 2, float> RTree_t;
-
 /**
  * Make the interface of RTree easier to use for this application.
  */
@@ -102,6 +125,11 @@ class RTreeAdapter {
         return false;
     }
 
+    /**
+     * Returns the tree data structure. Useful for iterating through the tree.
+     */
+    RTree_t* getTree() { return &tree_; }
+
     ~RTreeAdapter() {
         // Iterate through every cells in the tree and remove them.
         RTree_t::Iterator it;
@@ -110,8 +138,6 @@ class RTreeAdapter {
             delete cell;
         }
     }
-
-    RTreeAdapter() = default;
 };
 
 /**
@@ -120,7 +146,18 @@ class RTreeAdapter {
 class FrontierDetector {
    public:
     std::list<Frontier> frontiers;
-    FrontierDetector();
+    FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D> map, PoseListener* pose_listener);
+
+   private:
+    PoseListener* pose_listener_;
+    RTreeAdapter frontier_cells_;  // Store frontier cells in a dynamic spatial indexing data structure for quick range query and insertion/removal.
+    std::shared_ptr<Map2D> map_;
+    ros::Timer execute_timer_;  // will execute periodically runDetection.
+
+    /**
+     * Detect new frontier cells and the new frontiers.
+     */
+    void runDetection();
 
     /**
      * Perform the expanding-wavefront frontier detection on the active area to update frontier cells on the map.
@@ -133,40 +170,51 @@ class FrontierDetector {
      */
     void getFrontiers();
 
-   private:
-    RTreeAdapter frontier_cells_;  // Store frontier cells in a dynamic spatial indexing data structure for quick range query and insertion/removal.
-    std::shared_ptr<Map2D> map_;
-
     /**
      * Get the robot's current position in map coordinates.
      */
-    cell2d_t getRobotPosition();
+    cell2d_t getRobotMapPosition();
 
-    void markCellVisited(cell2d_t cell);
-    bool isCellFree(cell2d_t cell);
-    bool isCellUnknown(cell2d_t cell);
-    bool isCellVisited(cell2d_t cell);
+    /**
+     * Mark a cell as visited in map_.
+     */
+    void markCellVisited(cell2d_t& cell);
+
+    /**
+     * Return true if cell is free.
+     */
+    bool isCellFree(cell2d_t& cell);
+
+    /**
+     * Return true if cell is unknown.
+     */
+    bool isCellUnknown(cell2d_t& cell);
+
+    /**
+     * Return true if cell is visited.
+     */
+    bool isCellVisited(cell2d_t& cell);
 
     /**
      * Return true if a cell is a frontier cell.
      * A frontier cell is a free cell with at least one adjacent unknown space.
      */
-    bool isCellFrontier(cell2d_t cell);
+    bool isCellFrontier(cell2d_t& cell);
 
     /**
      * Return true if a cell was a frontier cell (if it's stored in frontier_cells_).
      */
-    bool wasCellFrontier(cell2d_t cell);
+    bool wasCellFrontier(cell2d_t& cell);
 
     /**
      * Return the four adjacent cells. This adjacency is used for testing whether a cell is a frontier cell, and detection of new frontier cells.
      */
-    void getFourAdjacentCells(cell2d_t cell, std::list<cell2d_t>& adj_cells);
+    void getFourAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells);
 
     /**
      * Return the eight adjacent cells. This adjacency is used to test connectivity of frontier cells for formation of frontiers.
      */
-    void getEightAdjacentCells(cell2d_t cell, std::list<cell2d_t>& adj_cells);
+    void getEightAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells);
 
     /**
      * Resets active area to {0,0,0,0}, to indicate that frontier detection has processed this area of new potential frontier cells.

@@ -8,7 +8,7 @@ Map2D::Map2D(double resolution, double width, double height, double robot_wx, do
     size_x = (int)(width / resolution);
     size_y = (int)(height / resolution);
     // Initialize map data.
-    map_data = std::make_shared<map_node_t[]>(new map_node_t[size_x * size_y]);
+    map_data.resize(size_x * size_y);
     for (int i = 0; i < size_x * size_y; i++) {
         map_data[i].occupancy_state = UNKNOWN_SPACE;
         map_data[i].visited_state = false;
@@ -20,12 +20,12 @@ Map2D::Map2D(double resolution, double width, double height, double robot_wx, do
     ROS_DEBUG("Map's origin real world position is set to (%.3f, %.3f).", origin_wx, origin_wy);
 }
 
-void Map2D::mapToWorld(unsigned int gx, unsigned int gy, double& wx, double& wy) const {
+void Map2D::mapToWorld(int gx, int gy, double& wx, double& wy) const {
     wx = origin_wx + (gx + 0.5) * resolution;
     wy = origin_wy + (gy + 0.5) * resolution;
 }
 
-bool Map2D::worldToMap(double wx, double wy, unsigned int& gx, unsigned int& gy) const {
+bool Map2D::worldToMap(double wx, double wy, int& gx, int& gy) const {
     if (wx < origin_wx || wy < origin_wy) return false;
 
     gx = (int)((wx - origin_wx) / resolution);
@@ -35,10 +35,10 @@ bool Map2D::worldToMap(double wx, double wy, unsigned int& gx, unsigned int& gy)
     return false;
 }
 
-unsigned int Map2D::getIndex(unsigned int gx, unsigned int gy) {
-    unsigned int idx = gy * size_x + gx;
+int Map2D::getIndex(int gx, int gy) {
+    int idx = gy * size_x + gx;
     if (idx >= size_x * size_y) {
-        ROS_WARN("Map coordinate (%d, %d) is out of bound, constraining the returned index within map.");
+        ROS_WARN("Map coordinate (%d, %d) is out of bound, constraining the returned index within map.", gx, gy);
         idx = size_x * size_y - 1;
     }
     return idx;
