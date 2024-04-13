@@ -1,18 +1,21 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(exploration_alg)
 
-# REQUIRED C++17. 
-add_compile_options(-std=c++17)
+add_compile_options(-std=c++14)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  rospy
   message_generation
   tf2
   tf2_ros
+  geometry_msgs
+  nav_msgs
+  map_msgs
+  visualization_msgs
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -106,7 +109,16 @@ generate_messages(
 catkin_package(
  INCLUDE_DIRS include/${PROJECT_NAME}
 #  LIBRARIES exploration_alg
- CATKIN_DEPENDS roscpp rospy message_runtime
+ CATKIN_DEPENDS 
+ roscpp 
+ message_runtime 
+ tf2
+ tf2_ros
+ geometry_msgs
+ nav_msgs
+ map_msgs
+ visualization_msgs
+ std_msgs
 #  DEPENDS system_lib
 )
 
@@ -134,9 +146,17 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+
 add_executable(explore_node 
 src/explore_node.cpp
 src/frontier_detector.cpp 
+src/map_client.cpp 
+src/map.cpp 
+src/pose_listener.cpp
+)
+
+add_executable(test_node
+src/test_map2d_client.cpp
 src/map_client.cpp 
 src/map.cpp 
 src/pose_listener.cpp
@@ -153,10 +173,14 @@ src/pose_listener.cpp
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
+
 target_link_libraries(explore_node
   ${catkin_LIBRARIES}
 )
 
+target_link_libraries(test_node
+  ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############

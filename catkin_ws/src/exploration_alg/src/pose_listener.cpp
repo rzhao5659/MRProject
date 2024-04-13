@@ -10,8 +10,8 @@
 
 PoseListener::PoseListener(ros::NodeHandle* node) : node_(node), tf_buffer_(), tf_listener_(tf_buffer_) {
     // Get parameter values from parameter server. If not found, set to default values.
-    node->param<std::string>("global_frame", this->global_frame_, "/map");
-    node->param<std::string>("base_frame", this->base_frame_, "/base_footprint");
+    node->param<std::string>("global_frame", this->global_frame_, "map");         // Map frame id
+    node->param<std::string>("base_frame", this->base_frame_, "base_footprint");  // Robot frame id.
 }
 
 void PoseListener::getRobotWorldPosition(double& wx, double& wy, double& wtheta) {
@@ -32,7 +32,4 @@ void PoseListener::getRobotWorldPosition(double& wx, double& wy, double& wtheta)
     double qw = transformStamped.transform.rotation.w;  // cos(theta/2)
     double qz = transformStamped.transform.rotation.z;  // sin(theta/2)
     wtheta = 2 * atan2(qz, qw);
-
-    double wtheta_deg = wtheta * 180 / M_PI;
-    ROS_DEBUG("Robot's position is currently (%.3f, %.3f, %.3f).", wx, wy, wtheta_deg);
 }

@@ -16,7 +16,7 @@
 #include "pose_listener.h"
 #include "ros/ros.h"
 
-// Private helper functions not relevant to Frontier Detector.
+// COmbine hash values. Taken from boost hash combine.
 template <class T>
 inline void hash_combine(std::size_t& seed, const T& v) {
     std::hash<T> hasher;
@@ -26,7 +26,7 @@ inline void hash_combine(std::size_t& seed, const T& v) {
 // Hash function for cell2d_t
 struct hash_cell2d_t {
     std::size_t operator()(const cell2d_t& p) const {
-        std::size_t hash;
+        std::size_t hash = 0;
         hash_combine(hash, p.x);
         hash_combine(hash, p.y);
         return hash;
@@ -36,6 +36,12 @@ struct hash_cell2d_t {
 void FrontierDetector::runDetection() {
     detectNewFrontierCells();
     getFrontiers();
+    ROS_DEBUG("Frontier detection finished.");
+    int i = 1;
+    for (const auto& frontier : this->frontiers) {
+        ROS_DEBUG("Frontier %d centroid: (%.3f, %.3f)", i, frontier.centroid[0], frontier.centroid[1]);
+        i++;
+    }
 }
 
 FrontierDetector::FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D> map, PoseListener* pose_listener) : map_(map), pose_listener_(pose_listener) {
@@ -45,29 +51,24 @@ FrontierDetector::FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D>
     this->execute_timer_ = node.createTimer(ros::Duration(1 / detection_frequency), std::bind(&FrontierDetector::runDetection, this));
 }
 
-void FrontierDetector::resetActiveArea() {
-    this->map_->active_area[0] = 0;
-    this->map_->active_area[1] = 0;
-    this->map_->active_area[2] = 0;
-    this->map_->active_area[3] = 0;
-}
 
 cell2d_t FrontierDetector::getRobotMapPosition() {
     double wx, wy, wtheta;
     int gx, gy;
     this->pose_listener_->getRobotWorldPosition(wx, wy, wtheta);
     this->map_->worldToMap(wx, wy, gx, gy);
-    return {gx, gy};
+    return { gx, gy };
 }
 
 void FrontierDetector::detectNewFrontierCells() {
     std::queue<cell2d_t> bfs_queue;
-
     // Initialize bfs_queue.
     if (this->frontier_cells_.isEmpty()) {
         // When exploration has just started, there are no frontier cells stored.
         // Start BFS for new frontiers from robot's initial position.
-        bfs_queue.push(getRobotMapPosition());
+        cell2d_t cell = getRobotMapPosition();
+        bfs_queue.push(cell);
+        markCellVisited(cell);
     } else {
         // Start BFS for new frontiers from past frontier cells in the active area.
         // The idea is that explored free cells will stay free and never be a frontier.
@@ -81,11 +82,14 @@ void FrontierDetector::detectNewFrontierCells() {
         int ymax = this->map_->active_area[3];
         std::list<cell2d_t*> frontier_cells_in_active_area;
         this->frontier_cells_.rangeSearch(xmin, ymin, xmax, ymax, &frontier_cells_in_active_area);
+        ROS_DEBUG("Detection: active area is (%d, %d, %d, %d)", xmin, ymin, xmax, ymax);
+        ROS_DEBUG("Number of frontier cells in active area: %ld", frontier_cells_in_active_area.size());
 
         // Append them to the BFS queue.
         for (const auto& frontier_cell : frontier_cells_in_active_area) {
             cell2d_t cell = *frontier_cell;  // create a copy to push to bfs queue.
             bfs_queue.push(cell);
+            markCellVisited(cell);
         }
     }
 
@@ -93,8 +97,6 @@ void FrontierDetector::detectNewFrontierCells() {
     while (!bfs_queue.empty()) {
         cell2d_t cell = bfs_queue.front();
         bfs_queue.pop();
-
-        markCellVisited(cell);
 
         if (isCellFree(cell)) {
             if (isCellFrontier(cell)) {
@@ -109,25 +111,27 @@ void FrontierDetector::detectNewFrontierCells() {
                 this->frontier_cells_.remove(corresponding_cell);
             }
 
-            // Get adjacent cells and push those unvisited into the queue.
+            // Get adjacent cells and push those within the active area and unvisited into the queue.
             std::list<cell2d_t> adj_cells;
             getFourAdjacentCells(cell, adj_cells);
             for (auto& adj_cell : adj_cells) {
-                if (!isCellVisited(adj_cell)) {
+                if (isCellInActiveArea(adj_cell) && isCellFree(adj_cell) && !isCellVisited(adj_cell)) {
                     bfs_queue.push(adj_cell);
+                    markCellVisited(adj_cell);
                 }
             }
         }
     }
-
-    // Reset active area, to indicate that frontier detection has finished processing
-    // the area with potential new frontier cells.
-    resetActiveArea();
 }
 
 void FrontierDetector::getFrontiers() {
+    this->frontiers.clear();
+
     // Create a set(k) where key is frontier cell. The set will contain explored frontier cells.
     std::unordered_set<cell2d_t, hash_cell2d_t> explored_set;
+
+    // Define a lambda function to check if a cell exists in the explored_set for convenience.
+    auto notExplored = [&](cell2d_t& cell) {return explored_set.find(cell) == explored_set.end();};
 
     // Iterate through all frontier cells.
     RTree_t::Iterator it;
@@ -138,7 +142,7 @@ void FrontierDetector::getFrontiers() {
         // If not visited, create a new frontier,
         // and start BFS from this frontier cell.
         // The queue will only be inserted with frontier cells.
-        if (explored_set.find(frontier_cell) == explored_set.end()) {
+        if (notExplored(frontier_cell)) {
             Frontier frontier;
             std::queue<cell2d_t> bfs_queue;
             bfs_queue.emplace(frontier_cell);
@@ -153,15 +157,20 @@ void FrontierDetector::getFrontiers() {
                 std::list<cell2d_t> adj_cells;
                 getEightAdjacentCells(cell, adj_cells);
                 for (auto& adj_cell : adj_cells) {
-                    if (isCellFrontier(adj_cell)) {
-                        explored_set.insert(frontier_cell);  // mark as visited
-                        frontier.add(frontier_cell);         // store this cell as part of the frontier.
+                    if (notExplored(adj_cell) && isCellFrontier(adj_cell)) {
+                        bfs_queue.emplace(adj_cell);
+                        explored_set.insert(adj_cell);  // mark as visited
+                        frontier.add(adj_cell);         // store this cell as part of the frontier.
                     }
                 }
             }
 
-            // End of BFS. Append this frontier to the list of frontiers
+            // End of BFS.
+            // Convert this frontier centroid from map coordinates to world coordinates.
+            this->map_->mapToWorld((int)frontier.centroid[0], (int)frontier.centroid[1], frontier.centroid[0], frontier.centroid[1]);
+            // Append this frontier to the list of frontiers
             this->frontiers.emplace_back(frontier);
+
         }
     }
 }
@@ -186,6 +195,12 @@ bool FrontierDetector::isCellVisited(cell2d_t& cell) {
     return this->map_->map_data[cell_idx].visited_state;
 }
 
+bool FrontierDetector::isCellInActiveArea(cell2d_t& cell) {
+    bool within_x_range = this->map_->active_area[0] <= cell.x && cell.x <= this->map_->active_area[2];
+    bool within_y_range = this->map_->active_area[1] <= cell.y && cell.y <= this->map_->active_area[3];
+    return within_x_range && within_y_range;
+}
+
 bool FrontierDetector::isCellFrontier(cell2d_t& cell) {
     if (isCellFree(cell)) {
         std::list<cell2d_t> adj_cells;
@@ -205,10 +220,10 @@ bool FrontierDetector::wasCellFrontier(cell2d_t& cell) {
 }
 
 void FrontierDetector::getFourAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells) {
-    cell2d_t top_cell = {cell.x, cell.y + 1};
-    cell2d_t bottom_cell = {cell.x, cell.y - 1};
-    cell2d_t left_cell = {cell.x - 1, cell.y};
-    cell2d_t right_cell = {cell.x + 1, cell.y};
+    cell2d_t top_cell = { cell.x, cell.y + 1 };
+    cell2d_t bottom_cell = { cell.x, cell.y - 1 };
+    cell2d_t left_cell = { cell.x - 1, cell.y };
+    cell2d_t right_cell = { cell.x + 1, cell.y };
     adj_cells.push_back(top_cell);
     adj_cells.push_back(bottom_cell);
     adj_cells.push_back(left_cell);
@@ -217,10 +232,10 @@ void FrontierDetector::getFourAdjacentCells(cell2d_t& cell, std::list<cell2d_t>&
 
 void FrontierDetector::getEightAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells) {
     getFourAdjacentCells(cell, adj_cells);
-    cell2d_t top_left_cell = {cell.x - 1, cell.y + 1};
-    cell2d_t top_right_cell = {cell.x + 1, cell.y + 1};
-    cell2d_t bottom_left_cell = {cell.x - 1, cell.y - 1};
-    cell2d_t bottom_right_cell = {cell.x + 1, cell.y - 1};
+    cell2d_t top_left_cell = { cell.x - 1, cell.y + 1 };
+    cell2d_t top_right_cell = { cell.x + 1, cell.y + 1 };
+    cell2d_t bottom_left_cell = { cell.x - 1, cell.y - 1 };
+    cell2d_t bottom_right_cell = { cell.x + 1, cell.y - 1 };
     adj_cells.push_back(top_left_cell);
     adj_cells.push_back(top_right_cell);
     adj_cells.push_back(bottom_left_cell);

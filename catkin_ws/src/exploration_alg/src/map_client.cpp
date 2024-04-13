@@ -14,8 +14,6 @@
 
 Map2DClient::Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener) {
     // Get parameter values from parameter server. If not found, set to default values.
-    std::string global_frame;                 // Map frame id
-    std::string base_frame;                   // Robot frame id.
     double map_resolution;                    // The resolution of the map in meters/cell. This should match to the resolution of the OccupancyGrid map you are receiving.
     double map_width;                         // The width of the map in meters.
     double map_height;                        // The height of the map in meters.
@@ -23,10 +21,8 @@ Map2DClient::Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener) {
     std::string occupancy_grid_update_topic;  // Topic name for message map_msgs/OccupancyGridUpdate.
 
     node.param<double>("resolution", map_resolution, 0.05);
-    node.param<double>("width", map_width, 10.0);
-    node.param<double>("height", map_height, 10.0);
-    node.param<std::string>("global_frame", global_frame, "/map");
-    node.param<std::string>("base_frame", base_frame, "/base_footprint");
+    node.param<double>("width", map_width, 40.0);
+    node.param<double>("height", map_height, 40.0);
     node.param<std::string>("occupancy_grid_topic", occupancy_grid_topic, "/move_base/global_costmap/costmap");
     node.param<std::string>("occupancy_grid_update_topic", occupancy_grid_update_topic, "/move_base/global_costmap/costmap_updates");
 
@@ -34,10 +30,26 @@ Map2DClient::Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener) {
     double robot_wx, robot_wy, robot_wtheta;
     pose_listener.getRobotWorldPosition(robot_wx, robot_wy, robot_wtheta);
     this->map_ = std::make_shared<Map2D>(map_resolution, map_width, map_height, robot_wx, robot_wy);
+    // Initialize the active area to be just robot map position.
+    int robot_gx, robot_gy;
+    this->map_->worldToMap(robot_wx, robot_wy, robot_gx, robot_gy);
+    this->map_->active_area[0] = robot_gx;  // xmin
+    this->map_->active_area[1] = robot_gy;  // ymin
+    this->map_->active_area[2] = robot_gx;  // xmax
+    this->map_->active_area[3] = robot_gy;  // ymax
 
     // Subscribe to OccupancyGrid and OccupancyGridUpdate
-    this->occupancy_grid_update_sub_ = node.subscribe<map_msgs::OccupancyGridUpdate>(occupancy_grid_topic, 10, std::bind(&Map2DClient::updatePartialMap, this, std::placeholders::_1));
-    this->occupancy_grid_sub_ = node.subscribe<nav_msgs::OccupancyGrid>(occupancy_grid_update_topic, 10, std::bind(&Map2DClient::updateMap, this, std::placeholders::_1));
+    this->occupancy_grid_update_sub_ = node.subscribe<map_msgs::OccupancyGridUpdate>(occupancy_grid_update_topic, 10, std::bind(&Map2DClient::updatePartialMap, this, std::placeholders::_1));
+    this->occupancy_grid_sub_ = node.subscribe<nav_msgs::OccupancyGrid>(occupancy_grid_topic, 10, std::bind(&Map2DClient::updateMap, this, std::placeholders::_1));
+
+    // Wait until it receives messages for a full map, and then a partial map update. 
+    ROS_INFO("Waiting for OccupancyGrid message.");
+    auto map_msg = ros::topic::waitForMessage<nav_msgs::OccupancyGrid>(occupancy_grid_topic, node);
+    updateMap(map_msg);
+    ROS_INFO("Waiting for OccupancyGridUpdate message.");
+    auto map_update_msg = ros::topic::waitForMessage<map_msgs::OccupancyGridUpdate>(occupancy_grid_update_topic, node);
+    updatePartialMap(map_update_msg);
+    ROS_INFO("Map2DClient initialized.");
 }
 
 void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
@@ -47,7 +59,7 @@ void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
     double received_map_origin_wx = msg->info.origin.position.x;
     double received_map_origin_wy = msg->info.origin.position.y;
     ROS_DEBUG("Received a full map update (size_x:%d, size_y:%d, resolution:%.3f, origin_x:%.3f, origin_y:%.3f)", received_map_size_x, received_map_size_y, received_map_resolution,
-              received_map_origin_wx, received_map_origin_wy);
+        received_map_origin_wx, received_map_origin_wy);
 
     // Get the grid coordinates corresponding to the received map origin.
     int received_map_origin_gx, received_map_origin_gy;
@@ -68,9 +80,6 @@ void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
             this->map_->map_data[origin_idx + i + j * this->map_->size_x].occupancy_state = msg->data[i + j * received_map_size_x];
         }
     }
-
-    // Update active area with this region boundary.
-    updateActiveArea(received_map_origin_gx, received_map_origin_gy, received_map_origin_gx + received_map_size_x - 1, received_map_origin_gy + received_map_size_y - 1);
 }
 
 void Map2DClient::updatePartialMap(const map_msgs::OccupancyGridUpdate::ConstPtr& msg) {
@@ -105,8 +114,10 @@ void Map2DClient::updatePartialMap(const map_msgs::OccupancyGridUpdate::ConstPtr
 std::shared_ptr<Map2D> Map2DClient::getMap() { return this->map_; }
 
 void Map2DClient::updateActiveArea(int x0, int y0, int xn, int yn) {
-    this->map_->active_area[0] = std::min(this->map_->active_area[0], x0);  // xmin
-    this->map_->active_area[1] = std::min(this->map_->active_area[1], y0);  // ymin
-    this->map_->active_area[2] = std::max(this->map_->active_area[2], xn);  // ymin
-    this->map_->active_area[3] = std::max(this->map_->active_area[3], yn);  // ymin
+    this->map_->active_area[0] = x0;
+    this->map_->active_area[1] = y0;
+    this->map_->active_area[2] = xn;
+    this->map_->active_area[3] = yn;
+    ROS_DEBUG("Received map boundary: (%d, %d, %d, %d). Updated active area to be: (%d, %d, %d, %d)", x0, y0, xn, yn, map_->active_area[0], map_->active_area[1], map_->active_area[2],
+        map_->active_area[3]);
 }

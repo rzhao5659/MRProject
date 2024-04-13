@@ -1,0 +1,6 @@
+<launch>
+  <env name="ROSCONSOLE_CONFIG_FILE"
+       value="$(find exploration_alg)/config/rosconsole.conf"/>
+  <!-- <node pkg="exploration_alg" type="test_node" name="test_node" output="screen"/> -->
+  <node pkg="exploration_alg" type="explore_node" name="explore_node" output="screen"/>
+</launch>

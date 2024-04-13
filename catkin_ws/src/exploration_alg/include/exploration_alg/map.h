@@ -32,8 +32,8 @@ class Map2D {
 
     // A box (xmin,ymin,xmax,ymax) that expresses the area where occupancy state has changed.
     // This will keep becoming bigger as more occupancy grid data is received.
-    // When frontier detection runs, it will process this area and reset this value to 0.
-    int active_area[4] = {0, 0, 0, 0};
+    // When frontier detection runs, it will process this area and reset this value to robot position.
+    int active_area[4];
 
    public:
     Map2D(double resolution, double width, double height, double robot_wx, double robot_wy);

@@ -22,7 +22,7 @@ struct cell2d_t {
  * Represent a frontier, which is a set of connected frontier cells.
  */
 class Frontier {
-   public:
+public:
     double centroid[2];         // centroid of frontier in world coordinate (wx,wy).
     int size;                   // number of frontier cells that forms this frontier.
     std::list<cell2d_t> cells;  // frontier cells that forms this frontier. Useful for visualization.
@@ -53,10 +53,10 @@ typedef RTree<cell2d_t*, int, 2, float> RTree_t;
  * Make the interface of RTree easier to use for this application.
  */
 class RTreeAdapter {
-   private:
+private:
     RTree_t tree_;
 
-   public:
+public:
     /**
      * Inserts a copy of the given cell to tree_, if the given cell is not duplicated.
      */
@@ -64,8 +64,8 @@ class RTreeAdapter {
         if (pointSearch(cell) == nullptr) {
             // Create a copy of it in a dynamically allocated memory and store it inside tree_.
             cell2d_t* cell_copy = new cell2d_t(cell);
-            int min[2] = {cell_copy->x, cell_copy->y};
-            int max[2] = {cell_copy->x, cell_copy->y};
+            int min[2] = { cell_copy->x, cell_copy->y };
+            int max[2] = { cell_copy->x, cell_copy->y };
             tree_.Insert(min, max, cell_copy);
         }
     }
@@ -75,8 +75,8 @@ class RTreeAdapter {
      */
     void remove(cell2d_t* cell) {
         // Remove the cell's pointer from tree.
-        int min[2] = {cell->x, cell->y};
-        int max[2] = {cell->x, cell->y};
+        int min[2] = { cell->x, cell->y };
+        int max[2] = { cell->x, cell->y };
         tree_.Remove(min, max, cell);
         // Free memory.
         delete cell;
@@ -86,15 +86,15 @@ class RTreeAdapter {
      * Return a pointer to the dynamically allocated cell in the tree if it exists.
      */
     cell2d_t* pointSearch(cell2d_t cell) {
-        int search_min[2] = {cell.x, cell.y};
-        int search_max[2] = {cell.x, cell.y};
+        int search_min[2] = { cell.x, cell.y };
+        int search_max[2] = { cell.x, cell.y };
 
         // If it finds the cell, assign it to result.
         cell2d_t* result = nullptr;
         auto searchCallback = [&](cell2d_t* cell) {
             result = cell;
             return false;
-        };
+            };
         tree_.Search(search_min, search_max, searchCallback);
         return result;
     }
@@ -103,13 +103,13 @@ class RTreeAdapter {
      * Return a list of cells that lies within the bounding box specified.
      */
     void rangeSearch(int xmin, int ymin, int xmax, int ymax, std::list<cell2d_t*>* cells_within_range) {
-        int search_min[2] = {xmin, ymin};
-        int search_max[2] = {xmax, ymax};
+        int search_min[2] = { xmin, ymin };
+        int search_max[2] = { xmax, ymax };
         // Append to the list each time a cell is found within the requested range.
         auto rangeSearchCallback = [=](cell2d_t* cell) {
             cells_within_range->emplace_back(cell);
             return true;
-        };
+            };
         tree_.Search(search_min, search_max, rangeSearchCallback);
     }
 
@@ -144,11 +144,11 @@ class RTreeAdapter {
  * Class to detect frontiers with Expanding-Wavefront Frontier Detection. (P Quin, 2021)
  */
 class FrontierDetector {
-   public:
+public:
     std::list<Frontier> frontiers;
     FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D> map, PoseListener* pose_listener);
 
-   private:
+private:
     PoseListener* pose_listener_;
     RTreeAdapter frontier_cells_;  // Store frontier cells in a dynamic spatial indexing data structure for quick range query and insertion/removal.
     std::shared_ptr<Map2D> map_;
@@ -186,6 +186,11 @@ class FrontierDetector {
     bool isCellFree(cell2d_t& cell);
 
     /**
+     * Return true if cell is inside the active area.
+     */
+    bool isCellInActiveArea(cell2d_t& cell);
+
+    /**
      * Return true if cell is unknown.
      */
     bool isCellUnknown(cell2d_t& cell);
@@ -215,9 +220,4 @@ class FrontierDetector {
      * Return the eight adjacent cells. This adjacency is used to test connectivity of frontier cells for formation of frontiers.
      */
     void getEightAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells);
-
-    /**
-     * Resets active area to {0,0,0,0}, to indicate that frontier detection has processed this area of new potential frontier cells.
-     */
-    void resetActiveArea();
 };
