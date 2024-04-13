@@ -111,6 +111,8 @@ class SearchAndRescue:
                 self.finished_search.publish(finish_msg)
                 rospy.sleep(0.05) 
 
+            np.save("grid_map",self.map_grid) 
+
             rosnodes = rosnode.get_node_names()
             rosnode.kill_nodes(rosnodes)              
             

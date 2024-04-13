@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import rospy
-from std_msgs.msg import Int64
+from std_msgs.msg import Int64,Bool
 from std_srvs.srv import SetBool
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
 from apriltag_ros.msg import AprilTagDetectionArray
+
+import json
 
 import numpy as np
 from cubatureKalmanFilter import CubatureKalmanFilter
@@ -36,11 +38,29 @@ class AprilTagCKF:
         self.listener = tf2_ros.TransformListener(self.tfBuffer)
 
         # initialize dictionary of cubature kalman filters
-        self.AprilTagDict = {}
+        self.AprilTagDictCKF = {}
+        self.AprilTagDictLast = {}
+        self.AprilTagDictSmoothed = {}
 
         # self.smooth_pose_pub = rospy.Publisher("/tag_detections_smoothed", AprilTagDetectionArray, queue_size=30)
         self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.predict_update)
-        
+        self.finished_search = rospy.Subscriber("/finish_search",Bool,self.save_results)
+   
+    def save_results(self,msg):
+        save_flag = msg.data
+        if save_flag:
+            for id,ckf_i in self.AprilTagDictCKF.items():
+                self.AprilTagDictSmoothed[id] = ckf_i.x.ravel().tolist()
+
+            with open('AT_smoothed.json', 'w', encoding='utf-8') as f:
+                json.dump(self.AprilTagDictSmoothed, f, ensure_ascii=False, indent=4)
+
+            with open('AT_last.json', 'w', encoding='utf-8') as f:
+                json.dump(self.AprilTagDictLast, f, ensure_ascii=False, indent=4)     
+
+            rospy.logerr(f"Save JSON files as {os.getcwd()}")
+
+
     def predict_update(self, msg):
         try:
             # get the transformation from map to baselink (trans,rot)
@@ -73,8 +93,10 @@ class AprilTagCKF:
                 AT_pos = np.array([AT_pos.x,AT_pos.y,AT_pos.z])
 
 
+                self.AprilTagDictLast[id] = AT_pos.tolist()
+
                 # if this is first time detecting apriltag, add to dictionary with CKF initial position as first detection
-                if self.AprilTagDict.get(id,None) is None:
+                if self.AprilTagDictCKF.get(id,None) is None:
                     ckf = CubatureKalmanFilter(dim_x=2,dim_z=2,dt=self.dt,
                                             hx=self.MeasurementFn,fx=self.TransitionFn)
                     
@@ -86,18 +108,18 @@ class AprilTagCKF:
                     ckf.P  = self.P
                     ckf.Q =  self.Q
 
-                    self.AprilTagDict[id] = ckf
+                    self.AprilTagDictCKF[id] = ckf
 
                 # get the range and bearing measurement between AT and TB3. Bearing is from TB3 to AT.
                 else:
                     # get the range (onnly in x-y coordinates)
                     range_ = np.linalg.norm(AT_pos.ravel()[:2]-TB3_pos.ravel()[:2])
 
-                    rospy.logerr(f"RANGE Measure: {range_}")
+                    # rospy.logerr(f"RANGE Measure: {range_}")
 
-                    self.AprilTagDict[id].R  = self.R((range_))
+                    self.AprilTagDictCKF[id].R  = self.R((range_))
 
-                    rospy.logerr(f"R cov: {self.AprilTagDict[id].R}")
+                    # rospy.logerr(f"R cov: {self.AprilTagDictCKF[id].R}")
 
 
                     # get the bearing
@@ -107,13 +129,13 @@ class AprilTagCKF:
                     z = np.array([range_,bearing])
 
                     # update CKF AT position estimate
-                    self.AprilTagDict[id].update(z.reshape(-1,1),hx_args=(TB3_pos,TB3_yaw))
+                    self.AprilTagDictCKF[id].update(z.reshape(-1,1),hx_args=(TB3_pos,TB3_yaw))
 
                     # propogate predict step (identity in this case...)
-                    self.AprilTagDict[id].predict()
+                    self.AprilTagDictCKF[id].predict()
 
                     # publish  the TF ffrom the map  to the smoothed CKF AT position
-                    self.CreateSmoothAxes("map",f"Tag{int(id)}",self.AprilTagDict[id].x.ravel(),AT_quart)
+                    self.CreateSmoothAxes("map",f"Tag{int(id)}",self.AprilTagDictCKF[id].x.ravel(),AT_quart)
 
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
             pass

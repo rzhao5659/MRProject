@@ -14,7 +14,7 @@ from cubatureKalmanFilter import CubatureKalmanFilter
 from scipy.spatial.transform import Rotation as sRotation
 import tf2_ros
 import geometry_msgs.msg
-
+import os
 
 def AngleWrap(theta):
   return (theta + np.pi)%(2*np.pi) - np.pi
@@ -41,6 +41,7 @@ class AprilTagCKF:
         self.AprilTagDictCKF = {}
         self.AprilTagDictLast = {}
         self.AprilTagDictSmoothed = {}
+        self.AprilTagDictCount = {}
 
         # self.smooth_pose_pub = rospy.Publisher("/tag_detections_smoothed", AprilTagDetectionArray, queue_size=30)
         self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.predict_update)
@@ -52,12 +53,16 @@ class AprilTagCKF:
             for id,ckf_i in self.AprilTagDictCKF.items():
                 self.AprilTagDictSmoothed[id] = ckf_i.x.ravel().tolist()
 
+            
+
             with open('AT_smoothed.json', 'w', encoding='utf-8') as f:
                 json.dump(self.AprilTagDictSmoothed, f, ensure_ascii=False, indent=4)
 
             with open('AT_last.json', 'w', encoding='utf-8') as f:
                 json.dump(self.AprilTagDictLast, f, ensure_ascii=False, indent=4)     
 
+            rospy.logerr(f"Save JSON files as {os.getcwd()}")
+    
     def predict_update(self, msg):
         try:
             # get the transformation from map to baselink (trans,rot)
@@ -97,7 +102,7 @@ class AprilTagCKF:
                                             hx=self.MeasurementFn,fx=self.TransitionFn)
                     
                     # initial guess at AT position, which is jjust  first AT detection estimate
-                    ckf.x = AT_pos[:3].reshape(-1,1)
+                    ckf.x = AT_pos[:3].reshape(-1,1)/5
 
                     # set CKF parameters described earlier
                     ckf.R  = self.R((1))
@@ -105,17 +110,23 @@ class AprilTagCKF:
                     ckf.Q =  self.Q
 
                     self.AprilTagDictCKF[id] = ckf
+                    self.AprilTagDictCount[id] = 1
+
+                
+                elif (self.AprilTagDictCount.get(id) < 5):
+                    self.AprilTagDictCount[id] += 1
+                    self.AprilTagDictCKF[id].x = AT_pos[:3].reshape(-1,1) + self.AprilTagDictCKF[id]/5
 
                 # get the range and bearing measurement between AT and TB3. Bearing is from TB3 to AT.
                 else:
                     # get the range (onnly in x-y coordinates)
                     range_ = np.linalg.norm(AT_pos.ravel()[:3]-TB3_pos.ravel()[:3])
 
-                    rospy.logerr(f"Tag{id} RANGE Measure: {range_}")
+                    # rospy.logerr(f"Tag{id} RANGE Measure: {range_}")
 
                     self.AprilTagDictCKF[id].R  = self.R((range_))
 
-                    rospy.logerr(f"Tag{id} R cov: {self.AprilTagDictCKF[id].R}")
+                    # rospy.logerr(f"Tag{id} R cov: {self.AprilTagDictCKF[id].R}")
 
 
                     # get the bearing

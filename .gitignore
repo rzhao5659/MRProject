@@ -5,3 +5,4 @@ devel_isolated/
 build_isolated/
 beginner_tutorials/
 *.vscode
+*.ipynb_checkpoints/
