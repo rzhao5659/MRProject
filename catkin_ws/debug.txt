@@ -1,0 +1,2507 @@
+[0m[ INFO] [1712873450.936712861]: Laser is mounted upwards.[0m
+ -maxUrange 3 -maxUrange 1.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.2 -resampleThreshold 0.5
+ -xmin -10 -xmax 10 -ymin -10 -ymax 10 -delta 0.05 -particles 100
+[0m[ INFO] [1712873450.943556440]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+m_count 0
+Registering First Scan
+update frame 4
+update ld=1.67549e-05 ad=0.000523528
+m_count 1
+Average Scan Matching Score=855.094
+neff= 100
+update frame 7
+update ld=6.53051e-06 ad=0.000204078
+m_count 2
+Average Scan Matching Score=856.808
+neff= 99.9666
+update frame 11
+update ld=7.16032e-06 ad=0.00022376
+m_count 3
+Average Scan Matching Score=859.607
+neff= 99.9498
+update frame 13
+update ld=1.3442e-05 ad=0.000420062
+m_count 4
+Average Scan Matching Score=867.27
+neff= 99.7656
+update frame 14
+update ld=1.15649e-05 ad=0.000361402
+m_count 5
+Average Scan Matching Score=861.913
+neff= 99.4045
+update frame 15
+update ld=1.21456e-05 ad=0.000379506
+m_count 6
+Average Scan Matching Score=868.574
+neff= 98.6493
+update frame 16
+update ld=2.42419e-06 ad=7.57561e-05
+m_count 7
+[0m[ INFO] [1712873449.264477055]: Waiting for costmap to become available, topic: map[0m
+[32m[DEBUG] [1712873450.973200927]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873450.973261497]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873450.974926075]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873450.977101320]: Spinning up a thread for the SimpleActionClient[0m
+[0m[ INFO] [1712873450.984046942]: Waiting to connect to move_base server[0m
+[32m[DEBUG] [1712873451.895376295]: Getting status over the wire.[0m
+[0m[ INFO] [1712873451.895463577]: Connected to move_base server[0m
+[32m[DEBUG] [1712873451.895530103]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873451.895686590]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873451.897246999]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873452.038907053]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873452.238972626]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873452.438970767]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873452.638976230]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873452.838925453]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873453.039035675]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873453.239058139]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873453.438886926]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873453.638947216]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873453.838932974]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.038966770]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.238969895]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.395428047]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873454.395451272]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873454.396986973]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873454.438938927]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.638961516]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.838953878]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.927591093]: found 5 frontiers[0m
+[32m[DEBUG] [1712873454.927614302]: frontier 0 cost: -3.006268[0m
+[32m[DEBUG] [1712873454.927620062]: frontier 1 cost: -2.678849[0m
+[32m[DEBUG] [1712873454.927624724]: frontier 2 cost: -2.327500[0m
+[32m[DEBUG] [1712873454.927628997]: frontier 3 cost: -1.396967[0m
+[32m[DEBUG] [1712873454.927633096]: frontier 4 cost: -1.066147[0m
+[32m[DEBUG] [1712873454.927637994]: visualising 5 frontiers[0m
+[32m[DEBUG] [1712873454.927662581]: Trying to publish message of type [visualization_msgs/MarkerArray/d155b9ce5188fbaf89745847fd5882d7] on a publisher with type [visualization_msgs/MarkerArray/d155b9ce5188fbaf89745847fd5882d7][0m
+[32m[DEBUG] [1712873454.927683921]: about to start initGoal()[0m
+[32m[DEBUG] [1712873454.927710291]: Trying to publish message of type [move_base_msgs/MoveBaseActionGoal/660d6895a1b9a16dce51fbdd9a64a56b] on a publisher with type [move_base_msgs/MoveBaseActionGoal/660d6895a1b9a16dce51fbdd9a64a56b][0m
+[32m[DEBUG] [1712873454.927725905]: Done with initGoal()[0m
+[32m[DEBUG] [1712873454.928128419]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873454.928150461]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873454.928162775]: Transitioning CommState from WAITING_FOR_GOAL_ACK to ACTIVE[0m
+[32m[DEBUG] [1712873454.928176378]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873455.038939140]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873455.238905018]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873455.438994536]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873455.638945890]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873455.838902197]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873456.038982989]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873456.239049265]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873456.43892Average Scan Matching Score=867.247
+neff= 97.7363
+update frame 17
+update ld=7.55178e-06 ad=0.000235993
+m_count 8
+Average Scan Matching Score=866.352
+neff= 97.1042
+update frame 19
+update ld=0.00443286 ad=0.000791498
+m_count 9
+Average Scan Matching Score=905.633
+neff= 96.5003
+update frame 20
+update ld=0.0622216 ad=0.121283
+m_count 10
+Average Scan Matching Score=897.712
+neff= 97.2106
+update frame 21
+update ld=0.100814 ad=0.242842
+m_count 11
+Average Scan Matching Score=929.507
+neff= 97.0235
+update frame 22
+update ld=0.089085 ad=0.0863635
+m_count 12
+0705]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873456.638930939]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873456.770620792]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873456.770643989]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873456.772326174]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873456.838964764]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873457.038931343]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873457.238975094]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873457.438875587]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873457.638905681]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873457.838937530]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873457.958065101]: found 5 frontiers[0m
+[32m[DEBUG] [1712873457.958078105]: frontier 0 cost: -3.016459[0m
+[32m[DEBUG] [1712873457.958083331]: frontier 1 cost: -2.688153[0m
+[32m[DEBUG] [1712873457.958087654]: frontier 2 cost: -2.319077[0m
+[32m[DEBUG] [1712873457.958092000]: frontier 3 cost: -1.402566[0m
+[32m[DEBUG] [1712873457.958096434]: frontier 4 cost: -1.059688[0m
+[32m[DEBUG] [1712873457.958100965]: visualising 5 frontiers[0m
+[32m[DEBUG] [1712873458.038952132]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873458.238906806]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873458.438904551]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873458.638948293]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873458.838955296]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873459.038879755]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873459.238914105]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873459.438936508]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873459.638955138]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873459.698392226]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873459.698419869]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873459.700014226]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873459.839053874]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873460.038976341]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873460.238949188]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873460.438999324]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873460.638941268]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873460.838910558]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873460.988391919]: found 5 frontiers[0m
+[32m[DEBUG] [1712873460.988412865]: frontier 0 cost: -2.671698[0m
+[32m[DEBUG] [1712873460.988418665]: frontier 1 cost: -2.639533[0m
+[32m[DEBUG] [1712873460.988423602]: frontier 2 cost: -2.212500[0m
+[32m[DEBUG] [1712873460.988427979]: frontier 3 cost: -1.338153[0m
+[32m[DEBUG] [1712873460.988432236]: frontier 4 cost: -1.164487[0m
+[32m[DEBUG] [1712873460.988437231]: visualising 5 frontiers[0m
+[32m[DEBUG] [1712873460.988478358]: IN DELETER[0m
+[32m[DEBUG] [1712873460.988495267]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873460.988543368]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873460.988572581]: about to start initGoal()[0m
+[32m[DEBUG] [1712873460.988604290]: Done with initGoal()[0m
+[32m[DEBUG] [1712873461.028261930]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873461.028285617]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873461.028292406]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873461.028307112]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873461.028321126]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873461.028328387]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873461.028336472]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873461.038947381]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873461.239005341]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873461.438893563]: Getting status over thAverage Scan Matching Score=930.116
+neff= 96.6845
+update frame 23
+update ld=0.0559981 ad=0.0212943
+m_count 13
+Average Scan Matching Score=944.854
+neff= 96.315
+update frame 24
+update ld=0.0612104 ad=0.0085986
+m_count 14
+Average Scan Matching Score=941.512
+neff= 96.1359
+update frame 25
+update ld=0.134862 ad=0.0267514
+m_count 15
+Average Scan Matching Score=931.535
+neff= 95.6025
+update frame 26
+update ld=0.0430406 ad=0.0974601
+m_count 16
+[0m[ INFO] [1712873450.866193565]: global_costmap: Using plugin "static_layer"[0m
+[0m[ INFO] [1712873450.887040753]: Requesting the map...[0m
+[0m[ INFO] [1712873451.092950723]: Resizing costmap to 384 X 384 at 0.050000 m/pix[0m
+[0m[ INFO] [1712873451.192575525]: Received a 384 X 384 map at 0.050000 m/pix[0m
+[0m[ INFO] [1712873451.201688924]: global_costmap: Using plugin "obstacle_layer"[0m
+[0m[ INFO] [1712873451.215320543]:     Subscribed to Topics: scan[0m
+[0m[ INFO] [1712873451.250221120]: global_costmap: Using plugin "inflation_layer"[0m
+[0m[ INFO] [1712873451.279593676]: local_costmap: Using plugin "obstacle_layer"[0m
+[0m[ INFO] [1712873451.282013055]:     Subscribed to Topics: scan[0m
+[0m[ INFO] [1712873451.289024587]: local_costmap: Using plugin "inflation_layer"[0m
+[0m[ INFO] [1712873451.306661585]: Created local_planner dwa_local_planner/DWAPlannerROS[0m
+[0m[ INFO] [1712873451.307849048]: Sim period is set to 0.10[0m
+[0m[ INFO] [1712873451.621539018]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[ INFO] [1712873451.633008843]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[ INFO] [1712873452.816844298]: odom received![0m
+[0m[ INFO] [1712873455.028120104]: Got new plan[0m
+[0m[ INFO] [1712873455.228178454]: Got new plan[0m
+[0m[ INFO] [1712873455.428100725]: Got new plan[0m
+[0m[ INFO] [1712873455.728125186]: Got new plan[0m
+[0m[ INFO] [1712873455.928113392]: Got new plan[0m
+[0m[ INFO] [1712873456.228071208]: Got new plan[0m
+[0m[ INFO] [1712873456.428110670]: Got new plan[0m
+[0m[ INFO] [1712873456.628101203]: Got new plan[0m
+[0m[ INFO] [1712873456.928108005]: Got new plan[0m
+[0m[ INFO] [1712873457.128104465]: Got new plan[0m
+[0m[ INFO] [1712873457.328131381]: Got new plan[0m
+[0m[ INFO] [1712873457.728084413]: Got new plan[0m
+[0m[ INFO] [1712873458.128118339]: Got new plan[0m
+[0m[ INFO] [1712873458.428111303]: Got new plan[0m
+[0m[ INFO] [1712873458.728100472]: Got new plan[0m
+[0m[ INFO] [1712873459.128106227]: Got new plan[0m
+[0m[ INFO] [1712873459.328104013]: Got new plan[0m
+[0m[ INFO] [1712873459.528103473]: Got new plan[0m
+[0m[ INFO] [1712873459.728121695]: Got new plan[0m
+[0m[ INFO] [1712873459.928087690]: Got new plan[0m
+[0m[ INFO] [1712873460.128083086]: Got new plan[0m
+[0m[ INFO] [1712873460.328100237]: Got new plan[0m
+[0m[ INFO] [1712873460.528130790]: Got new plan[0m
+[0m[ INFO] [1712873460.728115040]: Got new plan[0m
+[0m[ INFO] [1712873460.928105721]: Got new plan[0m
+[0m[ INFO] [1712873461.128105716]: Got new plan[0m
+[0m[ INFO] [1712873461.328121471]: Got new plan[0m
+[0m[ INFO] [1712873461.428115968]: Got new plan[0m
+[0m[ INFO] [1712873461.528118909]: Got new plan[0m
+[0m[ INFO] [1712873461.628107925]: Got new plan[0m
+[0m[ INFO] [1712873461.828104274]: Got new plan[0m
+[0m[ INFO] [1712873461.928071527]: Got new plan[0m
+[0m[ INFO] [1712873462.028107639]: Got new plan[0m
+[0m[ INFO] [1712873462.228155743]: Got new plan[0m
+[0m[ INFO] [1712873462.428105165]: Got new plan[0m
+[0m[ INFO] [1712873462.628108000]: Got new plan[0m
+[0m[ INFO] [1712873462.828135081]: Got new plan[0m
+[0m[ INFO] [1712873463.028113109]: Got new plan[0m
+[0m[ INFO] [1712873463.228112045]: Got new plan[0m
+[0m[ INFO] [1712873463.428098937]: Got new plan[0m
+[0m[ INFO] [1712873463.528105910]: Got new plan[0m
+[0m[ INFO] [1712873463.628071378]: Got new plan[0m
+[0m[ INFO] [1712873463.728130311]: Got new plan[0m
+[0m[ INFO] [1712873463.928108482]: Got new plan[0m
+[0m[ INFO] [1712873464.128109794]: Got new plan[0m
+[0m[ INFO] [1712873464.228137620]: Got new plan[0m
+[0m[ INFO] [1712873464.528153664]: Got new plan[0m
+[0m[ INFO] [1712873465.028103555]: Got new plan[0m
+[0m[ INFO] [1712873465.428108425]: Got new plan[0m
+[0m[ INFO] [1712873465.728094102]: Got new plan[0m
+[0m[ INFO] [1712873465.928106784]: Got new plan[0m
+[0m[ INFO] [1712873466.128116843]: Got new plan[0m
+[0m[ INFO] [1712873466.328114972]: Got new plan[0m
+[0m[ INFO] [1712873466.628068890]: Got new plan[0m
+[0m[ INFO] [1712873466.828063332]: Got neAverage Scan Matching Score=940.493
+neff= 94.8424
+update frame 27
+update ld=0.0786411 ad=0.00707021
+m_count 17
+e wire.[0m
+[32m[DEBUG] [1712873461.638910384]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873461.838889919]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873462.038968745]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873462.215857341]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873462.215880568]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873462.217399134]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873462.238916731]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873462.438868814]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873462.638955856]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873462.838931072]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873463.038873759]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873463.238889524]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873463.438961753]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873463.638940329]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873463.838863806]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.018737236]: found 5 frontiers[0m
+[32m[DEBUG] [1712873464.018758099]: frontier 0 cost: -3.246967[0m
+[32m[DEBUG] [1712873464.018763889]: frontier 1 cost: -2.671698[0m
+[32m[DEBUG] [1712873464.018769234]: frontier 2 cost: -2.316147[0m
+[32m[DEBUG] [1712873464.018786733]: frontier 3 cost: -1.338153[0m
+[32m[DEBUG] [1712873464.018808689]: frontier 4 cost: -1.164487[0m
+[32m[DEBUG] [1712873464.018817569]: visualising 5 frontiers[0m
+[32m[DEBUG] [1712873464.018847405]: IN DELETER[0m
+[32m[DEBUG] [1712873464.018889315]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873464.018899038]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873464.018910146]: about to start initGoal()[0m
+[32m[DEBUG] [1712873464.018978648]: Done with initGoal()[0m
+[32m[DEBUG] [1712873464.028211585]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.028232781]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873464.028242594]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873464.028260044]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.028269841]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873464.028280960]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873464.028312509]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873464.038922451]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.239101319]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.438940906]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.638880725]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873464.695523474]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873464.695548030]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873464.697090701]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873464.838913018]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873465.038920505]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873465.239078539]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873465.438897583]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873465.638877953]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873465.838905174]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873466.038897823]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873466.238908461]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873466.438845675]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873466.638950775]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873466.838988271]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873466.943301195]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873466.943327523]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873466.944826367]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873467.038931088]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873467.049045966Average Scan Matching Score=942.052
+neff= 94.4077
+update frame 28
+update ld=0.0975622 ad=0.0858352
+m_count 18
+Average Scan Matching Score=942.423
+neff= 93.5057
+update frame 29
+update ld=0.234326 ad=0.120631
+m_count 19
+]: found 6 frontiers[0m
+[32m[DEBUG] [1712873467.049069326]: frontier 0 cost: -3.232085[0m
+[32m[DEBUG] [1712873467.049075057]: frontier 1 cost: -2.638153[0m
+[32m[DEBUG] [1712873467.049079745]: frontier 2 cost: -2.385920[0m
+[32m[DEBUG] [1712873467.049084157]: frontier 3 cost: -1.349688[0m
+[32m[DEBUG] [1712873467.049088406]: frontier 4 cost: -1.159688[0m
+[32m[DEBUG] [1712873467.049093030]: frontier 5 cost: -0.900564[0m
+[32m[DEBUG] [1712873467.049097779]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873467.049124966]: IN DELETER[0m
+[32m[DEBUG] [1712873467.049134093]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873467.049141448]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873467.049149705]: about to start initGoal()[0m
+[32m[DEBUG] [1712873467.049169373]: Done with initGoal()[0m
+[32m[DEBUG] [1712873467.128261460]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873467.128284116]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873467.128290677]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873467.128305494]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873467.128313488]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873467.128320095]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873467.128328016]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873467.238957387]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873467.439015424]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873467.639005164]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873467.838853784]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873468.038900750]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873468.238958525]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873468.438973768]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873468.638942525]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873468.838932363]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873469.038944430]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873469.170645475]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873469.170669416]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873469.172213311]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873469.238975431]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873469.438944354]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873469.638852027]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873469.838905430]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.038907524]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.079517646]: found 6 frontiers[0m
+[32m[DEBUG] [1712873470.079530515]: frontier 0 cost: -3.235000[0m
+[32m[DEBUG] [1712873470.079536255]: frontier 1 cost: -2.600000[0m
+[32m[DEBUG] [1712873470.079540935]: frontier 2 cost: -2.018804[0m
+[32m[DEBUG] [1712873470.079545393]: frontier 3 cost: -1.209888[0m
+[32m[DEBUG] [1712873470.079549769]: frontier 4 cost: -1.101129[0m
+[32m[DEBUG] [1712873470.079554384]: frontier 5 cost: -0.989533[0m
+[32m[DEBUG] [1712873470.079559049]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873470.079587973]: IN DELETER[0m
+[32m[DEBUG] [1712873470.079596037]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873470.079603732]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873470.079611578]: about to start initGoal()[0m
+[32m[DEBUG] [1712873470.079638392]: Done with initGoal()[0m
+[32m[DEBUG] [1712873470.128220258]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.128239327]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873470.128245294]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873470.128261375]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.128269504]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873470.128276136]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873470.128283628]: Transitioning SimpleState from [Average Scan Matching Score=800.613
+neff= 94.2224
+update frame 30
+update ld=0.0855232 ad=0.0942656
+m_count 20
+Average Scan Matching Score=791.331
+neff= 93.3215
+update frame 31
+update ld=0.0407411 ad=0.0388208
+m_count 21
+Average Scan Matching Score=856.861
+neff= 93.249
+update frame 32
+update ld=0.16946 ad=0.235561
+m_count 22
+Average Scan Matching Score=878.998
+neff= 92.1076
+update frame 33
+update ld=0.0496896 ad=0.108753
+m_count 23
+Average Scan Matching Score=870.859
+neff= 90.0684
+update frame 34
+update ld=0.0950002 ad=0.202386
+m_count 24
+PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873470.238945972]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.438942819]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.638899397]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873470.838962618]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873471.038934685]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873471.238884529]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873471.438948115]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873471.488899560]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873471.488959914]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873471.490577912]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873471.638905685]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873471.838918729]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873472.038868752]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873472.238904358]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873472.438924369]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873472.638957898]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873472.838910647]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.038910082]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.110030127]: found 6 frontiers[0m
+[32m[DEBUG] [1712873473.110047982]: frontier 0 cost: -2.688153[0m
+[32m[DEBUG] [1712873473.110053901]: frontier 1 cost: -2.491787[0m
+[32m[DEBUG] [1712873473.110058996]: frontier 2 cost: -2.064487[0m
+[32m[DEBUG] [1712873473.110063503]: frontier 3 cost: -1.299688[0m
+[32m[DEBUG] [1712873473.110068073]: frontier 4 cost: -1.152212[0m
+[32m[DEBUG] [1712873473.110072905]: frontier 5 cost: -0.900564[0m
+[32m[DEBUG] [1712873473.110078112]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873473.110111859]: IN DELETER[0m
+[32m[DEBUG] [1712873473.110121004]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873473.110131023]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873473.110167469]: about to start initGoal()[0m
+[32m[DEBUG] [1712873473.110229826]: Done with initGoal()[0m
+[32m[DEBUG] [1712873473.128408101]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.128460840]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873473.128486577]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873473.128521939]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.128548596]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873473.128572620]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873473.128584024]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873473.239062911]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.438934522]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.638877154]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.838863462]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873473.942148220]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873473.942172688]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873473.943752282]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873474.038983325]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873474.238920122]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873474.438970568]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873474.638916206]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873474.838923954]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873475.038942718]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873475.238872155]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873475.438880615]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873475.638911910]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873475.839026049]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873476.038920972]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873476.140149524]: found 6 Average Scan Matching Score=936.803
+neff= 88.6716
+update frame 35
+update ld=0.0569933 ad=0.208352
+m_count 25
+Average Scan Matching Score=1043.35
+neff= 86.7775
+update frame 36
+update ld=0.0628541 ad=0.108501
+m_count 26
+Average Scan Matching Score=888.424
+neff= 85.2121
+update frame 37
+update ld=0.0340871 ad=0.0461599
+m_count 27
+Average Scan Matching Score=949.254
+neff= 83.1154
+update frame 38
+update ld=3.24095e-05 ad=0.000356427
+m_count 28
+Average Scan Matching Score=948.596
+neff= 80.9188
+frontiers[0m
+[32m[DEBUG] [1712873476.140175353]: frontier 0 cost: -2.688153[0m
+[32m[DEBUG] [1712873476.140180874]: frontier 1 cost: -2.491787[0m
+[32m[DEBUG] [1712873476.140185333]: frontier 2 cost: -1.897989[0m
+[32m[DEBUG] [1712873476.140189730]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873476.140193997]: frontier 4 cost: -1.199688[0m
+[32m[DEBUG] [1712873476.140198403]: frontier 5 cost: -0.841078[0m
+[32m[DEBUG] [1712873476.140203342]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873476.238872343]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873476.334738562]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873476.334760183]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873476.336344555]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873476.438928461]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873476.638920782]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873476.838930358]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873477.038843940]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873477.238990465]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873477.438984813]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873477.638950325]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873477.838880225]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873478.039056520]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873478.238900885]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873478.438969871]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873478.638938844]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873478.827346974]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873478.827370375]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873478.829087534]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873478.838968677]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.038942527]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.170496223]: found 6 frontiers[0m
+[32m[DEBUG] [1712873479.170506402]: frontier 0 cost: -2.588153[0m
+[32m[DEBUG] [1712873479.170511864]: frontier 1 cost: -2.541787[0m
+[32m[DEBUG] [1712873479.170516319]: frontier 2 cost: -1.897989[0m
+[32m[DEBUG] [1712873479.170520498]: frontier 3 cost: -1.195917[0m
+[32m[DEBUG] [1712873479.170524744]: frontier 4 cost: -1.152212[0m
+[32m[DEBUG] [1712873479.170528982]: frontier 5 cost: -0.900564[0m
+[32m[DEBUG] [1712873479.170533673]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873479.170585141]: IN DELETER[0m
+[32m[DEBUG] [1712873479.170593931]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873479.170603161]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873479.170611616]: about to start initGoal()[0m
+[32m[DEBUG] [1712873479.170659610]: Done with initGoal()[0m
+[32m[DEBUG] [1712873479.228348912]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.228375187]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873479.228385259]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873479.228403254]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.228413624]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873479.228424455]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873479.228435966]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873479.238912126]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.438915236]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.638966776]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873479.838952238]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873480.038925535]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873480.238908098]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873480.439120092]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873480.638943292]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873480.747960411]: received full new map, resizing to: 384, 38update frame 39
+update ld=0.0470061 ad=0.0871559
+m_count 29
+Average Scan Matching Score=893.546
+neff= 79.5713
+update frame 40
+update ld=0.0246132 ad=0.0689275
+m_count 30
+Average Scan Matching Score=889.832
+neff= 77.7273
+update frame 41
+update ld=0.0280022 ad=0.0487631
+m_count 31
+Average Scan Matching Score=878.91
+neff= 76.4696
+update frame 42
+update ld=0.14121 ad=0.327424
+m_count 32
+Average Scan Matching Score=923.186
+neff= 75.6231
+update frame 43
+update ld=0.13227 ad=0.0858361
+m_count 33
+Average Scan Matching Score=955.98
+neff= 74.5328
+update frame 44
+update ld=0.00738265 ad=0.00239909
+m_count 34
+4[0m
+[32m[DEBUG] [1712873480.748009413]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873480.749538281]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873480.838964717]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873481.038959059]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873481.238971911]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873481.438949603]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873481.638927241]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873481.838958460]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873482.038986736]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873482.201026471]: found 6 frontiers[0m
+[32m[DEBUG] [1712873482.201038479]: frontier 0 cost: -2.588153[0m
+[32m[DEBUG] [1712873482.201043982]: frontier 1 cost: -2.491787[0m
+[32m[DEBUG] [1712873482.201048514]: frontier 2 cost: -1.840798[0m
+[32m[DEBUG] [1712873482.201052676]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873482.201057041]: frontier 4 cost: -1.145917[0m
+[32m[DEBUG] [1712873482.201061203]: frontier 5 cost: -0.848137[0m
+[32m[DEBUG] [1712873482.201065807]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873482.238977279]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873482.438946384]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873482.639006255]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873482.839030248]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873483.039158109]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873483.153325395]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873483.153371219]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873483.154990767]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873483.238914528]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873483.438903139]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873483.638953705]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873483.838941305]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873484.038922419]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873484.238924987]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873484.439042212]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873484.638929901]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873484.838899848]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873485.038941244]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873485.231212844]: found 6 frontiers[0m
+[32m[DEBUG] [1712873485.231225245]: frontier 0 cost: -2.638153[0m
+[32m[DEBUG] [1712873485.231230614]: frontier 1 cost: -2.491787[0m
+[32m[DEBUG] [1712873485.231235503]: frontier 2 cost: -1.847989[0m
+[32m[DEBUG] [1712873485.231239596]: frontier 3 cost: -1.195917[0m
+[32m[DEBUG] [1712873485.231244036]: frontier 4 cost: -1.152212[0m
+[32m[DEBUG] [1712873485.231248516]: frontier 5 cost: -0.900564[0m
+[32m[DEBUG] [1712873485.231253230]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873485.238914908]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873485.438955014]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873485.594733011]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873485.594762467]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873485.596369618]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873485.638950824]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873485.838937998]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873486.038958965]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873486.238993521]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873486.438899741]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873486.638933515]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873486.839003931]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873487.038976028]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873487.238898752]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873487.438899830]: Getting status over the wire.Average Scan Matching Score=948.597
+neff= 73.1644
+update frame 45
+update ld=0.126349 ad=0.074473
+m_count 35
+Average Scan Matching Score=809.621
+neff= 70.8453
+update frame 46
+update ld=0.124893 ad=0.188623
+m_count 36
+Average Scan Matching Score=789.693
+neff= 68.6206
+update frame 47
+update ld=0.00289254 ad=0.021122
+m_count 37
+Average Scan Matching Score=821.184
+neff= 62.9512
+update frame 48
+update ld=1.32896e-05 ad=0.000415301
+m_count 38
+[0m
+[32m[DEBUG] [1712873487.639025721]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873487.690328545]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873487.690374869]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873487.692051024]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873487.839072235]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.038904109]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.238938105]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.261454654]: found 6 frontiers[0m
+[32m[DEBUG] [1712873488.261468344]: frontier 0 cost: -2.541787[0m
+[32m[DEBUG] [1712873488.261474069]: frontier 1 cost: -2.262215[0m
+[32m[DEBUG] [1712873488.261478781]: frontier 2 cost: -2.097989[0m
+[32m[DEBUG] [1712873488.261483393]: frontier 3 cost: -1.152212[0m
+[32m[DEBUG] [1712873488.261487820]: frontier 4 cost: -1.095917[0m
+[32m[DEBUG] [1712873488.261492537]: frontier 5 cost: -0.900564[0m
+[32m[DEBUG] [1712873488.261497268]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873488.261553885]: IN DELETER[0m
+[32m[DEBUG] [1712873488.261563157]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873488.261574051]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873488.261586047]: about to start initGoal()[0m
+[32m[DEBUG] [1712873488.261632782]: Done with initGoal()[0m
+[32m[DEBUG] [1712873488.328302166]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.328321728]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873488.328328214]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873488.328340733]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.328347138]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873488.328351909]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873488.328357779]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873488.438969955]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.638955916]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873488.838892014]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873489.038883244]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873489.238943323]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873489.438945012]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873489.638993828]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873489.838877792]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873490.038945244]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873490.238898965]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873490.438886939]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873490.638887706]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873490.838934843]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.033497703]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873491.033520164]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873491.035043892]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873491.038920736]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.238902924]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.291889104]: found 6 frontiers[0m
+[32m[DEBUG] [1712873491.291901549]: frontier 0 cost: -2.491787[0m
+[32m[DEBUG] [1712873491.291906980]: frontier 1 cost: -1.819018[0m
+[32m[DEBUG] [1712873491.291911828]: frontier 2 cost: -1.769018[0m
+[32m[DEBUG] [1712873491.291916250]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873491.291920816]: frontier 4 cost: -0.848137[0m
+[32m[DEBUG] [1712873491.291925156]: frontier 5 cost: -0.652212[0m
+[32m[DEBUG] [1712873491.291930357]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873491.291985709]: IN DELETER[0m
+[32m[DEBUG] [1712873491.291996222]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873491.292040565]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873491.292053171]: about to start initGoal()[0m
+[32m[DEBUG] [1712873491.292112207]: Done with initGAverage Scan Matching Score=823.459
+neff= 56.2569
+update frame 50
+update ld=6.73448e-06 ad=0.000210453
+m_count 39
+Average Scan Matching Score=826.023
+neff= 49.5127
+*************RESAMPLE***************
+update frame 51
+update ld=3.70653e-06 ad=0.000115829
+m_count 40
+w plan[0m
+[0m[ INFO] [1712873467.028084324]: Got new plan[0m
+[0m[ INFO] [1712873467.228111615]: Got new plan[0m
+[0m[ INFO] [1712873467.428106902]: Got new plan[0m
+[0m[ INFO] [1712873467.628103942]: Got new plan[0m
+[0m[ INFO] [1712873467.828104555]: Got new plan[0m
+[0m[ INFO] [1712873468.028114427]: Got new plan[0m
+[0m[ INFO] [1712873468.228105896]: Got new plan[0m
+[0m[ INFO] [1712873468.428103001]: Got new plan[0m
+[0m[ INFO] [1712873468.528064084]: Got new plan[0m
+[0m[ INFO] [1712873468.628100979]: Got new plan[0m
+[0m[ INFO] [1712873468.828099139]: Got new plan[0m
+[0m[ INFO] [1712873468.928098968]: Got new plan[0m
+[0m[ INFO] [1712873469.028098593]: Got new plan[0m
+[0m[ INFO] [1712873469.128079872]: Got new plan[0m
+[0m[ INFO] [1712873469.228099274]: Got new plan[0m
+[0m[ INFO] [1712873469.328096583]: Got new plan[0m
+[0m[ INFO] [1712873469.428096595]: Got new plan[0m
+[0m[ INFO] [1712873469.528096450]: Got new plan[0m
+[0m[ INFO] [1712873469.628108557]: Got new plan[0m
+[0m[ INFO] [1712873469.828083219]: Got new plan[0m
+[0m[ INFO] [1712873470.028097293]: Got new plan[0m
+[0m[ INFO] [1712873470.228095752]: Got new plan[0m
+[0m[ INFO] [1712873470.428103127]: Got new plan[0m
+[0m[ INFO] [1712873470.628097241]: Got new plan[0m
+[0m[ INFO] [1712873470.828073869]: Got new plan[0m
+[0m[ INFO] [1712873471.028127936]: Got new plan[0m
+[0m[ INFO] [1712873471.228098772]: Got new plan[0m
+[0m[ INFO] [1712873471.328097537]: Got new plan[0m
+[0m[ INFO] [1712873471.428099240]: Got new plan[0m
+[0m[ INFO] [1712873471.628101203]: Got new plan[0m
+[0m[ INFO] [1712873471.828103398]: Got new plan[0m
+[0m[ INFO] [1712873472.028115604]: Got new plan[0m
+[0m[ INFO] [1712873472.228143485]: Got new plan[0m
+[0m[ INFO] [1712873472.428101771]: Got new plan[0m
+[0m[ INFO] [1712873472.728086523]: Got new plan[0m
+[0m[ INFO] [1712873472.928108741]: Got new plan[0m
+[0m[ INFO] [1712873473.128214424]: Got new plan[0m
+[0m[ INFO] [1712873473.328070285]: Got new plan[0m
+[0m[ INFO] [1712873473.628107174]: Got new plan[0m
+[0m[ INFO] [1712873473.928110557]: Got new plan[0m
+[0m[ INFO] [1712873474.128101326]: Got new plan[0m
+[0m[ INFO] [1712873474.328113528]: Got new plan[0m
+[0m[ INFO] [1712873474.728109006]: Got new plan[0m
+[0m[ INFO] [1712873475.028104729]: Got new plan[0m
+[0m[ INFO] [1712873475.228080249]: Got new plan[0m
+[0m[ INFO] [1712873475.428116218]: Got new plan[0m
+[0m[ INFO] [1712873475.728106296]: Got new plan[0m
+[0m[ INFO] [1712873476.128111143]: Got new plan[0m
+[0m[ INFO] [1712873476.528100307]: Got new plan[0m
+[0m[ INFO] [1712873477.828114418]: Got new plan[0m
+[0m[ INFO] [1712873478.428084779]: Got new plan[0m
+[0m[ INFO] [1712873478.828094514]: Got new plan[0m
+[0m[ INFO] [1712873479.028107914]: Got new plan[0m
+[0m[ INFO] [1712873479.428122844]: Got new plan[0m
+[0m[ INFO] [1712873481.328101434]: Got new plan[0m
+[0m[ INFO] [1712873481.528113676]: Got new plan[0m
+[0m[ INFO] [1712873481.728146811]: Got new plan[0m
+[0m[ INFO] [1712873481.928104585]: Got new plan[0m
+[0m[ INFO] [1712873482.128100243]: Got new plan[0m
+[0m[ INFO] [1712873482.328096214]: Got new plan[0m
+[0m[ INFO] [1712873482.528107108]: Got new plan[0m
+[0m[ INFO] [1712873482.728105166]: Got new plan[0m
+[0m[ INFO] [1712873483.128127305]: Got new plan[0m
+[0m[ INFO] [1712873483.328118715]: Got new plan[0m
+[0m[ INFO] [1712873483.428112492]: Got new plan[0m
+[0m[ INFO] [1712873483.628106897]: Got new plan[0m
+[0m[ INFO] [1712873483.828101121]: Got new plan[0m
+[0m[ INFO] [1712873484.328111639]: Got new plan[0m
+[0m[ INFO] [1712873485.128103652]: Got new plan[0m
+[0m[ INFO] [1712873485.428100726]: Got new plan[0m
+[0m[ INFO] [1712873485.628119633]: Got new plan[0m
+[0m[ INFO] [1712873485.828112245]: Got new plan[0m
+[0m[ INFO] [1712873486.028109207]: Got new plan[0m
+[0m[ INFO] [1712873486.228100889]: Got new plan[0m
+[0m[ INFO] [1712873486.428112918]: Got new plan[0m
+[0m[ INFO] [1712873486.628115054]: Got new plan[0m
+[0m[ INFO] [1712873492.528120418]: Got new plan[0m
+[0mAverage Scan Matching Score=832.763
+neff= 97.7847
+update frame 52
+update ld=6.49579e-06 ad=0.000202993
+m_count 41
+Average Scan Matching Score=831.205
+neff= 91.0499
+update frame 53
+update ld=5.63248e-07 ad=1.76015e-05
+m_count 42
+Average Scan Matching Score=832.327
+neff= 78.4155
+update frame 54
+update ld=0.0761336 ad=0.0126144
+m_count 43
+Average Scan Matching Score=832.388
+neff= 73.958
+update frame 55
+update ld=0.0299781 ad=0.0246634
+m_count 44
+oal()[0m
+[32m[DEBUG] [1712873491.328277112]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.328301346]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873491.328311616]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873491.328330185]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.328340433]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873491.328349364]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873491.328363705]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873491.438874301]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.638972802]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873491.838893585]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873492.038880326]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873492.238920147]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873492.439001010]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873492.484121764]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873492.484152532]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873492.486031134]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873492.638944591]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873492.838912037]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873493.038922407]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873493.239000258]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873493.438942075]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873493.638937082]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873493.839008181]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.038979854]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.238961637]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.322082900]: found 6 frontiers[0m
+[32m[DEBUG] [1712873494.322093864]: frontier 0 cost: -2.714169[0m
+[32m[DEBUG] [1712873494.322098955]: frontier 1 cost: -1.871840[0m
+[32m[DEBUG] [1712873494.322103621]: frontier 2 cost: -1.385512[0m
+[32m[DEBUG] [1712873494.322107786]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873494.322112494]: frontier 4 cost: -0.848137[0m
+[32m[DEBUG] [1712873494.322116753]: frontier 5 cost: -0.702212[0m
+[32m[DEBUG] [1712873494.322121571]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873494.322186910]: IN DELETER[0m
+[32m[DEBUG] [1712873494.322201987]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873494.322214371]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873494.322252647]: about to start initGoal()[0m
+[32m[DEBUG] [1712873494.322292298]: Done with initGoal()[0m
+[32m[DEBUG] [1712873494.328401641]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.328440784]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873494.328471415]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873494.328504221]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.328539502]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873494.328546210]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873494.328554210]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873494.438933217]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.497110869]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873494.497137420]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873494.498692573]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873494.638934303]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873494.838995767]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873495.038966462]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873495.238942780]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873495.438926387]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873495.638983074]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873495.838982609]: Getting status over Average Scan Matching Score=842.616
+neff= 68.7676
+update frame 56
+update ld=4.97778e-06 ad=0.000155556
+m_count 45
+Average Scan Matching Score=841.783
+neff= 65.253
+update frame 57
+update ld=0.0307551 ad=0.0195463
+m_count 46
+Average Scan Matching Score=863.444
+neff= 64.1039
+update frame 58
+update ld=0.0908988 ad=0.0674779
+m_count 47
+Average Scan Matching Score=965.144
+neff= 63.2968
+update frame 59
+update ld=0.074842 ad=0.00312745
+m_count 48
+Average Scan Matching Score=994.777
+neff= 62.6245
+update frame 60
+update ld=0.0766492 ad=0.0128003
+m_count 49
+Average Scan Matching Score=1004.16
+neff= 61.6585
+update frame 61
+update ld=0.0664472 ad=0.0176712
+m_count 50
+Average Scan Matching Score=1003.33
+neff= 61.1184
+the wire.[0m
+[32m[DEBUG] [1712873496.038936274]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873496.238906703]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873496.438983970]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873496.638986121]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873496.838910825]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873497.038933200]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873497.239072499]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873497.352318012]: found 6 frontiers[0m
+[32m[DEBUG] [1712873497.352328829]: frontier 0 cost: -2.714169[0m
+[32m[DEBUG] [1712873497.352333937]: frontier 1 cost: -1.871840[0m
+[32m[DEBUG] [1712873497.352338474]: frontier 2 cost: -1.385512[0m
+[32m[DEBUG] [1712873497.352342858]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873497.352347393]: frontier 4 cost: -0.848137[0m
+[32m[DEBUG] [1712873497.352351689]: frontier 5 cost: -0.702212[0m
+[32m[DEBUG] [1712873497.352356370]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873497.373991318]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873497.374111420]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873497.375956018]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873497.439000550]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873497.638935397]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873497.838893275]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873498.038984882]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873498.238946640]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873498.438901007]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873498.638903232]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873498.838936185]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873499.038956537]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873499.238933924]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873499.438935039]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873499.638955152]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873499.838983275]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873500.038904359]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873500.238929348]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873500.382881130]: found 6 frontiers[0m
+[32m[DEBUG] [1712873500.382897647]: frontier 0 cost: -2.714169[0m
+[32m[DEBUG] [1712873500.382903007]: frontier 1 cost: -1.871840[0m
+[32m[DEBUG] [1712873500.382907730]: frontier 2 cost: -1.385512[0m
+[32m[DEBUG] [1712873500.382916102]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873500.382927442]: frontier 4 cost: -0.848137[0m
+[32m[DEBUG] [1712873500.382936402]: frontier 5 cost: -0.702212[0m
+[32m[DEBUG] [1712873500.382945802]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873500.438947660]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873500.638983257]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873500.649977464]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873500.650002323]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873500.651461116]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873500.838954476]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873501.038913328]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873501.238962364]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873501.438946818]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873501.638941865]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873501.838926235]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873502.039035020]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873502.238921253]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873502.438907427]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873502.638926709]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873502.838972119]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873502.941587952]: received full new map, resizupdate frame 62
+update ld=0.203286 ad=0.0103517
+m_count 51
+Average Scan Matching Score=1010.42
+neff= 61.365
+update frame 63
+update ld=0.148779 ad=0.0326036
+m_count 52
+Average Scan Matching Score=1002.71
+neff= 62.6826
+update frame 64
+update ld=0.22825 ad=0.0578711
+m_count 53
+Average Scan Matching Score=998.207
+neff= 62.7344
+update frame 65
+update ld=0.247469 ad=0.0280303
+m_count 54
+ing to: 384, 384[0m
+[32m[DEBUG] [1712873502.941650665]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873502.943189823]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873503.039024625]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873503.238890700]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873503.412956913]: found 6 frontiers[0m
+[32m[DEBUG] [1712873503.412975504]: frontier 0 cost: -2.801977[0m
+[32m[DEBUG] [1712873503.412981481]: frontier 1 cost: -1.803706[0m
+[32m[DEBUG] [1712873503.413008210]: frontier 2 cost: -1.289112[0m
+[32m[DEBUG] [1712873503.413035476]: frontier 3 cost: -1.170965[0m
+[32m[DEBUG] [1712873503.413047014]: frontier 4 cost: -0.918875[0m
+[32m[DEBUG] [1712873503.413058550]: frontier 5 cost: -0.616135[0m
+[32m[DEBUG] [1712873503.413090337]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873503.438896759]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873503.638985015]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873503.838910503]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873504.038930469]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873504.238954210]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873504.438955801]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873504.638911669]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873504.838926548]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873505.038906598]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873505.238927782]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873505.401319121]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873505.401344197]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873505.402942257]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873505.438901258]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873505.638939190]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873505.838873389]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.039006274]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.238938840]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.438870432]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.443324163]: found 6 frontiers[0m
+[32m[DEBUG] [1712873506.443335724]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873506.443341199]: frontier 1 cost: -1.831983[0m
+[32m[DEBUG] [1712873506.443345819]: frontier 2 cost: -1.385512[0m
+[32m[DEBUG] [1712873506.443350247]: frontier 3 cost: -1.209688[0m
+[32m[DEBUG] [1712873506.443355008]: frontier 4 cost: -0.798137[0m
+[32m[DEBUG] [1712873506.443359378]: frontier 5 cost: -0.702212[0m
+[32m[DEBUG] [1712873506.443364189]: visualising 6 frontiers[0m
+[32m[DEBUG] [1712873506.443414017]: IN DELETER[0m
+[32m[DEBUG] [1712873506.443422384]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873506.443430627]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873506.443438413]: about to start initGoal()[0m
+[32m[DEBUG] [1712873506.443519541]: Done with initGoal()[0m
+[32m[DEBUG] [1712873506.528234830]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.528256079]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873506.528262550]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873506.528275024]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.528281325]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873506.528286307]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873506.528292206]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873506.638950535]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873506.838975658]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873507.039025338]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873507.238894673]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873507.438903640]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873507.638922672]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873507.8389Average Scan Matching Score=1015.17
+neff= 63.0532
+update frame 66
+update ld=0.144368 ad=0.130735
+m_count 55
+Average Scan Matching Score=1010.27
+neff= 63.1071
+update frame 67
+update ld=0.0583366 ad=0.143822
+m_count 56
+Average Scan Matching Score=1017
+neff= 63.4667
+update frame 68
+update ld=0.099931 ad=0.000159587
+m_count 57
+Average Scan Matching Score=1016.55
+neff= 63.6179
+update frame 69
+update ld=0.00981749 ad=0.00589225
+m_count 58
+Average Scan Matching Score=1020.28
+neff= 63.8244
+update frame 70
+update ld=0.0532096 ad=0.00460536
+m_count 59
+Average Scan Matching Score=1023.07
+neff= 64.0756
+update frame 71
+update ld=0.227535 ad=0.0349854
+m_count 60
+[ INFO] [1712873492.728116619]: Got new plan[0m
+[0m[ INFO] [1712873492.928116640]: Got new plan[0m
+[0m[ INFO] [1712873493.228099757]: Got new plan[0m
+[0m[ INFO] [1712873493.528140085]: Got new plan[0m
+[0m[ INFO] [1712873493.928104912]: Got new plan[0m
+[0m[ INFO] [1712873495.628099530]: Got new plan[0m
+[0m[ INFO] [1712873495.828100842]: Got new plan[0m
+[0m[ INFO] [1712873496.028115037]: Got new plan[0m
+[0m[ INFO] [1712873496.228113460]: Got new plan[0m
+[0m[ INFO] [1712873496.428138200]: Got new plan[0m
+[0m[ INFO] [1712873496.628152461]: Got new plan[0m
+[0m[ INFO] [1712873496.928114935]: Got new plan[0m
+[0m[ INFO] [1712873497.228100125]: Got new plan[0m
+[0m[ INFO] [1712873497.428113698]: Got new plan[0m
+[0m[ INFO] [1712873497.728104306]: Got new plan[0m
+[0m[ INFO] [1712873498.028104127]: Got new plan[0m
+[0m[ INFO] [1712873498.328102713]: Got new plan[0m
+[0m[ INFO] [1712873498.528129180]: Got new plan[0m
+[0m[ INFO] [1712873498.728145684]: Got new plan[0m
+[0m[ INFO] [1712873498.928104431]: Got new plan[0m
+[0m[ INFO] [1712873499.228198081]: Got new plan[0m
+[0m[ INFO] [1712873499.528102556]: Got new plan[0m
+[0m[ INFO] [1712873499.828105434]: Got new plan[0m
+[0m[ INFO] [1712873500.228116307]: Got new plan[0m
+[0m[ INFO] [1712873500.928119458]: Got new plan[0m
+[0m[ INFO] [1712873501.228113143]: Got new plan[0m
+[0m[ INFO] [1712873501.428101207]: Got new plan[0m
+[0m[ INFO] [1712873501.628123724]: Got new plan[0m
+[0m[ INFO] [1712873501.828109774]: Got new plan[0m
+[0m[ INFO] [1712873502.028103243]: Got new plan[0m
+[0m[ INFO] [1712873502.228183048]: Got new plan[0m
+[0m[ INFO] [1712873502.428115115]: Got new plan[0m
+[0m[ INFO] [1712873502.628113714]: Got new plan[0m
+[0m[ INFO] [1712873502.828100686]: Got new plan[0m
+[0m[ INFO] [1712873503.028105520]: Got new plan[0m
+[0m[ INFO] [1712873503.228118058]: Got new plan[0m
+[0m[ INFO] [1712873503.428164820]: Got new plan[0m
+[0m[ INFO] [1712873503.628102008]: Got new plan[0m
+[0m[ INFO] [1712873503.828101000]: Got new plan[0m
+[0m[ INFO] [1712873504.028151429]: Got new plan[0m
+[0m[ INFO] [1712873504.228115121]: Got new plan[0m
+[0m[ INFO] [1712873504.428107748]: Got new plan[0m
+[0m[ INFO] [1712873504.628105007]: Got new plan[0m
+[0m[ INFO] [1712873504.828115118]: Got new plan[0m
+[0m[ INFO] [1712873505.028113627]: Got new plan[0m
+[0m[ INFO] [1712873505.428125627]: Got new plan[0m
+[0m[ INFO] [1712873505.628118493]: Got new plan[0m
+[0m[ INFO] [1712873505.928106138]: Got new plan[0m
+[0m[ INFO] [1712873506.128141590]: Got new plan[0m
+[0m[ INFO] [1712873506.428169625]: Got new plan[0m
+[0m[ INFO] [1712873506.628120264]: Got new plan[0m
+[0m[ INFO] [1712873506.828104024]: Got new plan[0m
+[0m[ INFO] [1712873507.028098912]: Got new plan[0m
+[0m[ INFO] [1712873507.228120393]: Got new plan[0m
+[0m[ INFO] [1712873507.528104889]: Got new plan[0m
+[0m[ INFO] [1712873507.828099438]: Got new plan[0m
+[0m[ INFO] [1712873508.128112063]: Got new plan[0m
+[0m[ INFO] [1712873508.328098831]: Got new plan[0m
+[0m[ INFO] [1712873508.528102628]: Got new plan[0m
+[0m[ INFO] [1712873508.728126202]: Got new plan[0m
+[0m[ INFO] [1712873508.928115885]: Got new plan[0m
+[0m[ INFO] [1712873509.228111104]: Got new plan[0m
+[0m[ INFO] [1712873510.228102294]: Got new plan[0m
+[0m[ INFO] [1712873510.928105630]: Got new plan[0m
+[0m[ INFO] [1712873511.228209699]: Got new plan[0m
+[0m[ INFO] [1712873511.428118714]: Got new plan[0m
+[0m[ INFO] [1712873511.628108099]: Got new plan[0m
+[0m[ INFO] [1712873511.828098910]: Got new plan[0m
+[0m[ INFO] [1712873512.028113474]: Got new plan[0m
+[0m[ INFO] [1712873512.228078888]: Got new plan[0m
+[0m[ INFO] [1712873512.428107651]: Got new plan[0m
+[0m[ INFO] [1712873512.628077486]: Got new plan[0m
+[0m[ INFO] [1712873512.828111945]: Got new plan[0m
+[0m[ INFO] [1712873513.028110321]: Got new plan[0m
+[0m[ INFO] [1712873513.228103174]: Got new plan[0m
+[0m[ INFO] [1712873513.428098587]: Got new plan[0m
+[0m[ INFO] [1712873513.628149137]: Got new plan[0m
+[0m[ INFO] [171287Average Scan Matching Score=1014.17
+neff= 63.5519
+update frame 72
+update ld=0.197856 ad=0.0305826
+m_count 61
+71543]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873507.981643403]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873507.981681560]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873507.983204967]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873508.038911593]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873508.238948669]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873508.438950207]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873508.638946793]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873508.838951022]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873509.038908980]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873509.239060434]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873509.438968885]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873509.473590547]: found 4 frontiers[0m
+[32m[DEBUG] [1712873509.473600721]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873509.473606000]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873509.473610688]: frontier 2 cost: -1.209688[0m
+[32m[DEBUG] [1712873509.473615281]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873509.473620447]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873509.638936322]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873509.838938620]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873510.038983948]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873510.238975107]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873510.438902017]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873510.559300479]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873510.559324506]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873510.560851541]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873510.638908226]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873510.839027141]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873511.038916797]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873511.238892713]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873511.438933399]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873511.638959587]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873511.838908959]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873512.038909254]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873512.238872234]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873512.438913942]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873512.504047921]: found 4 frontiers[0m
+[32m[DEBUG] [1712873512.504070354]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873512.504076191]: frontier 1 cost: -1.708759[0m
+[32m[DEBUG] [1712873512.504081201]: frontier 2 cost: -1.385512[0m
+[32m[DEBUG] [1712873512.504086328]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873512.504091389]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873512.608331897]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873512.608368376]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873512.610036727]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873512.638937544]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873512.838914422]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873513.038923817]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873513.238914314]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873513.438945217]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873513.638889014]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873513.838940999]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873514.038969392]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873514.238964697]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873514.438942810]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873514.638914427]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873514.838946113]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873515.038949291]: Getting status over the wire.[0m
+[32Average Scan Matching Score=993.925
+neff= 62.5779
+update frame 73
+update ld=0.213672 ad=0.00536904
+m_count 62
+Average Scan Matching Score=1020.34
+neff= 59.0182
+update frame 74
+update ld=0.0143763 ad=0.224603
+m_count 63
+Average Scan Matching Score=1027.63
+neff= 59.7515
+update frame 75
+update ld=0.0582061 ad=0.663851
+m_count 64
+Average Scan Matching Score=1038.91
+neff= 59.1929
+update frame 76
+update ld=0.0592806 ad=0.504027
+m_count 65
+Average Scan Matching Score=1021.25
+neff= 56.0727
+m[DEBUG] [1712873515.238864529]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873515.438903033]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873515.534149778]: found 4 frontiers[0m
+[32m[DEBUG] [1712873515.534161007]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873515.534166491]: frontier 1 cost: -1.717160[0m
+[32m[DEBUG] [1712873515.534171194]: frontier 2 cost: -1.385512[0m
+[32m[DEBUG] [1712873515.534175791]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873515.534181058]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873515.638926728]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873515.838977804]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873516.038908631]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873516.099526941]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873516.099617883]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873516.101302265]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873516.238926491]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873516.439097988]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873516.638903663]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873516.838940215]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873517.038885497]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873517.238995670]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873517.438942364]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873517.638913498]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873517.838903125]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873518.038962211]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873518.238940331]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873518.438917690]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873518.472991432]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873518.473053144]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873518.474628827]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873518.564836141]: found 4 frontiers[0m
+[32m[DEBUG] [1712873518.564849620]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873518.564855215]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873518.564863079]: frontier 2 cost: -0.702212[0m
+[32m[DEBUG] [1712873518.564868821]: frontier 3 cost: -0.615836[0m
+[32m[DEBUG] [1712873518.564873958]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873518.638908357]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873518.838978294]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873519.039020839]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873519.238916641]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873519.438913210]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873519.638958545]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873519.838970155]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873520.038949870]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873520.238848706]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873520.438985504]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873520.638951406]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873520.838922376]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873521.038887557]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873521.238947761]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873521.438894835]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873521.594957139]: found 4 frontiers[0m
+[32m[DEBUG] [1712873521.594969046]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873521.594974213]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873521.594979160]: frontier 2 cost: -0.702212[0m
+[32m[DEBUG] [1712873521.594983656]: frontier 3 cost: -0.615836[0m
+[32m[DEBUG] [1712873521.594988997]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873521.638955218]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873521.782978402]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1update frame 77
+update ld=0.0749404 ad=1.00868
+m_count 66
+Average Scan Matching Score=1026.48
+neff= 51.9459
+update frame 78
+update ld=3.21959e-06 ad=0.000100612
+m_count 67
+Average Scan Matching Score=1037.34
+neff= 49.4956
+*************RESAMPLE***************
+update frame 79
+update ld=5.12698e-07 ad=1.60218e-05
+m_count 68
+Average Scan Matching Score=1039.47
+neff= 99.91
+update frame 80
+update ld=0.00309618 ad=0.00427214
+m_count 69
+Average Scan Matching Score=1039.92
+neff= 99.6765
+update frame 81
+update ld=0.0278388 ad=0.162548
+m_count 70
+Average Scan Matching Score=1036.05
+neff= 99.3356
+update frame 82
+update ld=0.0465595 ad=0.146211
+m_count 71
+Average Scan Matching Score=1049.32
+neff= 99.1357
+update frame 83
+update ld=8.43919e-08 ad=2.63689e-06
+m_count 72
+712873521.783001683]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873521.784667943]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873521.838922556]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873522.038957734]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873522.238929276]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873522.438871401]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873522.638941405]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873522.838934513]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873523.038943864]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873523.238856852]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873523.438893952]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873523.639015437]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873523.838932836]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873524.038883322]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873524.238873475]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873524.371112711]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873524.371182018]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873524.372814423]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873524.438928696]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873524.625176485]: found 4 frontiers[0m
+[32m[DEBUG] [1712873524.625192976]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873524.625202275]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873524.625210708]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873524.625218909]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873524.625226917]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873524.638949142]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873524.838908253]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873525.038859440]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873525.238957112]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873525.438994857]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873525.638903071]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873525.838869009]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873526.038954978]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873526.238935702]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873526.438869341]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873526.638872711]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873526.838907222]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873527.038959486]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873527.238909077]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873527.438902792]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873527.638950522]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873527.655690512]: found 4 frontiers[0m
+[32m[DEBUG] [1712873527.655702235]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873527.655707699]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873527.655713695]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873527.655719938]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873527.655726279]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873527.655850339]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873527.655881061]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873527.657379661]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873527.838915498]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873528.038886611]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873528.238916364]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873528.438943956]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873528.638924959]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873528.838973576]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873529.038905955]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873529.238952791]: Getting status over the wire.[0m
+[32mAverage Scan Matching Score=1049.65
+neff= 98.8634
+update frame 84
+update ld=2.44643e-06 ad=7.64509e-05
+m_count 73
+Average Scan Matching Score=1045.67
+neff= 98.6009
+update frame 85
+update ld=2.53146e-05 ad=2.1104e-06
+m_count 74
+Average Scan Matching Score=1045.64
+neff= 98.2526
+update frame 86
+update ld=2.63267e-05 ad=0.00022753
+m_count 75
+Average Scan Matching Score=1047.86
+neff= 97.9051
+update frame 87
+update ld=2.65025e-05 ad=0.000247324
+m_count 76
+Average Scan Matching Score=1045.98
+neff= 97.5222
+update frame 88
+update ld=9.34083e-06 ad=0.000291901
+m_count 77
+Average Scan Matching Score=1044.97
+neff= 97.1826
+update frame 89
+update ld=7.99107e-06 ad=0.000249721
+m_count 78
+Average Scan Matching Score=1047.04
+neff= 96.8071
+update frame 90
+update ld=1.96655e-05 ad=0.000614547
+m_count 79
+Average Scan Matching Score=1041
+neff= 96.4439
+update frame 91
+update ld=7.55384e-06 ad=0.000236057
+m_count 80
+Average Scan Matching Score=1049.94
+neff= 96.118
+update frame 92
+update ld=1.16446e-05 ad=0.000363894
+m_count 81
+[DEBUG] [1712873529.438920814]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873529.638912971]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873529.754485605]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873529.754510955]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873529.756092929]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873529.838915827]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873530.038966473]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873530.238936566]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873530.438906660]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873530.638905711]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873530.685982637]: found 4 frontiers[0m
+[32m[DEBUG] [1712873530.685993718]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873530.686021514]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873530.686051346]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873530.686056102]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873530.686083800]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873530.838959602]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873531.038895226]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873531.238947637]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873531.438901571]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873531.638954601]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873531.838900638]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873532.038930188]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873532.088275757]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873532.088314234]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873532.090111256]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873532.238965069]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873532.438956696]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873532.638969231]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873532.838858581]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873533.038844584]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873533.238929995]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873533.438935987]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873533.638948642]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873533.715996839]: found 4 frontiers[0m
+[32m[DEBUG] [1712873533.716005843]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873533.716010886]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873533.716016267]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873533.716024051]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873533.716030850]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873533.838937925]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873534.039062731]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873534.238951557]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873534.361199518]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873534.361233018]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873534.363099212]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873534.439034570]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873534.638999775]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873534.838982991]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873535.038976533]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873535.238939930]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873535.439019139]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873535.639145485]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873535.838975530]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873536.038858196]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873536.238864291]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873536.438992423]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873536.638915237]: Getting statusAverage Scan Matching Score=1042.68
+neff= 95.3686
+update frame 93
+update ld=0.0620419 ad=0.122319
+m_count 82
+Average Scan Matching Score=1038.65
+neff= 94.6265
+update frame 94
+update ld=1.03648e-05 ad=0.000323901
+m_count 83
+Average Scan Matching Score=1038.61
+neff= 93.8431
+update frame 95
+update ld=1.62895e-05 ad=0.000356564
+m_count 84
+Average Scan Matching Score=1040.44
+neff= 93.0933
+update frame 96
+update ld=1.64104e-05 ad=0.000283369
+m_count 85
+Average Scan Matching Score=1037.83
+neff= 92.0642
+update frame 97
+update ld=1.18924e-05 ad=3.74554e-05
+m_count 86
+ over the wire.[0m
+[32m[DEBUG] [1712873536.747197423]: found 4 frontiers[0m
+[32m[DEBUG] [1712873536.747238612]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873536.747244600]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873536.747249846]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873536.747254919]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873536.747261644]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873536.747349474]: Adding current goal to black list[0m
+[32m[DEBUG] [1712873536.749657801]: found 4 frontiers[0m
+[32m[DEBUG] [1712873536.749667971]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873536.749672681]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873536.749677601]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873536.749683306]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873536.749688731]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873536.749746784]: IN DELETER[0m
+[32m[DEBUG] [1712873536.749778023]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873536.749811996]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873536.749823787]: about to start initGoal()[0m
+[32m[DEBUG] [1712873536.749846269]: Done with initGoal()[0m
+[32m[DEBUG] [1712873536.828275480]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873536.828297500]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873536.828310515]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873536.828327928]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873536.828339684]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873536.828350022]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873536.828361817]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873536.838932525]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873537.001389459]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873537.001418349]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873537.002963735]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873537.038990560]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873537.238952163]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873537.438886171]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873537.638943048]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873537.838899611]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873538.038944464]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873538.238984409]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873538.439010742]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873538.638881745]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873538.838951242]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873539.038970639]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873539.146932255]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873539.146956156]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873539.148467391]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873539.238899574]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873539.438933840]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873539.638939131]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873539.776946813]: found 4 frontiers[0m
+[32m[DEBUG] [1712873539.776962919]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873539.776968641]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873539.776974025]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873539.776980339]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873539.776986816]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873539.839039546]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873540.038896472]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873540.238960465]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873540.438959459]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873540.638894106]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873540.8388Average Scan Matching Score=1043.57
+neff= 91.0726
+update frame 98
+update ld=1.19201e-05 ad=4.53801e-05
+m_count 87
+Average Scan Matching Score=1041.02
+neff= 89.9736
+update frame 99
+update ld=2.11551e-06 ad=6.5773e-05
+m_count 88
+Average Scan Matching Score=1041.77
+neff= 88.8456
+update frame 100
+update ld=3.41787e-06 ad=0.000106808
+m_count 89
+Average Scan Matching Score=1045.72
+neff= 87.6341
+update frame 101
+update ld=5.75059e-07 ad=1.79706e-05
+m_count 90
+Average Scan Matching Score=1039.86
+neff= 86.5315
+update frame 102
+update ld=2.90867e-05 ad=0.000665526
+m_count 91
+Average Scan Matching Score=1044.58
+neff= 85.4239
+update frame 103
+update ld=1.98311e-05 ad=2.75559e-05
+m_count 92
+Average Scan Matching Score=1042.82
+neff= 84.105
+update frame 104
+update ld=1.93553e-06 ad=6.04854e-05
+m_count 93
+Average Scan Matching Score=1044.06
+neff= 82.7063
+update frame 108
+update ld=1.30902e-05 ad=0.000409068
+m_count 94
+Average Scan Matching Score=1040.79
+neff= 81.4787
+update frame 109
+update ld=8.9179e-07 ad=2.78684e-05
+m_count 95
+80861]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873541.038929616]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873541.238896897]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873541.438877227]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873541.625089944]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873541.625114578]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873541.626733681]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873541.638908828]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873541.838905723]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873542.038973590]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873542.238959881]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873542.438997598]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873542.638902730]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873542.807301224]: found 4 frontiers[0m
+[32m[DEBUG] [1712873542.807330613]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873542.807336732]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873542.807364328]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873542.807369970]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873542.807399127]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873542.838876106]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873543.038969352]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873543.238950434]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873543.438856619]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873543.639079768]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873543.838890328]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873543.995854191]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873543.995880652]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873543.997453431]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873544.038901968]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873544.238924302]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873544.438923089]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873544.638978830]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873544.838878919]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873545.039056716]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873545.238938174]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873545.438940563]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873545.638844217]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873545.837382837]: found 4 frontiers[0m
+[32m[DEBUG] [1712873545.837394503]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873545.837399934]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873545.837404433]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873545.837409636]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873545.837415417]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873545.838932412]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873546.038931808]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873546.238917472]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873546.439120330]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873546.507183383]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873546.507228647]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873546.508695107]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873546.638855223]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873546.839004339]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873547.038997602]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873547.238952177]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873547.439046841]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873547.638975709]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873547.838968409]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873548.038991570]: Getting status over the wire.[0m
+[32Average Scan Matching Score=1039.77
+neff= 80.0415
+update frame 110
+update ld=1.23667e-05 ad=0.000386797
+m_count 96
+Average Scan Matching Score=1041.71
+neff= 78.7295
+update frame 111
+update ld=0.0117392 ad=0.364504
+m_count 97
+Average Scan Matching Score=1020.71
+neff= 78.3904
+update frame 112
+update ld=0.04717 ad=1.64913
+m_count 98
+Average Scan Matching Score=976.916
+neff= 70.8111
+update frame 113
+update ld=0.055847 ad=2.13145
+m_count 99
+m[DEBUG] [1712873548.238979473]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873548.439002212]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873548.638986433]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873548.838960664]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873548.867676014]: found 4 frontiers[0m
+[32m[DEBUG] [1712873548.867685925]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873548.867691441]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873548.867696295]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873548.867701022]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873548.867706306]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873548.957641336]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873548.957667812]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873548.959604013]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873549.038887707]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873549.238939846]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873549.438916687]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873549.638935079]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873549.839018392]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873550.039003801]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873550.238943153]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873550.438950585]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873550.639056541]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873550.838978644]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873551.038968375]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873551.238956951]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873551.438956560]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873551.638956065]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873551.838924357]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873551.898184732]: found 4 frontiers[0m
+[32m[DEBUG] [1712873551.898197044]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873551.898202581]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873551.898207807]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873551.898212814]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873551.898217992]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873552.038927891]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873552.239026273]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873552.439006798]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873552.638950771]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873552.838924971]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873553.038903544]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873553.238955048]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873553.438958145]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873553.588073376]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873553.588118744]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873553.590070361]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873553.638963045]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873553.839050509]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873554.038958869]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873554.238949443]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873554.438974074]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873554.638950723]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873554.838956297]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873554.928089846]: found 4 frontiers[0m
+[32m[DEBUG] [1712873554.928100766]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873554.928106028]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873554.928110652]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873554.928115242]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873554.928120314]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873555.03896Average Scan Matching Score=883.58
+neff= 53.4382
+update frame 114
+update ld=0.0446864 ad=1.5536
+m_count 100
+Average Scan Matching Score=942.338
+neff= 47.7092
+*************RESAMPLE***************
+update frame 115
+update ld=0.0541821 ad=2.01571
+m_count 101
+Average Scan Matching Score=939.707
+neff= 84.8548
+update frame 116
+update ld=0.0434758 ad=1.5001
+m_count 102
+Average Scan Matching Score=977.94
+neff= 79.7172
+update frame 117
+update ld=0.0458239 ad=1.61039
+m_count 103
+6337]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873555.238933428]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873555.438942172]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873555.621933923]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873555.621957798]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873555.623604184]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873555.638937696]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873555.838978909]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873556.038963917]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873556.238933697]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873556.439008190]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873556.638948473]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873556.838923876]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873557.038915661]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873557.238992913]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873557.438891216]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873557.638919018]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873557.839149475]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873557.958975623]: found 4 frontiers[0m
+[32m[DEBUG] [1712873557.958997285]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873557.959003042]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873557.959008339]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873557.959013720]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873557.959047105]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873558.038987441]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873558.238966732]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873558.438922999]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873558.638963188]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873558.838991446]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873559.038931868]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873559.238893066]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873559.438894165]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873559.592072555]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873559.592096810]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873559.593563092]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873559.638853422]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873559.838974268]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873560.038940921]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873560.238963387]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873560.439009440]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873560.638923588]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873560.838889722]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873560.988828666]: found 4 frontiers[0m
+[32m[DEBUG] [1712873560.988843822]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873560.988849137]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873560.988854331]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873560.988859459]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873560.988864594]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873561.038993542]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873561.238995505]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873561.438993993]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873561.606088136]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873561.606111816]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873561.607669267]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873561.638927114]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873561.838906954]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873562.039039596]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873562.238989535]: Getting status over the wire.[0m
+[32mAverage Scan Matching Score=1017.57
+neff= 77.4671
+update frame 118
+update ld=0.0593318 ad=2.37695
+m_count 104
+Average Scan Matching Score=816.596
+neff= 50.4566
+update frame 119
+update ld=0.0540578 ad=2.00947
+m_count 105
+Average Scan Matching Score=873.917
+neff= 41.3725
+*************RESAMPLE***************
+update frame 120
+update ld=0.0488576 ad=1.73732
+m_count 106
+[DEBUG] [1712873562.438970739]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873562.638857065]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873562.838948694]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873563.038972728]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873563.238981516]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873563.438917477]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873563.638864951]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873563.838887429]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873564.019089315]: found 4 frontiers[0m
+[32m[DEBUG] [1712873564.019100038]: frontier 0 cost: -1.871840[0m
+[32m[DEBUG] [1712873564.019105679]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873564.019110539]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873564.019115367]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873564.019120635]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873564.038964568]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873564.238968439]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873564.438944565]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873564.638958179]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873564.839033731]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873565.038929658]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873565.238943803]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873565.438974238]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873565.638956772]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873565.767125383]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873565.767154208]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873565.768850204]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873565.838942233]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873566.038948669]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873566.238969644]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873566.438924298]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873566.638968547]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873566.838989688]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873567.038974114]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873567.049935454]: found 4 frontiers[0m
+[32m[DEBUG] [1712873567.049946369]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873567.049951955]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873567.049957282]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873567.049962002]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873567.049967180]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873567.050010135]: Adding current goal to black list[0m
+[32m[DEBUG] [1712873567.052280318]: found 4 frontiers[0m
+[32m[DEBUG] [1712873567.052288793]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873567.052293277]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873567.052297493]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873567.052301834]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873567.052306236]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873567.052339710]: IN DELETER[0m
+[32m[DEBUG] [1712873567.052347273]: About to erase CommStateMachine[0m
+[32m[DEBUG] [1712873567.052355262]: Done erasing CommStateMachine[0m
+[32m[DEBUG] [1712873567.052363194]: about to start initGoal()[0m
+[32m[DEBUG] [1712873567.052396679]: Done with initGoal()[0m
+[32m[DEBUG] [1712873567.238953200]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873567.238977764]: Trying to transition to PENDING[0m
+[32m[DEBUG] [1712873567.238983894]: Transitioning CommState from WAITING_FOR_GOAL_ACK to PENDING[0m
+[32m[DEBUG] [1712873567.438967465]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873567.638983941]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873567.838947998]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.038874914]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.238934500]: Getting Average Scan Matching Score=957.335
+neff= 85.9079
+update frame 121
+update ld=0.0514552 ad=1.88872
+m_count 107
+Average Scan Matching Score=936.879
+neff= 73.6648
+update frame 122
+update ld=0.0347461 ad=1.1459
+m_count 108
+Average Scan Matching Score=996.268
+neff= 72.5195
+update frame 123
+update ld=4.8002e-06 ad=0.000149572
+m_count 109
+Average Scan Matching Score=1017.96
+neff= 72.3398
+update frame 124
+update ld=4.32812e-06 ad=0.000135254
+m_count 110
+status over the wire.[0m
+[32m[DEBUG] [1712873568.438958423]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.638974422]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.838945394]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.878627419]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.878667574]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873568.878675193]: Trying to transition to ACTIVE[0m
+[32m[DEBUG] [1712873568.878681013]: Transitioning CommState from PENDING to ACTIVE[0m
+[32m[DEBUG] [1712873568.878688868]: Transitioning SimpleState from [PENDING] to [ACTIVE][0m
+[32m[DEBUG] [1712873569.038959513]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873569.238912661]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873569.438943287]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873569.638910534]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873569.838899072]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873569.846427091]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873569.846460304]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873569.848115395]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873570.038984542]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873570.079986178]: found 4 frontiers[0m
+[32m[DEBUG] [1712873570.079998368]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873570.080003637]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873570.080009865]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873570.080014782]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873570.080021137]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873570.238913843]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873570.438936145]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873570.638947538]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873570.838955827]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873571.038991026]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873571.238878038]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873571.438999012]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873571.638999131]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873571.838856675]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873572.038948440]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873572.238937111]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873572.438946811]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873572.638965885]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873572.838926264]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873573.038934168]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873573.110653418]: found 4 frontiers[0m
+[32m[DEBUG] [1712873573.110671769]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873573.110677333]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873573.110682259]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873573.110687043]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873573.110692188]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873573.238988346]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873573.438962787]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873573.638906084]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873573.742528359]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873573.742552570]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873573.743983120]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873573.838877385]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873574.038962518]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873574.238987028]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873574.438936159]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873574.638938192]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873574.838962959]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873575.038952648]: Getting status over the wire.[0m
+Average Scan Matching Score=1023.7
+neff= 72.126
+update frame 125
+update ld=1.20909e-07 ad=3.34017e-06
+m_count 111
+Average Scan Matching Score=1020.64
+neff= 71.8599
+update frame 126
+update ld=7.24729e-06 ad=0.000226478
+m_count 112
+Average Scan Matching Score=1020.16
+neff= 71.5088
+update frame 127
+update ld=4.24837e-06 ad=0.000132762
+m_count 113
+Average Scan Matching Score=1022.03
+neff= 71.3165
+update frame 128
+update ld=4.4946e-06 ad=0.000140456
+m_count 114
+Average Scan Matching Score=1022.81
+neff= 70.9589
+update frame 129
+update ld=9.68772e-07 ad=3.02741e-05
+m_count 115
+Average Scan Matching Score=1025.08
+neff= 70.481
+update frame 130
+update ld=3.58466e-07 ad=1.12021e-05
+m_count 116
+Average Scan Matching Score=1027.36
+neff= 70.0673
+update frame 131
+update ld=8.58811e-07 ad=2.68378e-05
+m_count 117
+Average Scan Matching Score=1021.3
+neff= 69.5873
+update frame 132
+update ld=1.56792e-06 ad=4.89976e-05
+m_count 118
+Average Scan Matching Score=1023.76
+neff= 69.0648
+[32m[DEBUG] [1712873575.238933661]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873575.438906962]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873575.490042827]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873575.490068088]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873575.491599573]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873575.638958511]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873575.838957919]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873576.038980590]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873576.140250453]: found 4 frontiers[0m
+[32m[DEBUG] [1712873576.140261255]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873576.140266746]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873576.140271462]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873576.140276174]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873576.140281364]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873576.238926702]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873576.438946930]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873576.638990969]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873576.839052955]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873577.038930475]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873577.238935338]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873577.438964526]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873577.638954953]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873577.838971247]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873577.914590428]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873577.914659734]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873577.916305900]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873578.038990338]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873578.238960839]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873578.438947453]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873578.638937698]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873578.838992636]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873579.038973852]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873579.170653183]: found 4 frontiers[0m
+[32m[DEBUG] [1712873579.170663888]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873579.170669051]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873579.170673977]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873579.170678514]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873579.170683830]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873579.238917550]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873579.438863342]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873579.638975807]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873579.838938044]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873580.038952472]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873580.238939865]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873580.360321508]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873580.360344455]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873580.362034809]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873580.438969534]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873580.638976308]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873580.838898098]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873581.038893580]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873581.238973746]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873581.438918776]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873581.638926171]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873581.838914852]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873582.038932756]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873582.048099647]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873582.048123update frame 133
+update ld=1.75658e-06 ad=5.48932e-05
+m_count 119
+Average Scan Matching Score=1026.69
+neff= 68.6383
+update frame 134
+update ld=2.87779e-06 ad=8.9931e-05
+m_count 120
+Average Scan Matching Score=1023.36
+neff= 68.2275
+update frame 135
+update ld=2.30756e-06 ad=7.21113e-05
+m_count 121
+Average Scan Matching Score=1017.13
+neff= 67.7443
+update frame 136
+update ld=2.59398e-06 ad=8.10619e-05
+m_count 122
+Average Scan Matching Score=1024.42
+neff= 67.3334
+update frame 137
+update ld=4.17963e-07 ad=1.30612e-05
+m_count 123
+Average Scan Matching Score=1022.79
+neff= 66.699
+update frame 138
+update ld=9.02024e-06 ad=0.000281882
+m_count 124
+Average Scan Matching Score=1023.32
+neff= 66.1684
+update frame 139
+update ld=9.91596e-06 ad=0.000309874
+m_count 125
+Average Scan Matching Score=1021.86
+neff= 65.6368
+update frame 140
+update ld=1.80891e-05 ad=3.84109e-05
+m_count 126
+Average Scan Matching Score=1023.91
+neff= 64.9113
+update frame 142
+update ld=1.899e-05 ad=5.694e-05
+m_count 127
+871]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873582.049743188]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873582.200981922]: found 4 frontiers[0m
+[32m[DEBUG] [1712873582.201019383]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873582.201048416]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873582.201072890]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873582.201077813]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873582.201106662]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873582.238950741]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873582.438960245]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873582.638958582]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873582.838984424]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873583.038939626]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873583.238962805]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873583.438970188]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873583.638951019]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873583.838953633]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873584.038938537]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873584.238929369]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873584.438956186]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873584.538289498]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873584.538322485]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873584.539991626]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873584.638945102]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873584.838942157]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873585.038875601]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873585.231278038]: found 4 frontiers[0m
+[32m[DEBUG] [1712873585.231287943]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873585.231292877]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873585.231297589]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873585.231302135]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873585.231307325]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873585.238931610]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873585.438898872]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873585.638946329]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873585.838912546]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873586.038978386]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873586.238969510]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873586.438963759]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873586.638952204]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873586.838959061]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873587.008377977]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873587.008402971]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873587.010004902]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873587.038992092]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873587.238967633]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873587.438919196]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873587.639058092]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873587.839013261]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873588.038923782]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873588.238959554]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873588.261556905]: found 4 frontiers[0m
+[32m[DEBUG] [1712873588.261566603]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873588.261571808]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873588.261576769]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873588.261581386]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873588.261586689]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873588.438975899]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873588.638947953]: Getting statusAverage Scan Matching Score=1021.13
+neff= 64.3953
+update frame 143
+update ld=0.0312152 ad=1.01889
+m_count 128
+Average Scan Matching Score=997.582
+neff= 64.4039
+update frame 144
+update ld=0.0334697 ad=1.09568
+m_count 129
+Average Scan Matching Score=1005.65
+neff= 63.564
+update frame 145
+update ld=0.0471575 ad=1.66076
+m_count 130
+Average Scan Matching Score=979.944
+neff= 60.6686
+update frame 146
+update ld=0.0534554 ad=1.97041
+m_count 131
+ over the wire.[0m
+[32m[DEBUG] [1712873588.838949235]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873589.038945918]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873589.238944940]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873589.439013852]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873589.590678450]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873589.590709688]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873589.592332558]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873589.638949947]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873589.838954194]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873590.039028572]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873590.238927038]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873590.438898084]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873590.638954505]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873590.839036421]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873591.038988883]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873591.238962512]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873591.291905205]: found 4 frontiers[0m
+[32m[DEBUG] [1712873591.291916134]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873591.291921852]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873591.291926887]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873591.291931459]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873591.291936445]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873591.438941366]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873591.639000862]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873591.838963814]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873592.038947165]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873592.238952113]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873592.438959931]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873592.638969042]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873592.838964046]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873593.038951391]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873593.101422184]: received full new map, resizing to: 384, 384[0m
+[32m[DEBUG] [1712873593.101447622]: full map update, 147456 values[0m
+[32m[DEBUG] [1712873593.103163897]: map updated, written 147456 values[0m
+[32m[DEBUG] [1712873593.238999914]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873593.438919601]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873593.638954463]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873593.838947028]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873594.038978583]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873594.238978914]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873594.322173377]: found 4 frontiers[0m
+[32m[DEBUG] [1712873594.322185941]: frontier 0 cost: -1.671840[0m
+[32m[DEBUG] [1712873594.322197103]: frontier 1 cost: -1.385512[0m
+[32m[DEBUG] [1712873594.322205543]: frontier 2 cost: -1.217160[0m
+[32m[DEBUG] [1712873594.322215137]: frontier 3 cost: -0.702212[0m
+[32m[DEBUG] [1712873594.322224969]: visualising 4 frontiers[0m
+[32m[DEBUG] [1712873594.438881214]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873594.638942847]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873594.838941196]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873595.038950890]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873595.238920714]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873595.438934576]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873595.638975935]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873595.838960726]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873596.038945917]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873596.238927901]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873596.439004496]: Getting status over the wire.[0m
+[32m[DEBUG] [1712873596.638972550]: Getting stAverage Scan Matching Score=912.197
+neff= 54.7147
+update frame 147
+update ld=0.0515745 ad=1.86188
+m_count 132
+3513.828112921]: Got new plan[0m
+[0m[ INFO] [1712873514.028105699]: Got new plan[0m
+[0m[ INFO] [1712873514.228101203]: Got new plan[0m
+[0m[ INFO] [1712873514.428114671]: Got new plan[0m
+[0m[ INFO] [1712873514.628096002]: Got new plan[0m
+[0m[ INFO] [1712873514.728103827]: Got new plan[0m
+[0m[ INFO] [1712873514.928107702]: Got new plan[0m
+[0m[ INFO] [1712873515.128103508]: Got new plan[0m
+[0m[ INFO] [1712873515.428101489]: Got new plan[0m
+[0m[ INFO] [1712873515.628098011]: Got new plan[0m
+[0m[ INFO] [1712873515.828097728]: Got new plan[0m
+[0m[ INFO] [1712873516.028114491]: Got new plan[0m
+[0m[ INFO] [1712873516.228110894]: Got new plan[0m
+[0m[ INFO] [1712873516.428100455]: Got new plan[0m
+[0m[ INFO] [1712873516.628095096]: Got new plan[0m
+[0m[ INFO] [1712873516.828107671]: Got new plan[0m
+[0m[ INFO] [1712873517.028112695]: Got new plan[0m
+[0m[ INFO] [1712873517.228103520]: Got new plan[0m
+[0m[ INFO] [1712873517.428140658]: Got new plan[0m
+[0m[ INFO] [1712873517.628100263]: Got new plan[0m
+[0m[ INFO] [1712873517.828097046]: Got new plan[0m
+[0m[ INFO] [1712873518.028100773]: Got new plan[0m
+[0m[ INFO] [1712873518.228103663]: Got new plan[0m
+[0m[ INFO] [1712873518.528120666]: Got new plan[0m
+[0m[ INFO] [1712873518.728107390]: Got new plan[0m
+[0m[ INFO] [1712873518.928099795]: Got new plan[0m
+[0m[ INFO] [1712873519.128082495]: Got new plan[0m
+[0m[ INFO] [1712873519.328111958]: Got new plan[0m
+[0m[ INFO] [1712873519.528104957]: Got new plan[0m
+[0m[ INFO] [1712873519.928128191]: Got new plan[0m
+[0m[ INFO] [1712873520.228112401]: Got new plan[0m
+[0m[ INFO] [1712873520.428099892]: Got new plan[0m
+[0m[ INFO] [1712873520.728171204]: Got new plan[0m
+[0m[ INFO] [1712873521.128103407]: Got new plan[0m
+[0m[ INFO] [1712873521.328106573]: Got new plan[0m
+[0m[ INFO] [1712873521.628143168]: Got new plan[0m
+[0m[ INFO] [1712873521.928104590]: Got new plan[0m
+[0m[ INFO] [1712873522.228065899]: Got new plan[0m
+[0m[ INFO] [1712873522.528111975]: Got new plan[0m
+[0m[ INFO] [1712873522.828120841]: Got new plan[0m
+[0m[ INFO] [1712873523.428090510]: Got new plan[0m
+[0m[ INFO] [1712873523.628103863]: Got new plan[0m
+[0m[ INFO] [1712873523.828105296]: Got new plan[0m
+[0m[ INFO] [1712873524.328109380]: Got new plan[0m
+[0m[ INFO] [1712873524.728075622]: Got new plan[0m
+[0m[ INFO] [1712873525.228136135]: Got new plan[0m
+[0m[ INFO] [1712873525.628080493]: Got new plan[0m
+[0m[ INFO] [1712873526.428111624]: Got new plan[0m
+[0m[ INFO] [1712873527.228119391]: Got new plan[0m
+[0m[ INFO] [1712873527.728104587]: Got new plan[0m
+[0m[ INFO] [1712873529.328070883]: Got new plan[0m
+[0m[ INFO] [1712873531.628103579]: Got new plan[0m
+[0m[ INFO] [1712873532.228106680]: Got new plan[0m
+[0m[ INFO] [1712873533.428093588]: Got new plan[0m
+[0m[ INFO] [1712873569.478497324]: Got new plan[0m
+[0m[ INFO] [1712873570.578460312]: Got new plan[0m
+[0m[ INFO] [1712873571.578507056]: Got new plan[0m
+[0m[ INFO] [1712873572.078511982]: Got new plan[0m
+[0m[ INFO] [1712873572.478496819]: Got new plan[0m
+[0m[ INFO] [1712873572.978460416]: Got new plan[0m
+[0m[ INFO] [1712873574.078488558]: Got new plan[0m
+[0m[ INFO] [1712873574.578488047]: Got new plan[0m
+[0m[ INFO] [1712873575.678517052]: Got new plan[0m
+[0m[ INFO] [1712873580.678494171]: Got new plan[0m
+[0m[ INFO] [1712873580.878489263]: Got new plan[0m
+[0m[ INFO] [1712873581.178503337]: Got new plan[0m
+Average Scan Matching Score=920.044
+neff= 50.9283
+update frame 148
+update ld=0.0301559 ad=0.977405
+m_count 133
+Average Scan Matching Score=984.03
+neff= 49.7583
+*************RESAMPLE***************
+... logging to /home/mlpotter/.ros/log/bb5106f6-f84e-11ee-98e7-93caa5a1ec20/roslaunch-mlpotter-GE75-Raider-9SF-60193.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/mlpotter/Documents/Northeastern/Classes/MRProject/catkin_ws/src/exploration/launch/MR_SR.launch
+[1mstarted roslaunch server http://172.20.10.7:41317/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /explore/costmap_topic: map
+ * /explore/costmap_updates_topic: map_updates
+ * /explore/gain_scale: 1.0
+ * /explore/min_frontier_size: 0.75
+ * /explore/orientation_scale: 0.0
+ * /explore/planner_frequency: 0.33
+ * /explore/potential_scale: 3.0
+ * /explore/progress_timeout: 30.0
+ * /explore/robot_base_frame: base_link
+ * /explore/transform_tolerance: 0.3
+ * /explore/visualize: True
+ * /move_base/DWAPlannerROS/acc_lim_theta: 3.2
+ * /move_base/DWAPlannerROS/acc_lim_x: 2.5
+ * /move_base/DWAPlannerROS/acc_lim_y: 0.0
+ * /move_base/DWAPlannerROS/controller_frequency: 10.0
+ * /move_base/DWAPlannerROS/forward_point_distance: 0.325
+ * /move_base/DWAPlannerROS/goal_distance_bias: 20.0
+ * /move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
+ * /move_base/DWAPlannerROS/max_scaling_factor: 0.2
+ * /move_base/DWAPlannerROS/max_vel_theta: 2.75
+ * /move_base/DWAPlannerROS/max_vel_trans: 0.22
+ * /move_base/DWAPlannerROS/max_vel_x: 0.22
+ * /move_base/DWAPlannerROS/max_vel_y: 0.0
+ * /move_base/DWAPlannerROS/min_vel_theta: 1.37
+ * /move_base/DWAPlannerROS/min_vel_trans: 0.11
+ * /move_base/DWAPlannerROS/min_vel_x: -0.22
+ * /move_base/DWAPlannerROS/min_vel_y: 0.0
+ * /move_base/DWAPlannerROS/occdist_scale: 0.02
+ * /move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
+ * /move_base/DWAPlannerROS/path_distance_bias: 32.0
+ * /move_base/DWAPlannerROS/publish_cost_grid_pc: True
+ * /move_base/DWAPlannerROS/publish_traj_pc: True
+ * /move_base/DWAPlannerROS/scaling_speed: 0.25
+ * /move_base/DWAPlannerROS/sim_time: 1.5
+ * /move_base/DWAPlannerROS/stop_time_buffer: 0.2
+ * /move_base/DWAPlannerROS/vth_samples: 40
+ * /move_base/DWAPlannerROS/vx_samples: 20
+ * /move_base/DWAPlannerROS/vy_samples: 0
+ * /move_base/DWAPlannerROS/xy_goal_tolerance: 0.05
+ * /move_base/DWAPlannerROS/yaw_goal_tolerance: 0.17
+ * /move_base/base_local_planner: dwa_local_planner...
+ * /move_base/conservative_reset_dist: 3.0
+ * /move_base/controller_frequency: 10.0
+ * /move_base/controller_patience: 15.0
+ * /move_base/global_costmap/cost_scaling_factor: 3.0
+ * /move_base/global_costmap/footprint: [[-0.105, -0.105]...
+ * /move_base/global_costmap/global_frame: map
+ * /move_base/global_costmap/inflation_radius: 1.0
+ * /move_base/global_costmap/map_type: costmap
+ * /move_base/global_costmap/observation_sources: scan
+ * /move_base/global_costmap/obstacle_range: 3.0
+ * /move_base/global_costmap/publish_frequency: 10.0
+ * /move_base/global_costmap/raytrace_range: 3.5
+ * /move_base/global_costmap/robot_base_frame: base_footprint
+ * /move_base/global_costmap/scan/clearing: True
+ * /move_base/global_costmap/scan/data_type: LaserScan
+ * /move_base/global_costmap/scan/marking: True
+ * /move_base/global_costmap/scan/sensor_frame: base_scan
+ * /move_base/global_costmap/scan/topic: scan
+ * /move_base/global_costmap/static_map: True
+ * /move_base/global_costmap/transform_tolerance: 0.5
+ * /move_base/global_costmap/update_frequency: 10.0
+ * /move_base/local_costmap/cost_scaling_factor: 3.0
+ * /move_base/local_costmap/footprint: [[-0.105, -0.105]...
+ * /move_base/local_costmap/global_frame: odom
+ * /move_base/local_costmap/height: 3
+ * /move_base/local_costmap/inflation_radius: 1.0
+ * /move_base/local_costmap/map_type: costmap
+ * /move_base/local_costmap/observation_sources: scan
+ * /move_base/local_costmap/obstacle_range: 3.0
+ * /move_base/local_costmap/publish_frequency: 10.0
+ * /move_base/local_costmap/raytrace_range: 3.5
+ * /move_base/local_costmap/resolution: 0.05
+ * /move_base/local_costmap/robot_base_frame: base_footprint
+ * /move_base/local_costmap/rolling_window: True
+ * /move_base/local_costmap/scan/clearing: True
+ * /move_base/local_costmap/scan/data_type: LaserScan
+ * /move_base/local_costmap/scan/marking: True
+ * /move_base/local_costmap/scan/sensor_frame: base_scan
+ * /move_base/local_costmap/scan/topic: scan
+ * /move_base/local_costmap/static_map: False
+ * /move_base/local_costmap/transform_tolerance: 0.5
+ * /move_base/local_costmap/update_frequency: 10.0
+ * /move_base/local_costmap/width: 3
+ * /move_base/oscillation_distance: 0.2
+ * /move_base/oscillation_timeout: 10.0
+ * /move_base/planner_frequency: 5.0
+ * /move_base/planner_patience: 5.0
+ * /move_base/shutdown_costmaps: False
+ * /robot_description: <?xml version="1....
+ * /robot_state_publisher/publish_frequency: 50.0
+ * /robot_state_publisher/tf_prefix: 
+ * /rosdistro: noetic
+ * /rosversion: 1.16.0
+ * /turtlebot3_slam_gmapping/angularUpdate: 0.2
+ * /turtlebot3_slam_gmapping/astep: 0.05
+ * /turtlebot3_slam_gmapping/base_frame: base_footprint
+ * /turtlebot3_slam_gmapping/delta: 0.05
+ * /turtlebot3_slam_gmapping/iterations: 5
+ * /turtlebot3_slam_gmapping/kernelSize: 1
+ * /turtlebot3_slam_gmapping/lasamplerange: 0.005
+ * /turtlebot3_slam_gmapping/lasamplestep: 0.005
+ * /turtlebot3_slam_gmapping/linearUpdate: 1.0
+ * /turtlebot3_slam_gmapping/llsamplerange: 0.01
+ * /turtlebot3_slam_gmapping/llsamplestep: 0.01
+ * /turtlebot3_slam_gmapping/lsigma: 0.075
+ * /turtlebot3_slam_gmapping/lskip: 0
+ * /turtlebot3_slam_gmapping/lstep: 0.05
+ * /turtlebot3_slam_gmapping/map_frame: map
+ * /turtlebot3_slam_gmapping/map_update_interval: 2.0
+ * /turtlebot3_slam_gmapping/maxUrange: 3.0
+ * /turtlebot3_slam_gmapping/minimumScore: 50
+ * /turtlebot3_slam_gmapping/odom_frame: odom
+ * /turtlebot3_slam_gmapping/ogain: 3.0
+ * /turtlebot3_slam_gmapping/particles: 100
+ * /turtlebot3_slam_gmapping/resampleThreshold: 0.5
+ * /turtlebot3_slam_gmapping/sigma: 0.05
+ * /turtlebot3_slam_gmapping/srr: 0.1
+ * /turtlebot3_slam_gmapping/srt: 0.2
+ * /turtlebot3_slam_gmapping/str: 0.1
+ * /turtlebot3_slam_gmapping/stt: 0.2
+ * /turtlebot3_slam_gmapping/temporalUpdate: 0.5
+ * /turtlebot3_slam_gmapping/xmax: 10.0
+ * /turtlebot3_slam_gmapping/xmin: -10.0
+ * /turtlebot3_slam_gmapping/ymax: 10.0
+ * /turtlebot3_slam_gmapping/ymin: -10.0
+
+NODES
+  /
+    explore (explore_lite/explore)
+    move_base (move_base/move_base)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    rviz (rviz/rviz)
+    turtlebot3_slam_gmapping (gmapping/slam_gmapping)
+
+[1mROS_MASTER_URI=http://172.20.10.7:11311[0m
+]2;/home/mlpotter/Documents/Northeastern/Classes/MRProject/catkin_ws/src/exploration/launch/MR_SR.launch http://172.20.10.7:11311
+[1mprocess[robot_state_publisher-1]: started with pid [60235][0m
+[1mprocess[turtlebot3_slam_gmapping-2]: started with pid [60236][0m
+[1mprocess[rviz-3]: started with pid [60237][0m
+[1mprocess[move_base-4]: started with pid [60238][0m
+[1mprocess[explore-5]: started with pid [60240][0m
+[explore-5] killing on exit
+[move_base-4] killing on exit
+[rviz-3] killing on exit
+[turtlebot3_slam_gmapping-2] killing on exit
+[robot_state_publisher-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m

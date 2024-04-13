@@ -14,6 +14,6 @@
     <include file="$(find explore_lite)/launch/explore.launch"> </include> 
     <include file="$(find apriltag_ros)/launch/continuous_detection.launch"> </include> 
     <node pkg="exploration" type="search_and_rescue.py" name="search_and_rescue" /> 
-    <node pkg="apriltag_ros" type="ckf.py" name="ckf" /> 
+    <node pkg="apriltag_ros" type="ckf3D.py" name="ckf3D" /> 
 </launch>
 

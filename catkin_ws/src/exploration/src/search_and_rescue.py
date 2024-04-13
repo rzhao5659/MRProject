@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import rospy
+import rosnode
 from std_msgs.msg import Int64,Bool
 from std_srvs.srv import SetBool
 from geometry_msgs.msg import PoseWithCovarianceStamped
@@ -60,14 +61,19 @@ class SearchAndRescue:
         self.rot_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         self.exp_stop_sub = rospy.Subscriber("/exploration_stop_flag",Bool,self.start_search_and_rescue)
         self.nav_goal_markers = rospy.Publisher('queue_goal', MarkerArray,queue_size=10,latch=True)
+        self.finished_search = rospy.Publisher('finish_search', Bool,queue_size=10,latch=True)
 
 
 
-        self.AprilTagDict = {key:False for key in [586,1,0]} #np.arange(12)}
+        self.AprilTagDict = {key:False for key in np.arange(8)}
+        self.goal_queue =  []
 
         self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.AprilTagCheck)
 
     def AprilTagCheck(self, msg):
+        finish_msg = Bool()
+        finish_msg.data = False
+
         for detection in msg.detections:
             id = detection.id[0]
             print(type(id))
@@ -83,16 +89,34 @@ class SearchAndRescue:
             shutdown = shutdown and value
 
         if shutdown:
-            msg_new  = Twist()
-            msg_new.linear.x = 0
-            msg_new.angular.z = 0
-            while not rospy.is_shutdown():
-                self.rot_pub.publish(msg_new)
-                rospy.sleep(0.05)
+        #     msg_new  = Twist()
+        #     msg_new.linear.x = 0
+        #     msg_new.angular.z = 0
+        #     while not rospy.is_shutdown():
+        #         self.rot_pub.publish(msg_new)
+        #         rospy.sleep(0.05)
+
+                
             rospy.logerr(f"Found All AprilTags {self.AprilTagDict}")
-            # rospy.sleep(0.5) 
-            # rospy.signal_shutdown(f"Found all AprilTags {self.AprilTagDict}")
-            # sys.exit()
+        #     # rospy.sleep(0.5) 
+        #     # rospy.signal_shutdown(f"Found all AprilTags {self.AprilTagDict}")
+        #     # sys.exit()
+        if (len(self.goal_queue) == 0) and shutdown:
+            finish_msg.data = True
+        
+            StartTime = rospy.Time.now()
+            EndTime = StartTime + rospy.Duration(1)
+            print("Rotating to search for tags.")
+            while rospy.Time.now() <= EndTime:
+                self.finished_search.publish(finish_msg)
+                rospy.sleep(0.05) 
+
+            rosnodes = rosnode.get_node_names()
+            rosnode.kill_nodes(rosnodes)              
+            
+        else:
+            self.finished_search.publish(finish_msg)
+
 
 
 
@@ -362,7 +386,7 @@ class SearchAndRescue:
         self.nav_goal_marker_pub.publish(self.create_marker(goal.target_pose.pose.position.x,goal.target_pose.pose.position.y))
 
         self.move_base_client.send_goal(goal)
-        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration.from_sec(30))
+        wait = self.move_base_client.wait_for_result(timeout=rospy.Duration.from_sec(15))
         print(wait)
         rospy.sleep(0.05)
         if not wait:

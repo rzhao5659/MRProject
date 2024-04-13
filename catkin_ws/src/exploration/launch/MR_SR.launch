@@ -4,5 +4,6 @@
     <include file="$(find turtlebot3_navigation)/launch/move_base.launch"> 
     </include>
     <include file="$(find explore_lite)/launch/explore.launch"> </include> 
-    <node pkg="exploration" type="search_and_rescue.py" name="search_and_rescue" /> 
+    <node pkg="exploration" type="search_and_rescue.py" name="search_and_rescue" />
+    <node pkg="apriltag_ros" type="ckf3D.py" name="ckf3D" />
 </launch>
