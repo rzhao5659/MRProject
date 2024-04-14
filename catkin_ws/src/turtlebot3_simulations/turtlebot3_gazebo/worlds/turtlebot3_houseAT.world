@@ -5939,100 +5939,6 @@
         </link>
         <pose>6.35903 -2.27759 0 0 -0 0</pose>
       </model>
-      <model name='first_2015_trash_can'>
-        <link name='link'>
-          <inertial>
-            <pose>0 0 0.3683 0 -0 0</pose>
-            <mass>4.83076</mass>
-            <inertia>
-              <ixx>0.281534</ixx>
-              <ixy>0</ixy>
-              <ixz>0</ixz>
-              <iyy>0.281534</iyy>
-              <iyz>0</iyz>
-              <izz>0.126223</izz>
-            </inertia>
-          </inertial>
-          <visual name='visual'>
-            <geometry>
-              <mesh>
-                <uri>model://first_2015_trash_can/meshes/trash_can.dae</uri>
-              </mesh>
-            </geometry>
-          </visual>
-          <collision name='collision'>
-            <geometry>
-              <mesh>
-                <uri>model://first_2015_trash_can/meshes/trash_can.dae</uri>
-              </mesh>
-            </geometry>
-            <max_contacts>10</max_contacts>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <bounce/>
-              <friction>
-                <torsional>
-                  <ode/>
-                </torsional>
-                <ode/>
-              </friction>
-            </surface>
-          </collision>
-          <self_collide>0</self_collide>
-          <enable_wind>0</enable_wind>
-          <kinematic>0</kinematic>
-        </link>
-        <pose>1.88346 1.91193 0 0 -0 0</pose>
-      </model>
-      <model name='first_2015_trash_can_0'>
-        <link name='link'>
-          <inertial>
-            <pose>0 0 0.3683 0 -0 0</pose>
-            <mass>4.83076</mass>
-            <inertia>
-              <ixx>0.281534</ixx>
-              <ixy>0</ixy>
-              <ixz>0</ixz>
-              <iyy>0.281534</iyy>
-              <iyz>0</iyz>
-              <izz>0.126223</izz>
-            </inertia>
-          </inertial>
-          <visual name='visual'>
-            <geometry>
-              <mesh>
-                <uri>model://first_2015_trash_can/meshes/trash_can.dae</uri>
-              </mesh>
-            </geometry>
-          </visual>
-          <collision name='collision'>
-            <geometry>
-              <mesh>
-                <uri>model://first_2015_trash_can/meshes/trash_can.dae</uri>
-              </mesh>
-            </geometry>
-            <max_contacts>10</max_contacts>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <bounce/>
-              <friction>
-                <torsional>
-                  <ode/>
-                </torsional>
-                <ode/>
-              </friction>
-            </surface>
-          </collision>
-          <self_collide>0</self_collide>
-          <enable_wind>0</enable_wind>
-          <kinematic>0</kinematic>
-        </link>
-        <pose>-4.69354 4.89439 0 0 -0 0</pose>
-      </model>
       <model name='table'>
         <static>0</static>
         <link name='link'>
@@ -6296,7 +6202,7 @@
     </scene>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-12.8758 12.1517 12.523 0 1.1258 -0.726483</pose>
+        <pose>-7.2559 5.6055 21.8053 0 1.2218 -0.022479</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -6312,7 +6218,6 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    
     <model name='Apriltag36_11_00000'>
       <link name='main'>
         <pose>0 0 0 0 -0 0</pose>
@@ -6506,10 +6411,10 @@
       <pose>1.17199 2.79733 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1075 806000000</sim_time>
-      <real_time>349 333705212</real_time>
-      <wall_time>1712540160 458609277</wall_time>
-      <iterations>341824</iterations>
+      <sim_time>1331 747000000</sim_time>
+      <real_time>124 268591918</real_time>
+      <wall_time>1713104360 443306274</wall_time>
+      <iterations>122733</iterations>
       <model name='Apriltag36_11_00000'>
         <pose>-7.15815 -1.27083 0.778944 3.14159 1.51392 3.14159</pose>
         <scale>1 1 1</scale>
@@ -6773,7 +6678,7 @@
           <pose>1.07889 -0.712402 0 0 0 -3.14159</pose>
           <scale>1 1 1</scale>
           <link name='link'>
-            <pose>1.07889 -0.712402 -1e-05 -0 1e-06 -3.14159</pose>
+            <pose>0.864258 -0.484913 0.214012 0.015313 -0.001707 2.94254</pose>
             <velocity>0 0 0 0 -0 0</velocity>
             <acceleration>0 0 -9.8 0 -0 0</acceleration>
             <wrench>0 0 -9.8 0 -0 0</wrench>
@@ -6859,36 +6764,6 @@
             <wrench>0 0 0 0 -0 0</wrench>
           </link>
         </model>
-        <model name='first_2015_trash_can'>
-          <pose>2.07889 1.77576 0 0 -0 0</pose>
-          <scale>1 1 1</scale>
-          <link name='link'>
-            <pose>2.07897 1.77576 -1.2e-05 -2e-06 1.1e-05 -0.000508</pose>
-            <velocity>0 0 0 0 -0 0</velocity>
-            <acceleration>0 0 -9.8 0 -0 0</acceleration>
-            <wrench>0 0 -47.3414 0 -0 0</wrench>
-          </link>
-        </model>
-        <model name='first_2015_trash_can_0'>
-          <pose>-4.49812 4.75822 0 0 -0 0</pose>
-          <scale>1 1 1</scale>
-          <link name='link'>
-            <pose>-4.49802 4.75818 -1e-06 8e-06 2e-06 -0.000443</pose>
-            <velocity>0 0 0 0 -0 0</velocity>
-            <acceleration>3.34086 -0.468081 -1.814 -1.75124 0.291789 3.03823</acceleration>
-            <wrench>16.1389 -2.26119 -8.76299 0 -0 0</wrench>
-          </link>
-        </model>
-        <model name='table'>
-          <pose>-2.46185 2.28759 0 0 -0 0</pose>
-          <scale>1 1 1</scale>
-          <link name='link'>
-            <pose>-2.46185 2.28759 -0 0 -0 0</pose>
-            <velocity>0 0 0 0 -0 0</velocity>
-            <acceleration>0 0 -9.8 0 -0 0</acceleration>
-            <wrench>0 0 -9.8 0 -0 0</wrench>
-          </link>
-        </model>
         <model name='table_marble'>
           <pose>5.07888 2.7896 0.648 0 -0 0</pose>
           <scale>1 1 1</scale>
@@ -6899,6 +6774,16 @@
             <wrench>0 0 0 0 -0 0</wrench>
           </link>
         </model>
+      </model>
+      <model name='unit_box'>
+        <pose>1.30416 -1.00149 0.5 0 -0 0.033293</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>1.30416 -1.00149 0.5 0 -0 0.033293</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-1.75984 1.45766 16.0141 -0.453552 -0.379423 -2.90074</acceleration>
+          <wrench>-1.75984 1.45766 16.0141 0 -0 0</wrench>
+        </link>
       </model>
       <light name='sun'>
         <pose>0 0 10 0 -0 0</pose>
@@ -6999,6 +6884,59 @@
       </link>
       <static>1</static>
       <pose>-5.87098 3.90129 0 0 -0 0</pose>
+    </model>
+    <model name='unit_box'>
+      <pose>0.199211 -1.88057 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
     </model>
   </world>
 </sdf>
