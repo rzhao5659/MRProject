@@ -1,6 +1,0 @@
---- 
-bool is_valid # if not valid, then it means it's not sending anything (exploration done). 
-float64 x   # exploration goal real world coordinates
-float64 y
-float64 theta 
-
