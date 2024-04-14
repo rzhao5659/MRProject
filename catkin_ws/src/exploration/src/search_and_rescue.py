@@ -67,6 +67,7 @@ class SearchAndRescue:
 
         self.AprilTagDict = {key:False for key in np.arange(8)}
         self.goal_queue =  []
+        self.finish_queue = False
 
         self.pose_sub = rospy.Subscriber("/tag_detections", AprilTagDetectionArray, self.AprilTagCheck)
 
@@ -101,7 +102,7 @@ class SearchAndRescue:
         #     # rospy.sleep(0.5) 
         #     # rospy.signal_shutdown(f"Found all AprilTags {self.AprilTagDict}")
         #     # sys.exit()
-        if (len(self.goal_queue) == 0) and shutdown:
+        if self.finish_queue and shutdown:
             finish_msg.data = True
         
             StartTime = rospy.Time.now()
@@ -160,8 +161,15 @@ class SearchAndRescue:
                 msg_new  = Twist()
                 msg_new.linear.x = 0
                 msg_new.angular.z = 0
-                for _ in  range(50):
+
+                StartTime = rospy.Time.now()
+                EndTime = StartTime + rospy.Duration(1)
+                while rospy.Time.now() <= EndTime:
+                    rospy.sleep(0.05) 
                     self.rot_pub.publish(msg_new)
+                    
+                self.finish_queue=True
+                
                 rospy.loginfo("Queue Emptied")
 
     def set_map(self,map):

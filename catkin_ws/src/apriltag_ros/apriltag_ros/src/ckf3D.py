@@ -113,9 +113,9 @@ class AprilTagCKF:
                     self.AprilTagDictCount[id] = 1
 
                 
-                elif (self.AprilTagDictCount.get(id) < 5):
+                elif (self.AprilTagDictCount.get(id) <= 5):
                     self.AprilTagDictCount[id] += 1
-                    self.AprilTagDictCKF[id].x = AT_pos[:3].reshape(-1,1) + self.AprilTagDictCKF[id]/5
+                    self.AprilTagDictCKF[id].x = AT_pos[:3].reshape(-1,1) + self.AprilTagDictCKF[id].x/5
 
                 # get the range and bearing measurement between AT and TB3. Bearing is from TB3 to AT.
                 else:
