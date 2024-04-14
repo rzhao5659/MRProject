@@ -13,6 +13,14 @@
 #include "ros/ros.h"
 
 Map2DClient::Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener) {
+    // Initialize cost translation.
+    // Making everything above 50 as obstacles.
+    memset(cost_translation_table_, FREE_SPACE, sizeof(cost_translation_table_));
+    cost_translation_table_[(unsigned char)-1] = UNKNOWN_SPACE;
+    for (int cost = 50; cost <= 100; cost++) {
+        cost_translation_table_[cost] = OCCUPIED_SPACE;
+    }
+
     // Get parameter values from parameter server. If not found, set to default values.
     double map_resolution;                    // The resolution of the map in meters/cell. This should match to the resolution of the OccupancyGrid map you are receiving.
     double map_width;                         // The width of the map in meters.
@@ -42,7 +50,7 @@ Map2DClient::Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener) {
     this->occupancy_grid_update_sub_ = node.subscribe<map_msgs::OccupancyGridUpdate>(occupancy_grid_update_topic, 10, std::bind(&Map2DClient::updatePartialMap, this, std::placeholders::_1));
     this->occupancy_grid_sub_ = node.subscribe<nav_msgs::OccupancyGrid>(occupancy_grid_topic, 10, std::bind(&Map2DClient::updateMap, this, std::placeholders::_1));
 
-    // Wait until it receives messages for a full map, and then a partial map update. 
+    // Wait until it receives messages for a full map, and then a partial map update.
     ROS_INFO("Waiting for OccupancyGrid message.");
     auto map_msg = ros::topic::waitForMessage<nav_msgs::OccupancyGrid>(occupancy_grid_topic, node);
     updateMap(map_msg);
@@ -59,7 +67,7 @@ void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
     double received_map_origin_wx = msg->info.origin.position.x;
     double received_map_origin_wy = msg->info.origin.position.y;
     ROS_DEBUG("Received a full map update (size_x:%d, size_y:%d, resolution:%.3f, origin_x:%.3f, origin_y:%.3f)", received_map_size_x, received_map_size_y, received_map_resolution,
-        received_map_origin_wx, received_map_origin_wy);
+              received_map_origin_wx, received_map_origin_wy);
 
     // Get the grid coordinates corresponding to the received map origin.
     int received_map_origin_gx, received_map_origin_gy;
@@ -77,7 +85,7 @@ void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
     // Update the region of map corresponding to the OccupancyGrid cells.
     for (int i = 0; i < received_map_size_x; i++) {
         for (int j = 0; j < received_map_size_y; j++) {
-            this->map_->map_data[origin_idx + i + j * this->map_->size_x].occupancy_state = msg->data[i + j * received_map_size_x];
+            this->map_->map_data[origin_idx + i + j * this->map_->size_x].occupancy_state = cost_translation_table_[(unsigned char)msg->data[i + j * received_map_size_x]];
         }
     }
 }
@@ -102,7 +110,7 @@ void Map2DClient::updatePartialMap(const map_msgs::OccupancyGridUpdate::ConstPtr
     for (int y = y0; y <= yn && y < this->map_->size_y; y++) {
         for (int x = x0; x <= xn && x < this->map_->size_x; x++) {
             int idx = this->map_->getIndex(x, y);
-            this->map_->map_data[idx].occupancy_state = msg->data[i];
+            this->map_->map_data[idx].occupancy_state = cost_translation_table_[(unsigned char)msg->data[i]];
             i++;
         }
     }
@@ -118,6 +126,4 @@ void Map2DClient::updateActiveArea(int x0, int y0, int xn, int yn) {
     this->map_->active_area[1] = y0;
     this->map_->active_area[2] = xn;
     this->map_->active_area[3] = yn;
-    ROS_DEBUG("Received map boundary: (%d, %d, %d, %d). Updated active area to be: (%d, %d, %d, %d)", x0, y0, xn, yn, map_->active_area[0], map_->active_area[1], map_->active_area[2],
-        map_->active_area[3]);
 }

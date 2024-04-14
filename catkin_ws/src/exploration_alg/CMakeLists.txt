@@ -152,15 +152,33 @@ src/explore_node.cpp
 src/frontier_detector.cpp 
 src/map_client.cpp 
 src/map.cpp 
+src/gain_evaluator.cpp
 src/pose_listener.cpp
 )
 
-add_executable(test_node
+add_executable(test_explore_node 
+src/test_explore_node.cpp
+src/frontier_detector.cpp 
+src/map_client.cpp 
+src/map.cpp 
+src/gain_evaluator.cpp
+src/pose_listener.cpp
+)
+
+add_executable(test_map_node
 src/test_map2d_client.cpp
 src/map_client.cpp 
 src/map.cpp 
 src/pose_listener.cpp
 )
+
+add_executable(test_gain_node
+src/test_gain_evaluator.cpp
+src/map_client.cpp 
+src/map.cpp 
+src/pose_listener.cpp
+)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -178,7 +196,15 @@ target_link_libraries(explore_node
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(test_node
+target_link_libraries(test_explore_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(test_map_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(test_gain_node
   ${catkin_LIBRARIES}
 )
 #############

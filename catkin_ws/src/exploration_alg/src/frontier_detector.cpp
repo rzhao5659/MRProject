@@ -16,32 +16,15 @@
 #include "pose_listener.h"
 #include "ros/ros.h"
 
-// COmbine hash values. Taken from boost hash combine.
-template <class T>
-inline void hash_combine(std::size_t& seed, const T& v) {
-    std::hash<T> hasher;
-    seed ^= hasher(v) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-}
-
-// Hash function for cell2d_t
-struct hash_cell2d_t {
-    std::size_t operator()(const cell2d_t& p) const {
-        std::size_t hash = 0;
-        hash_combine(hash, p.x);
-        hash_combine(hash, p.y);
-        return hash;
-    };
-};
-
 void FrontierDetector::runDetection() {
     detectNewFrontierCells();
     getFrontiers();
-    ROS_DEBUG("Frontier detection finished.");
-    int i = 1;
-    for (const auto& frontier : this->frontiers) {
-        ROS_DEBUG("Frontier %d centroid: (%.3f, %.3f)", i, frontier.centroid[0], frontier.centroid[1]);
-        i++;
-    }
+    // ROS_DEBUG("Frontier detection finished.");
+    // int i = 1;
+    // for (const auto& frontier : this->frontiers) {
+    //     ROS_DEBUG("Frontier %d centroid: (%.3f, %.3f)", i, frontier.centroid[0], frontier.centroid[1]);
+    //     i++;
+    // }
 }
 
 FrontierDetector::FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D> map, PoseListener* pose_listener) : map_(map), pose_listener_(pose_listener) {
@@ -51,13 +34,12 @@ FrontierDetector::FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D>
     this->execute_timer_ = node.createTimer(ros::Duration(1 / detection_frequency), std::bind(&FrontierDetector::runDetection, this));
 }
 
-
 cell2d_t FrontierDetector::getRobotMapPosition() {
     double wx, wy, wtheta;
     int gx, gy;
     this->pose_listener_->getRobotWorldPosition(wx, wy, wtheta);
     this->map_->worldToMap(wx, wy, gx, gy);
-    return { gx, gy };
+    return {gx, gy};
 }
 
 void FrontierDetector::detectNewFrontierCells() {
@@ -82,8 +64,8 @@ void FrontierDetector::detectNewFrontierCells() {
         int ymax = this->map_->active_area[3];
         std::list<cell2d_t*> frontier_cells_in_active_area;
         this->frontier_cells_.rangeSearch(xmin, ymin, xmax, ymax, &frontier_cells_in_active_area);
-        ROS_DEBUG("Detection: active area is (%d, %d, %d, %d)", xmin, ymin, xmax, ymax);
-        ROS_DEBUG("Number of frontier cells in active area: %ld", frontier_cells_in_active_area.size());
+        // ROS_DEBUG("Detection: active area is (%d, %d, %d, %d)", xmin, ymin, xmax, ymax);
+        // ROS_DEBUG("Number of frontier cells in active area: %ld", frontier_cells_in_active_area.size());
 
         // Append them to the BFS queue.
         for (const auto& frontier_cell : frontier_cells_in_active_area) {
@@ -128,10 +110,10 @@ void FrontierDetector::getFrontiers() {
     this->frontiers.clear();
 
     // Create a set(k) where key is frontier cell. The set will contain explored frontier cells.
-    std::unordered_set<cell2d_t, hash_cell2d_t> explored_set;
+    std::unordered_set<cell2d_t, cell2d_t::hash> explored_set;
 
     // Define a lambda function to check if a cell exists in the explored_set for convenience.
-    auto notExplored = [&](cell2d_t& cell) {return explored_set.find(cell) == explored_set.end();};
+    auto notExplored = [&](cell2d_t& cell) { return explored_set.find(cell) == explored_set.end(); };
 
     // Iterate through all frontier cells.
     RTree_t::Iterator it;
@@ -170,7 +152,6 @@ void FrontierDetector::getFrontiers() {
             this->map_->mapToWorld((int)frontier.centroid[0], (int)frontier.centroid[1], frontier.centroid[0], frontier.centroid[1]);
             // Append this frontier to the list of frontiers
             this->frontiers.emplace_back(frontier);
-
         }
     }
 }
@@ -220,10 +201,10 @@ bool FrontierDetector::wasCellFrontier(cell2d_t& cell) {
 }
 
 void FrontierDetector::getFourAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells) {
-    cell2d_t top_cell = { cell.x, cell.y + 1 };
-    cell2d_t bottom_cell = { cell.x, cell.y - 1 };
-    cell2d_t left_cell = { cell.x - 1, cell.y };
-    cell2d_t right_cell = { cell.x + 1, cell.y };
+    cell2d_t top_cell = {cell.x, cell.y + 1};
+    cell2d_t bottom_cell = {cell.x, cell.y - 1};
+    cell2d_t left_cell = {cell.x - 1, cell.y};
+    cell2d_t right_cell = {cell.x + 1, cell.y};
     adj_cells.push_back(top_cell);
     adj_cells.push_back(bottom_cell);
     adj_cells.push_back(left_cell);
@@ -232,10 +213,10 @@ void FrontierDetector::getFourAdjacentCells(cell2d_t& cell, std::list<cell2d_t>&
 
 void FrontierDetector::getEightAdjacentCells(cell2d_t& cell, std::list<cell2d_t>& adj_cells) {
     getFourAdjacentCells(cell, adj_cells);
-    cell2d_t top_left_cell = { cell.x - 1, cell.y + 1 };
-    cell2d_t top_right_cell = { cell.x + 1, cell.y + 1 };
-    cell2d_t bottom_left_cell = { cell.x - 1, cell.y - 1 };
-    cell2d_t bottom_right_cell = { cell.x + 1, cell.y - 1 };
+    cell2d_t top_left_cell = {cell.x - 1, cell.y + 1};
+    cell2d_t top_right_cell = {cell.x + 1, cell.y + 1};
+    cell2d_t bottom_left_cell = {cell.x - 1, cell.y - 1};
+    cell2d_t bottom_right_cell = {cell.x + 1, cell.y - 1};
     adj_cells.push_back(top_left_cell);
     adj_cells.push_back(top_right_cell);
     adj_cells.push_back(bottom_left_cell);

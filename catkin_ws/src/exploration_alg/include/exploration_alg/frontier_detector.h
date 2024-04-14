@@ -5,24 +5,16 @@
 #include <vector>
 
 #include "RTree.h"
+#include "cell2d.h"
 #include "map.h"
 #include "pose_listener.h"
 #include "ros/ros.h"
 
 /**
- * Represents a cell in a grid map.
- */
-struct cell2d_t {
-    int x;
-    int y;
-    bool operator==(const cell2d_t& other) const { return x == other.x && y == other.y; }
-};
-
-/**
  * Represent a frontier, which is a set of connected frontier cells.
  */
 class Frontier {
-public:
+   public:
     double centroid[2];         // centroid of frontier in world coordinate (wx,wy).
     int size;                   // number of frontier cells that forms this frontier.
     std::list<cell2d_t> cells;  // frontier cells that forms this frontier. Useful for visualization.
@@ -53,10 +45,10 @@ typedef RTree<cell2d_t*, int, 2, float> RTree_t;
  * Make the interface of RTree easier to use for this application.
  */
 class RTreeAdapter {
-private:
+   private:
     RTree_t tree_;
 
-public:
+   public:
     /**
      * Inserts a copy of the given cell to tree_, if the given cell is not duplicated.
      */
@@ -64,8 +56,8 @@ public:
         if (pointSearch(cell) == nullptr) {
             // Create a copy of it in a dynamically allocated memory and store it inside tree_.
             cell2d_t* cell_copy = new cell2d_t(cell);
-            int min[2] = { cell_copy->x, cell_copy->y };
-            int max[2] = { cell_copy->x, cell_copy->y };
+            int min[2] = {cell_copy->x, cell_copy->y};
+            int max[2] = {cell_copy->x, cell_copy->y};
             tree_.Insert(min, max, cell_copy);
         }
     }
@@ -75,8 +67,8 @@ public:
      */
     void remove(cell2d_t* cell) {
         // Remove the cell's pointer from tree.
-        int min[2] = { cell->x, cell->y };
-        int max[2] = { cell->x, cell->y };
+        int min[2] = {cell->x, cell->y};
+        int max[2] = {cell->x, cell->y};
         tree_.Remove(min, max, cell);
         // Free memory.
         delete cell;
@@ -86,15 +78,15 @@ public:
      * Return a pointer to the dynamically allocated cell in the tree if it exists.
      */
     cell2d_t* pointSearch(cell2d_t cell) {
-        int search_min[2] = { cell.x, cell.y };
-        int search_max[2] = { cell.x, cell.y };
+        int search_min[2] = {cell.x, cell.y};
+        int search_max[2] = {cell.x, cell.y};
 
         // If it finds the cell, assign it to result.
         cell2d_t* result = nullptr;
         auto searchCallback = [&](cell2d_t* cell) {
             result = cell;
             return false;
-            };
+        };
         tree_.Search(search_min, search_max, searchCallback);
         return result;
     }
@@ -103,13 +95,13 @@ public:
      * Return a list of cells that lies within the bounding box specified.
      */
     void rangeSearch(int xmin, int ymin, int xmax, int ymax, std::list<cell2d_t*>* cells_within_range) {
-        int search_min[2] = { xmin, ymin };
-        int search_max[2] = { xmax, ymax };
+        int search_min[2] = {xmin, ymin};
+        int search_max[2] = {xmax, ymax};
         // Append to the list each time a cell is found within the requested range.
         auto rangeSearchCallback = [=](cell2d_t* cell) {
             cells_within_range->emplace_back(cell);
             return true;
-            };
+        };
         tree_.Search(search_min, search_max, rangeSearchCallback);
     }
 
@@ -144,11 +136,11 @@ public:
  * Class to detect frontiers with Expanding-Wavefront Frontier Detection. (P Quin, 2021)
  */
 class FrontierDetector {
-public:
+   public:
     std::list<Frontier> frontiers;
     FrontierDetector(ros::NodeHandle& node, std::shared_ptr<Map2D> map, PoseListener* pose_listener);
 
-private:
+   private:
     PoseListener* pose_listener_;
     RTreeAdapter frontier_cells_;  // Store frontier cells in a dynamic spatial indexing data structure for quick range query and insertion/removal.
     std::shared_ptr<Map2D> map_;

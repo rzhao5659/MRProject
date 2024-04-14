@@ -65,7 +65,7 @@ void publishMapVisited(ros::Publisher& map_pub, std::shared_ptr<Map2D>& map, Pos
 }
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "test_node");
+    ros::init(argc, argv, "test_map_node");
     ros::NodeHandle node;
     PoseListener pose_listener(&node);
     Map2DClient map_client(node, pose_listener);

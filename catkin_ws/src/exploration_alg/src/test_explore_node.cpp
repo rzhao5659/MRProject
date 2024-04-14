@@ -1,5 +1,3 @@
-#include "explore_node.h"
-
 #include <visualization_msgs/MarkerArray.h>
 
 #include <algorithm>
@@ -10,6 +8,7 @@
 #include <vector>
 
 #include "exploration_alg/ExplorationGoalRequest.h"
+#include "explore_node.h"
 #include "frontier_detector.h"
 #include "map_client.h"
 #include "ros/ros.h"
@@ -149,11 +148,13 @@ bool ExploreNode::getExplorationGoal(ExplorationGoalRequest::Request& req, Explo
 
         // Sample free cells around each frontier centroid, and score them all.
         std::vector<point2d_t> sampled_points;
+        std::vector<double> sampled_scores;  // DELETE LATER
         sampleFreePointsAroundPoint(frontier->centroid[0], frontier->centroid[1], 200, this->sampling_radius_, sampled_points);
 
         for (point2d_t& point : sampled_points) {
             double point_optimal_yaw, point_score;
             this->gain_evaluator_.computeGain(point.x, point.y, point_optimal_yaw, point_score);
+            sampled_scores.push_back(point_score);  // DELETE LATER.
             if (point_score > best_score) {
                 best_score = point_score;
                 best_exploration_goal[0] = point.x;
@@ -171,6 +172,45 @@ bool ExploreNode::getExplorationGoal(ExplorationGoalRequest::Request& req, Explo
 
         ROS_DEBUG("Best pose near Frontier[%d] is Pose(%.3f, %.3f, %.3f) with score %.3f", i, best_goal_per_frontier_[i][0], best_goal_per_frontier_[i][1], best_goal_per_frontier_[i][2] * 180 / M_PI,
                   best_score_frontier);
+        // i++;  ADD THIS BACK LATER.
+
+        // TEMPORAL
+        std::vector<visualization_msgs::Marker>& markers = this->markers_msg_.markers;
+        std_msgs::Header header;
+        header.frame_id = this->global_frame_;
+        header.stamp = ros::Time::now();
+        visualization_msgs::Marker points;
+        points.header = header;
+        points.ns = "sampled_points";
+        points.type = visualization_msgs::Marker::POINTS;
+        points.pose.orientation.w = 1.0;
+        points.scale.x = 0.05;  // x and y scale width/height of point.
+        points.scale.y = 0.05;
+        points.color.r = 1.0;
+        points.color.a = 1.0;
+        points.lifetime = ros::Duration();  // forever.
+        points.id = i;
+        points.frame_locked = true;
+        auto it = std::max_element(std::begin(sampled_scores), std::end(sampled_scores));  // DELETE LATER.
+        double max_score = *it;
+        int j = 0;
+        for (point2d_t& point : sampled_points) {
+            geometry_msgs::Point p;
+            p.x = point.x;
+            p.y = point.y;
+            std_msgs::ColorRGBA color;
+            color.r = sampled_scores[j] / max_score;
+            color.a = 1.0;
+            points.colors.push_back(color);
+            points.points.push_back(p);
+            j++;
+        }
+        markers.push_back(points);
+        this->rviz_marker_pub_.publish(this->markers_msg_);
+        ROS_INFO("presss to continue");
+        std::cin.clear();
+        std::string x;
+        std::cin >> x;
         i++;
     }
 
@@ -205,6 +245,20 @@ void ExploreNode::visualizeFrontiersBestPoseNearby() {
         arrow.lifetime = ros::Duration();  // forever.
         arrow.frame_locked = true;
 
+        // DELETE LATER
+        visualization_msgs::Marker text;
+        text.header.frame_id = "map";
+        text.header.stamp = ros::Time::now();
+        text.ns = "scores_frontiers";
+        text.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
+        text.scale.z = 0.2;
+        text.color.b = 1.0;  //  text.
+        text.color.r = 1.0;
+        text.color.a = 1.0;
+        text.pose.orientation.w = 1.0;
+        text.lifetime = ros::Duration();  // forever.
+        text.frame_locked = true;
+
         int id = 0;
         for (const auto& pose : best_goal_per_frontier_) {
             arrow.id = id;
@@ -213,6 +267,17 @@ void ExploreNode::visualizeFrontiersBestPoseNearby() {
             arrow.pose.orientation.z = sin(pose[2] / 2);
             arrow.pose.orientation.w = cos(pose[2] / 2);
             markers.push_back(arrow);
+
+            // DELETE LATER.
+            text.id = id;
+            double b, a;
+            std::string texto;
+            this->gain_evaluator_.computeGain(pose[0], pose[1], b, a, texto);
+            text.text = texto;
+            text.pose.position.x = pose[0] - 0.5;
+            text.pose.position.y = pose[1] - 0.5;
+            markers.push_back(text);
+
             id++;
         }
     }
@@ -381,7 +446,7 @@ void ExploreNode::visualizeFrontiers() {
 }
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "explore_node");
+    ros::init(argc, argv, "test_explore_node");
     ExploreNode explorenode;
     ros::spin();
     return 0;

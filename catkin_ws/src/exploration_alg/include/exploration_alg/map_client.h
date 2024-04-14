@@ -23,6 +23,7 @@ class Map2DClient {
 
    private:
     std::shared_ptr<Map2D> map_;
+    char cost_translation_table_[256];
     int last_received_map_origin_gx_;  // for efficiency, costmap sends OccupancyGridUpdate message, that is defined w.r.t to the last OccupanGrid message origin.
     int last_received_map_origin_gy_;
     ros::Subscriber occupancy_grid_sub_;
