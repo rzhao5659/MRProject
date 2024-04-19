@@ -48,6 +48,7 @@ class ExploreNode {
     ros::Timer map_pub_timer_;
     // Frontier selection related parameters.
     double sampling_radius_;  // [m].  should be at least greater than sensor max range.
+    int number_of_samples_;
     // For visualization.
     std::vector<std::vector<double>> best_goal_per_frontier_;
 

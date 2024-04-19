@@ -18,7 +18,7 @@
 using namespace exploration_alg;
 
 ExploreNode::ExploreNode()
-    : node_(),
+    : node_("explore_node"),  // namespace
       pose_listener_(&node_),
       map_client_(node_, pose_listener_),
       frontier_detector_(node_, map_client_.getMap(), &pose_listener_),
@@ -29,6 +29,7 @@ ExploreNode::ExploreNode()
     this->node_.param<bool>("publish_map", publish_map_, false);  // useful for testing, otherwise don't
     this->node_.param<std::string>("global_frame", this->global_frame_, "map");
     this->node_.param<double>("sampling_radius", this->sampling_radius_, 1.0);
+    this->node_.param<int>("number_of_samples", this->number_of_samples_, 50);
 
     this->exploration_goal_srv_ = this->node_.advertiseService("/explore/get_goal", &ExploreNode::getExplorationGoal, this);
     this->is_exploration_done_ = true;  // this is just the default value.
@@ -149,7 +150,7 @@ bool ExploreNode::getExplorationGoal(ExplorationGoalRequest::Request& req, Explo
 
         // Sample free cells around each frontier centroid, and score them all.
         std::vector<point2d_t> sampled_points;
-        sampleFreePointsAroundPoint(frontier->centroid[0], frontier->centroid[1], 200, this->sampling_radius_, sampled_points);
+        sampleFreePointsAroundPoint(frontier->centroid[0], frontier->centroid[1], this->number_of_samples_, this->sampling_radius_, sampled_points);
 
         for (point2d_t& point : sampled_points) {
             double point_optimal_yaw, point_score;

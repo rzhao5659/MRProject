@@ -16,6 +16,9 @@ find_package(catkin REQUIRED COMPONENTS
   map_msgs
   visualization_msgs
   std_msgs
+  move_base_msgs
+  actionlib
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -119,6 +122,9 @@ catkin_package(
  map_msgs
  visualization_msgs
  std_msgs
+ move_base_msgs
+ actionlib
+ actionlib_msgs
 #  DEPENDS system_lib
 )
 
@@ -154,6 +160,10 @@ src/map_client.cpp
 src/map.cpp 
 src/gain_evaluator.cpp
 src/pose_listener.cpp
+)
+
+add_executable(move_base_client_node 
+src/move_base_client.cpp
 )
 
 add_executable(test_explore_node 
@@ -193,6 +203,10 @@ src/pose_listener.cpp
 ## Specify libraries to link a library or executable target against
 
 target_link_libraries(explore_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(move_base_client_node
   ${catkin_LIBRARIES}
 )
 

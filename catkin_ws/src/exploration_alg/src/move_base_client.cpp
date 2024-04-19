@@ -40,6 +40,9 @@ class MoveBaseClient {
             server_responded = requestExplorationGoal();
         }
 
+        ros::Duration sleep_timer(3.0);
+
+        // Request goal every 3 second.
         while (!is_exploration_done_) {
             // Send exploration goal to move_base
             move_base_msgs::MoveBaseGoal goal;
@@ -53,15 +56,18 @@ class MoveBaseClient {
             goal.target_pose.header.frame_id = global_frame_;
             goal.target_pose.header.stamp = ros::Time::now();
             move_base_client_.sendGoal(goal);
-            move_base_client_.waitForResult();
-            if (move_base_client_.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-                ROS_INFO("Reached exploration goal(%.3f,%.3f,%.3f)", exploration_goal_[0], exploration_goal_[1], exploration_goal_[2] * 180 / M_PI);
-            } else {
-                // Haven't implemented what to do if it fails. Blacklist just the "frontier" will not work.  Would have to blacklist an area near it.
-                ROS_ERROR("Unsuccesful with status: %s", move_base_client_.getState().toString().c_str());
-                ROS_ERROR("Stopping exploration.");
-                return;
-            }
+
+            sleep_timer.sleep();
+
+            // move_base_client_.waitForResult();
+            // if (move_base_client_.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+            //     ROS_INFO("Reached exploration goal(%.3f,%.3f,%.3f)", exploration_goal_[0], exploration_goal_[1], exploration_goal_[2] * 180 / M_PI);
+            // } else {
+            //     // Haven't implemented what to do if it fails. Needs to blacklist an area near it.
+            //     ROS_ERROR("Unsuccesful with status: %s", move_base_client_.getState().toString().c_str());
+            //     ROS_ERROR("Stopping exploration.");
+            //     return;
+            // }
 
             // Request next goal.
             server_responded = false;
@@ -92,4 +98,12 @@ class MoveBaseClient {
         ROS_ERROR("Failed to call 'ExplorationGoalRequest' service");
         return false;
     }
+};
+
+int main(int argc, char** argv) {
+    ros::init(argc, argv, "move_base_client");
+    MoveBaseClient move_base_client;
+    move_base_client.run();
+    ros::spin();
+    return 0;
 }

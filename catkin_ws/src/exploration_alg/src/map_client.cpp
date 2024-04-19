@@ -29,8 +29,8 @@ Map2DClient::Map2DClient(ros::NodeHandle& node, PoseListener& pose_listener) {
     std::string occupancy_grid_update_topic;  // Topic name for message map_msgs/OccupancyGridUpdate.
 
     node.param<double>("resolution", map_resolution, 0.05);
-    node.param<double>("width", map_width, 40.0);
-    node.param<double>("height", map_height, 40.0);
+    node.param<double>("width", map_width, 50.0);
+    node.param<double>("height", map_height, 50.0);
     node.param<std::string>("occupancy_grid_topic", occupancy_grid_topic, "/move_base/global_costmap/costmap");
     node.param<std::string>("occupancy_grid_update_topic", occupancy_grid_update_topic, "/move_base/global_costmap/costmap_updates");
 
@@ -68,6 +68,8 @@ void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
     double received_map_origin_wy = msg->info.origin.position.y;
     ROS_DEBUG("Received a full map update (size_x:%d, size_y:%d, resolution:%.3f, origin_x:%.3f, origin_y:%.3f)", received_map_size_x, received_map_size_y, received_map_resolution,
               received_map_origin_wx, received_map_origin_wy);
+    ROS_DEBUG("My map is(size_x:%d, size_y:%d, resolution:%.3f, origin_x:%.3f, origin_y:%.3f)", this->map_->size_x, this->map_->size_y, this->map_->resolution, this->map_->origin_wx,
+              this->map_->origin_wy);
 
     // Get the grid coordinates corresponding to the received map origin.
     int received_map_origin_gx, received_map_origin_gy;
@@ -83,9 +85,9 @@ void Map2DClient::updateMap(const nav_msgs::OccupancyGrid::ConstPtr& msg) {
     this->last_received_map_origin_gy_ = received_map_origin_gy;
 
     // Update the region of map corresponding to the OccupancyGrid cells.
-    for (int i = 0; i < received_map_size_x; i++) {
-        for (int j = 0; j < received_map_size_y; j++) {
-            this->map_->map_data[origin_idx + i + j * this->map_->size_x].occupancy_state = cost_translation_table_[(unsigned char)msg->data[i + j * received_map_size_x]];
+    for (int j = 0; j < received_map_size_y; j++) {
+        for (int i = 0; i < received_map_size_x; i++) {
+            this->map_->map_data[origin_idx + i + j * received_map_size_x].occupancy_state = cost_translation_table_[(unsigned char)msg->data[i + j * received_map_size_x]];
         }
     }
 }
