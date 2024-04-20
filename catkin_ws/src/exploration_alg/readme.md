@@ -7,7 +7,7 @@ roslaunch turtlebot3_gazebo turtlebot3_house.launch
 roslaunch turtlebot3_slam turtlebot3_slam.launch
 roslaunch turtlebot3_navigation move_base.launch
 roslaunch exploration_alg explore_node.launch
-rosrun exploration_alg move_base_client_node_
+rosrun exploration_alg move_base_client_node
 ```
 
 ## Running the code with step-by-step visualization
